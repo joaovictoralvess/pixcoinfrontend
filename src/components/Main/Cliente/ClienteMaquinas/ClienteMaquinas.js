@@ -104,7 +104,7 @@ const ClienteMaquinas = (props) => {
           }
         >
           <AiOutlinePlusCircle />
-          <span>Addcionar Máquina</span>
+          <span>Adcionar Máquina</span>
         </Button>
 
         <div style={{ margin: "0 15px" }}>

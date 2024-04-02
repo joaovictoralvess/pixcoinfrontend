@@ -173,7 +173,7 @@ const SignIn = (props) => {
           },
         ]}
         authSubmit={"Entrar"}
-        textImage={"LC SISTEMAS"}
+        textImage={"PIXcoin"}
         // authFooter={[
         //     {
         //         text1: 'Registre-se como um',
@@ -195,7 +195,7 @@ const SignIn = (props) => {
         // textImage={
         //     <div className="SignIn_textImage1">
         //         <div className="SignIn_textTitle">
-        //             ALUGA MÁQ
+        //             PIXcoin
         //         </div>
         //         {/* <div className="SignIn_textDescription">
         //             Facilitando o aluguel de máquinas

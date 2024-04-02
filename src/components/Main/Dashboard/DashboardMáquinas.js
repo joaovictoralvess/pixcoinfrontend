@@ -96,7 +96,7 @@ const DashboardFornecedor = (props) => {
         <div className="Dashboard_staBlockTitle">Monitoramento</div>
         {/*<Button className="Dashboard_addbtn">*/}
         {/*    <AiOutlinePlusCircle />*/}
-        {/*    <span>Addcionar Máquina</span>*/}
+        {/*    <span>Adcionar Máquina</span>*/}
         {/*</Button>*/}
       </div>
       <div className="Dashboard_action">
