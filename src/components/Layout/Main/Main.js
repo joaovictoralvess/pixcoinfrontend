@@ -73,7 +73,7 @@ const Main = (props) => {
             <div className="Main_menuitem">
               <FontAwesomeIcon icon={faServer} className="icon" />
               <div className={`SidebarMaquina ${isOpen ? "open" : ""}`}>
-                {dataUser?.key === "CLIENT" ? `Maquinas` : `Clientes`}
+                {dataUser?.key === "CLIENT" ? `Máquinas` : `Clientes`}
               </div>
             </div>
           </Link>

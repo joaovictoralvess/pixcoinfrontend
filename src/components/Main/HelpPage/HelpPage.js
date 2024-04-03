@@ -6,9 +6,6 @@ import { AuthContext } from "../../../contexts/AuthContext";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import * as links from "../../../utils/links";
-import HelpPage1 from "../../../assets/images/HelpPage1.png";
-import HelpPage2 from "../../../assets/images/HelpPage2.png";
-import HelpPage3 from "../../../assets/images/HelpPage3.png";
 import question_black from "../../../assets/images/question_black.png";
 
 const HelpPage = (props) => {
@@ -55,7 +52,6 @@ const HelpPage = (props) => {
           <div className="Help_Page_Image">
             <img
               className="Help_Page_Point_Image"
-              src={HelpPage1}
               alt="Lojas e caixas"
             />
           </div>
