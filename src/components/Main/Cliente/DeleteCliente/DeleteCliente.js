@@ -61,11 +61,6 @@ const DeleteCliente = (props) => {
     <div className="PagamentosSearch_container">
       {isLoading && <LoadingAction />}
       <div className="Delete_Cliente_Content">
-        <img
-          className="Delete_Cliente_Icon"
-          src={question_icon}
-          alt="question icon"
-        />
         <p className="Delete_Cliente_Text"> Deseja excluir cliente?</p>
         <div className="Delete_Cliente_Btns">
           <Button

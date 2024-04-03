@@ -171,11 +171,6 @@ const AddMachine = (props) => {
               }}
               disabled={isLoading}
             >
-              <img
-                className="Edit_Pagamento_Icon"
-                src={question_icon}
-                alt="question icon"
-              />
             </Button>
             <Input
               placeholder={""}

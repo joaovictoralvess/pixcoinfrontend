@@ -172,18 +172,6 @@ const AddMaquina = (props) => {
               <label className="AddMaquina_itemFieldLabel" htmlFor="store_id">
                 Store_id
               </label>
-              <img
-                src={question_icon}
-                alt="question icon"
-                className="AddMaquina_Icon"
-                onClick={() =>
-                  navigate(links.TOKEN_HELP_PAGE, {
-                    state: {
-                      redirect_url: `${links.ADD_CLIENTES_MAQUINA_ADM}/${id}`,
-                    },
-                  })
-                }
-              />
             </div>
             <Input
               placeholder={""}

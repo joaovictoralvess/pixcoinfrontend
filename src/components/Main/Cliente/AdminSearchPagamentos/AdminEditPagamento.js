@@ -211,11 +211,6 @@ const AdminEditPagamento = (props) => {
               }}
               disabled={isLoading}
             >
-              <img
-                className="Admin_Edit_Pagamento_Icon"
-                src={question_icon}
-                alt="question icon"
-              />
             </Button>
           </label>
           <Input

@@ -57,11 +57,6 @@ const AdminDeleteMaquina = (props) => {
     <div className="PagamentosSearch_container">
       {isLoading && <LoadingAction />}
       <div className="Update_Pagamento_Content">
-        <img
-          className="Update_Pagamento_Icon"
-          src={question_icon}
-          alt="question icon"
-        />
         <p className="Update_Pagamento_Text">Deseja excluir essa máquina?</p>
         <div className="Update_Pagamento_Btns">
           <Button

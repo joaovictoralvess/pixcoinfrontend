@@ -15,7 +15,6 @@ import EditPagamento from "./components/Main/SearchPagamentos/EditPagamento";
 import EditCliente from "./components/Main/Cliente/EditCliente/EditCliente";
 import DeleteMaquina from "./components/Main/SearchPagamentos/DeleteMaquina";
 import ClienteMaquinas from "./components/Main/Cliente/ClienteMaquinas/ClienteMaquinas";
-import HelpPage from "./components/Main/HelpPage/HelpPage";
 import {
   NotificationContainer,
   NotificationManager,
@@ -27,7 +26,6 @@ import AddCliente from "./components/Main/Cliente/AddCliente/AddCliente";
 import RemoteCredit from "./components/Main/RemoteCredit/RemoteCredit";
 import DeleteCliente from "./components/Main/Cliente/DeleteCliente/DeleteCliente";
 import Relatorio from "./components/Main/Relatorio/Relatorio/Relatorio";
-import TokenHelpPage from "./components/Main/TokenHelpPage/TokenHelpPage";
 import AdminPagamentosSearch from "./components/Main/Cliente/AdminSearchPagamentos/AdminPagamentosSearch";
 import AdminEditPagamento from "./components/Main/Cliente/AdminSearchPagamentos/AdminEditPagamento";
 import AdminDeletePagamento from "./components/Main/Cliente/AdminSearchPagamentos/AdminDeletePagamento";
@@ -250,7 +248,6 @@ function App() {
               element={
                 <PrivateRoute>
                   <Main>
-                    <HelpPage />
                   </Main>
                 </PrivateRoute>
               }
@@ -260,7 +257,6 @@ function App() {
               element={
                 <PrivateRoute>
                   <Main>
-                    <TokenHelpPage />
                   </Main>
                 </PrivateRoute>
               }

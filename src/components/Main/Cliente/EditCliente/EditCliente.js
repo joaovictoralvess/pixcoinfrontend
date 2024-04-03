@@ -203,18 +203,6 @@ const EditCliente = (props) => {
             >
               Token
             </label>
-            <img
-              src={question_icon}
-              alt="question icon"
-              className="Edit_Cliente_Icon"
-              onClick={() =>
-                navigate(`${links.TOKEN_HELP_PAGE}`, {
-                  state: {
-                    redirect_url: `${links.EDITAR_CLIENTES}/${cliente.id}`,
-                  },
-                })
-              }
-            />
           </div>
 
           <Input
@@ -247,11 +235,6 @@ const EditCliente = (props) => {
               Data de Vencimento
             </label>
             <Tooltip title="A data de vencimento do cliente é uma data que após 10 dias é feito a trava das máquinas do cliente para receber pagamentos. Ideal para quem cobra mensalidade, se não definida por padrão colocamos 1 (um) ano. se não quiser usar coloque uma data maior">
-              <img
-                src={question_icon}
-                alt="question icon"
-                className="AddCliente_Icon"
-              />
             </Tooltip>
           </div>
           <DatePicker

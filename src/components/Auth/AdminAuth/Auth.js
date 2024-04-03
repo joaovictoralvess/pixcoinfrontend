@@ -141,38 +141,6 @@ const Auth = (props) => {
               </div>
             )}
           </div>
-          <div className="Admin_MediaIcons">
-            <a
-              href="https://www.facebook.com/ti.lucascarvalho?mibextid=9R9pXO"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FontAwesomeIcon
-                icon={faFacebook}
-                className="Admin_Auth_SocialIcon"
-              />
-            </a>
-            <a
-              href="https://instagram.com/br.lcsistemas?igshid=YzAwZjE1ZTI0Zg%3D%3D&utm_source=qr"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FontAwesomeIcon
-                icon={faInstagram}
-                className="Admin_Auth_SocialIcon"
-              />
-            </a>
-            <a
-              href="https://api.whatsapp.com/send/?phone=5579991371011&text&type=phone_number&app_absent=0"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FontAwesomeIcon
-                icon={faWhatsapp}
-                className="Admin_Auth_SocialIcon"
-              />
-            </a>
-          </div>
         </Col>
 
         <Col xs={24} md={14} lg={14} xl={14} className="Admin_Auth_AuthImage">
