@@ -161,14 +161,14 @@ const Auth = (props) => {
                 {textImage}
                 <div className="MediaIcons">
                   <a
-                    href="https://www.facebook.com/ti.lucascarvalho?mibextid=9R9pXO"
+                    href="https://www.facebook.com/profile.php?id=61553994759635&mibextid=ZbWKwL"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
                     <FontAwesomeIcon icon={faFacebook} className="SocialIcon" />
                   </a>
                   <a
-                    href="https://instagram.com/br.lcsistemas?igshid=YzAwZjE1ZTI0Zg%3D%3D&utm_source=qr"
+                    href="https://instagram.com/pix_coin"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -178,7 +178,7 @@ const Auth = (props) => {
                     />
                   </a>
                   <a
-                    href="https://api.whatsapp.com/send/?phone=5579991371011&text&type=phone_number&app_absent=0"
+                    href="https://api.whatsapp.com/send/?phone=5521979832030&text&type=phone_number&app_absent=0"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
