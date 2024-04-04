@@ -108,10 +108,12 @@ const DashboardFornecedor = (props) => {
           Atualizar
         </Button>
         <Link to={links.ADD_MACHINE}>
-          <Button className="Dashboard_addbtn">
-            <AiOutlinePlusCircle />
-            <span>Adicionar Máquina</span>
-          </Button>
+
+
+
+
+
+          
         </Link>
       </div>
       <Row>
