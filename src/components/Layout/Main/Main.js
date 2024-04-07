@@ -58,7 +58,8 @@ const Main = (props) => {
           </button>
           <div className={`Main_menuProfile ${isOpen ? "open" : ""}`}>
             <div className="circle-icon">
-              <span>PC</span>
+              <span>PIX</span>
+              <span>COIN</span>
             </div>
           </div>
 

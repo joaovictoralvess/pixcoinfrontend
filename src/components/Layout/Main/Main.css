@@ -295,7 +295,7 @@ button {
 
 .icon {
   /* color: #4169E1; */
-  color: #5a6acf;
+  color: #000000;
 }
 
 .circle-icon {
@@ -304,8 +304,8 @@ button {
   align-items: center;
   justify-content: center;
   font-weight: 500;
-  width: 75px; /* Largura do círculo */
-  height: 75px; /* Altura do círculo */
+  width: 70px; /* Largura do círculo */
+  height: 70px; /* Altura do círculo */
   border-radius: 50%; /* Para criar um círculo */
   background-color: #f1f2f7; /* Cor do círculo */
   color: rgb(0, 0, 0); /* Cor do texto dentro do círculo */
