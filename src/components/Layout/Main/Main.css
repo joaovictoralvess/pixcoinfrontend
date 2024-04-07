@@ -309,5 +309,5 @@ button {
   border-radius: 50%; /* Para criar um círculo */
   background-color: #f1f2f7; /* Cor do círculo */
   color: rgb(0, 0, 0); /* Cor do texto dentro do círculo */
-  font-size: 18px; /* Tamanho do texto */
+  font-size: 14px; /* Tamanho do texto */
 }
