@@ -304,10 +304,10 @@ button {
   align-items: center;
   justify-content: center;
   font-weight: 500;
-  width: 60px; /* Largura do círculo */
-  height: 60px; /* Altura do círculo */
+  width: 75px; /* Largura do círculo */
+  height: 75px; /* Altura do círculo */
   border-radius: 50%; /* Para criar um círculo */
   background-color: #f1f2f7; /* Cor do círculo */
-  color: rgb(89, 105, 207); /* Cor do texto dentro do círculo */
+  color: rgb(0, 0, 0); /* Cor do texto dentro do círculo */
   font-size: 18px; /* Tamanho do texto */
 }
