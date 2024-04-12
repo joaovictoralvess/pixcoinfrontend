@@ -186,48 +186,6 @@ const EditPagamento = (props) => {
         <div className="Update_Pagamento_itemField">
           <label
             className="Update_Pagamento_itemFieldLabel"
-            htmlFor="store_id"
-            style={{ display: "flex", alignItems: "center" }}
-          >
-            <span>Store_id:</span>
-            <Button
-              className="EditPagamentos_header_HelpPage"
-              onClick={() => {
-                navigate(links.HELP_PAGE, {
-                  state: {
-                    ...location.state,
-                    redirect_url: `${links.EDIT_FORNECEDOR_CANAIS}/${id}`,
-                  },
-                });
-              }}
-              disabled={isLoading}
-            >
-            </Button>
-          </label>
-          <Input
-            placeholder={"12345678"}
-            value={data.store_id}
-            id="store_id"
-            name="store_id"
-            min={0}
-            autoComplete="store_id"
-            onChange={(event) => {
-              handleChange("store_id", event.target.value);
-            }}
-            className={`${
-              !!errors.store_id ? "Update_Pagamento_inputError" : ""
-            }`}
-          />
-          {errors.store_id && (
-            <div className="Update_Pagamento_itemFieldError">
-              {errors.store_id}
-            </div>
-          )}
-        </div>
-
-        <div className="Update_Pagamento_itemField">
-          <label
-            className="Update_Pagamento_itemFieldLabel"
             htmlFor="valorDoPulso"
           >
             Valor Do Pulso R$:
