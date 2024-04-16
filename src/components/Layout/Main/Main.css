@@ -268,10 +268,10 @@ button {
 
 @media only screen and (max-width: 850px) and (orientation: landscape) {
   .Main_sidebar.open {
-    height: 100%; /* Ajuste a altura conforme necessário */
+    height: 30%; /* Ajuste a altura conforme necessário */
   }
   .Main_sidebar {
-    height: 25%;
+    height: 15%;
   }
 
   .Main_menuProfile {

@@ -175,14 +175,19 @@
     align-items: center;
     flex-direction: column;
     gap: 2em;
+    margin-bottom: 50px;
   }
 
   .PagamentosSearch.PagamentosSearch_titleList{
     margin: 0;
-    justify-content: space-between;
+    justify-content: center;
     margin-left: 40px;
     display: grid;
-    margin-top: 40px;
+    margin-top: 10%;
+  }
+
+  .PagamentosSearch_container{
+    align-items: center;
   }
 
   .box{
