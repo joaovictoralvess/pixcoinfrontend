@@ -107,6 +107,7 @@
   line-height: 28px;
   color: #52525b;
   margin-right: 100px;
+  gap: 20px;
 }
 
 /* .PagamentosSearch_titleList_main {
@@ -169,14 +170,14 @@
 
 @media screen and (max-width:768px) {
   
-  .Admin_PagamentosSearch_header_left{
+  .PagamentosSearch_header_left{
     display: flex;
     align-items: center;
     flex-direction: column;
     gap: 2em;
   }
 
-  .Admin_PagamentosSearch.PagamentosSearch_titleList{
+  .PagamentosSearch.PagamentosSearch_titleList{
     margin: 0;
     justify-content: space-between;
     margin-left: 40px;
