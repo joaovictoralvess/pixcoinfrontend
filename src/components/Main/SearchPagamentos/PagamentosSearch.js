@@ -308,13 +308,14 @@ const PagamentosSearch = (props) => {
             />
             <span>Relatório</span>
           </Button>
-        </div>
-        <Link
+
+          <Link
           className="PagamentosSearch_header_back"
           to={links.DASHBOARD_FORNECEDOR}
         >
           VOLTAR
         </Link>
+        </div>
       </div>
       <div className="PagamentosSearch_body">
         <div className="PagamentosSearch_content">

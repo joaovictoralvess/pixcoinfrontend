@@ -181,6 +181,8 @@
     margin: 0;
     justify-content: space-between;
     margin-left: 40px;
+    display: grid;
+    margin-top: 40px;
   }
 
   .box{
