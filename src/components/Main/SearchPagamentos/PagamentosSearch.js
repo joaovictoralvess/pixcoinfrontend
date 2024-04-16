@@ -323,40 +323,54 @@ const PagamentosSearch = (props) => {
             style={{ marginBottom: "10px" }}
           >
             <div className="PagamentosSearch_titleList">
-              <div style={{ marginLeft: "20px" }}>Total</div>
-              <div className="PagamentosSearch_nbList">
-                {Intl.NumberFormat("pt-BR", {
-                  style: "currency",
-                  currency: "BRL",
-                }).format(total)}
+            <div className="box">
+                <div style={{ marginLeft: "20px" }}>Total</div>
+                <div className="PagamentosSearch_nbList">
+                  {Intl.NumberFormat("pt-BR", {
+                    style: "currency",
+                    currency: "BRL",
+                  }).format(total)}
+                </div>
               </div>
-              <div style={{ marginLeft: "20px" }}>Estornos</div>
-              <div className="PagamentosSearch_nbList">
-                {Intl.NumberFormat("pt-BR", {
-                  style: "currency",
-                  currency: "BRL",
-                }).format(estornos)}
+              <div className="box">
+                <div style={{ marginLeft: "20px" }}>Estornos</div>
+                <div className="PagamentosSearch_nbList">
+                  {Intl.NumberFormat("pt-BR", {
+                    style: "currency",
+                    currency: "BRL",
+                  }).format(estornos)}
+                </div>
               </div>
-              <div style={{ marginLeft: "20px" }}>Espécie</div>
-              <div className="PagamentosSearch_nbList">
-                {Intl.NumberFormat("pt-BR", {
-                  style: "currency",
-                  currency: "BRL",
-                }).format(cash)}
+              <div className="box">
+                <div style={{ marginLeft: "20px" }}>Espécie</div>
+                <div className="PagamentosSearch_nbList">
+                  {Intl.NumberFormat("pt-BR", {
+                    style: "currency",
+                    currency: "BRL",
+                  }).format(cash)}
+                </div>
               </div>
-              <div style={{ marginLeft: "20px" }}>Pulso</div>
-              <div className="PagamentosSearch_nbList">
-                {Intl.NumberFormat("pt-BR", {
-                  style: "currency",
-                  currency: "BRL",
-                }).format(maquinaInfos.pulso)}
+              <div className="box">
+                <div style={{ marginLeft: "20px" }}>Pulso</div>
+                <div className="PagamentosSearch_nbList">
+                  {Intl.NumberFormat("pt-BR", {
+                    style: "currency",
+                    currency: "BRL",
+                  }).format(maquinaInfos.pulso)}
+                </div>
               </div>
+              <div className="box">
               <div style={{ marginLeft: "20px" }}>Store ID</div>
               <div className="PagamentosSearch_nbList">
                 {maquinaInfos.storeId}
               </div>
-              <div style={{ marginLeft: "20px" }}>Estoque</div>
-              <div className="PagamentosSearch_nbList">{estoque ?? ""}</div>
+              </div>
+              {/* <div style={{ marginLeft: "20px" }}>Estoque</div>
+              <div className="PagamentosSearch_nbList">
+              {estoque ?? ""}
+              </div> */}
+            
+            
             </div>
 
             {maquinaInfos.storeId && (
@@ -364,11 +378,11 @@ const PagamentosSearch = (props) => {
                 target="_blank"
                 to={`//www.mercadopago.com.br/stores/detail?store_id=${maquinaInfos.storeId}`}
               >
-                <img
+                {/* <img
                   className="PagamentosSearch_QR_Icon"
                   src={qr_code_icon}
                   alt="QR"
-                />
+                /> */}
               </Link>
             )}
           </div>

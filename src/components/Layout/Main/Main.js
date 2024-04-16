@@ -90,14 +90,14 @@ const Main = (props) => {
               }}
             >
               {/* <Dropdown overlay={menu} placement="bottomRight" arrow> */}
-              <div className="Main_headerSearch">
+              {/* <div className="Main_headerSearch">
                 <span style={{ fontSize: "12px" }}>{dataUser.name}</span>
                 <FontAwesomeIcon
                   className="icon"
                   style={{ marginLeft: "5px" }}
                   icon={faRightFromBracket}
                 ></FontAwesomeIcon>
-              </div>
+              </div> */}
               {/* </Dropdown> */}
             </div>
           </div>

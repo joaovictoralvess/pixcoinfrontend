@@ -95,9 +95,9 @@
   font-size: 18px;
 }
 
-.PagamentosSearch_content {
+/* .PagamentosSearch_content {
   padding: 20px;
-}
+} */
 
 .PagamentosSearch_titleList {
   display: flex;
@@ -109,9 +109,9 @@
   margin-right: 100px;
 }
 
-.PagamentosSearch_titleList_main {
+/* .PagamentosSearch_titleList_main {
   display: flex;
-}
+} */
 
 .PagamentosSearch_datePicker {
   display: flex;
@@ -160,9 +160,32 @@
     width: 100%;
   }
 
-  .PagamentosSearch_titleList {
+  /* .PagamentosSearch_titleList {
     flex-wrap: wrap;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  } */
+}
+
+@media screen and (max-width:768px) {
+  
+  .Admin_PagamentosSearch_header_left{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 2em;
   }
+
+  .Admin_PagamentosSearch.PagamentosSearch_titleList{
+    margin: 0;
+    justify-content: space-between;
+    margin-left: 40px;
+  }
+
+  .box{
+    justify-content: space-between;
+    display: flex;
+    width: 100%;
+  }
+
 }

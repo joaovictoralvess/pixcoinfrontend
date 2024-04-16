@@ -311,3 +311,12 @@ button {
   color: rgb(0, 0, 0); /* Cor do texto dentro do círculo */
   font-size: 14px; /* Tamanho do texto */
 }
+
+@media screen and (max-width: 768px) {
+ 
+  .Admin_PagamentosSearch_titlelist{
+    display: flex;
+    flex-direction: column;
+  }
+
+}
