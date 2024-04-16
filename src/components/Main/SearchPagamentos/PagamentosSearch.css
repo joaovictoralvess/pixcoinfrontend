@@ -186,6 +186,16 @@
     margin-top: 10%;
   }
 
+  .PagamentosSearch_description{
+    text-align: center;
+  }
+
+  .PagamentosSearch_titleList{
+    display: grid;
+    justify-content: center;
+    margin-right: 0px;
+  }
+
   .PagamentosSearch_container{
     align-items: center;
   }
