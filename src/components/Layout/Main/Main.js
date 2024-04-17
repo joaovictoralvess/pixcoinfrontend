@@ -105,7 +105,7 @@ const Main = (props) => {
         <div className="Main_right">
           <div
             className="Main_content"
-            style={{ marginTop: "30px", marginLeft: "-10px" }}
+            style={{ marginTop: "30px", /*marginLeft: "-10px" */}}
           >
             {children}
           </div>
