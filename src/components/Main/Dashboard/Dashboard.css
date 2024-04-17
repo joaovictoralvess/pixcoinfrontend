@@ -286,7 +286,7 @@
 
 
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 768px) {
     .Dashboard_col_table {
         display: none!important;
     }
@@ -310,6 +310,10 @@
         justify-content: flex-end;
         padding: 10px;
     }
+
+    .maquina-info {
+        margin-bottom: 40px;        
+      }
 }
 
 
@@ -332,3 +336,5 @@
   .maquina-info {
     padding: 8px;
   }
+
+

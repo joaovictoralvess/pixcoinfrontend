@@ -209,4 +209,8 @@
     width: 100%;
   }
 
+  .ant-table-wrapper{
+    margin-bottom: 100%;
+  }
+
 }
