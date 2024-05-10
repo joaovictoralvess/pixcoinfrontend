@@ -389,20 +389,22 @@ const PagamentosSearch = (props) => {
           </div>
           <div className="PagamentosSearch_description">{`${maquinaInfos?.nome} - ${maquinaInfos?.descricao}`}</div>
 
-          <Table
-            columns={columns}
-            dataSource={listCanals}
-            pagination={false}
-            loading={loadingTable}
-            locale={{
-              emptyText:
-                searchText.trim() !== "" ? (
-                  "-"
-                ) : (
-                  <div>Não foram encontrados resultados para sua pesquisa.</div>
-                ),
-            }}
-          />
+          <div className="table-responsive">
+            <Table
+                columns={columns}
+                dataSource={listCanals}
+                pagination={false}
+                loading={loadingTable}
+                locale={{
+                  emptyText:
+                    searchText.trim() !== "" ? (
+                      "-"
+                    ) : (
+                      <div>Não foram encontrados resultados para sua pesquisa.</div>
+                    ),
+                }}
+              />
+          </div>
         </div>
       </div>
     </div>
