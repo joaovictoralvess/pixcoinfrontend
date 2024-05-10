@@ -85,6 +85,7 @@ const AddMachine = (props) => {
               "A sua sessão expirou, para continuar faça login novamente.",
           });
           setDataUser(null);
+          window.location.href = "/";
         } else if (err.response.status === 400) {
           setNotiMessage({
             type: "error",

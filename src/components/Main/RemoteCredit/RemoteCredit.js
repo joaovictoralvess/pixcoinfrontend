@@ -75,6 +75,7 @@ const RemoteCredit = (props) => {
                         message: 'A sua sessão expirou, para continuar faça login novamente.'
                     })
                     setDataUser(null);
+                    window.location.href = "/";
                 } else {
                     setNotiMessage({
                         type: 'error',

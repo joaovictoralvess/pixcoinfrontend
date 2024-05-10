@@ -54,6 +54,7 @@ const AdminDeletePagamento = (props) => {
             message: "Delete Failed",
           });
           setDataUser(null);
+          window.location.href = "/";
         }
       });
   };

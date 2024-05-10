@@ -67,6 +67,7 @@ const ClienteMaquinas = (props) => {
               "A sua sessão expirou, para continuar faça login novamente.",
           });
           setDataUser(null);
+          window.location.href = "/";
         }
       });
   };

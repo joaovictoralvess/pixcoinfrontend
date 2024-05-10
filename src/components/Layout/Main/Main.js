@@ -87,6 +87,7 @@ const Main = (props) => {
                   dataUser?.key === "CLIENT" ? links.SIGNIN : links.ADMIN_SIGNIN
                 );
                 setDataUser(null);
+                window.location.href = "/";
               }}
             >
               {/* <Dropdown overlay={menu} placement="bottomRight" arrow> */}
