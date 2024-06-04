@@ -2,6 +2,11 @@
   height: 100%;
   width: 100%;
   display: flex;
+  font-weight: 700;
+}
+
+.span {
+  font-weight: 700;
 }
 
 button {
@@ -14,7 +19,7 @@ button {
 .Main_sidebar {
   box-shadow: 1px 0px 24px rgba(0, 0, 0, 0.1);
   height: 100%;
-  width: 80px;
+  width: 90px;
   padding: 20px 0;
   padding-right: 20px;
   display: flex;
