@@ -50,24 +50,24 @@ const PagamentosSearch = (props) => {
     // getMaquinas(id)
   }, []);
 
-  // Função para remover duplicatas com base em identificador MP e valor
   const removeDuplicateMP = (data) => {
     const uniqueData = [];
     const seenItems = new Set();
     let totalValue = 0;
   
     data.forEach((item) => {
-      const key = `${item.mercadoPagoId}-${item.valor}`;
+      const key = item.mercadoPagoId; // Chave única baseada apenas no ID do MercadoPago
+  
       if (!seenItems.has(key)) {
         uniqueData.push(item);
         seenItems.add(key);
-        totalValue += item.valor;  // Soma apenas os valores únicos
+        totalValue += item.valor; // Soma o valor da primeira ocorrência do item
       }
     });
   
     return { uniqueData, totalValue };
-  };  
-
+  };
+  
   useEffect(() => {
     if (dataFim != null) {
       getPaymentsPeriod(dataInicio, dataFim);
@@ -91,10 +91,10 @@ const PagamentosSearch = (props) => {
           setEstoque(res?.data?.estoque);
   
           if (res.status === 200 && Array.isArray(res.data.pagamentos)) {
-            // Aplica a função de remoção de duplicatas e calcula o total correto
+            // Remove duplicatas e calcula o total correto
             const { uniqueData, totalValue } = removeDuplicateMP(res.data.pagamentos);
             setListCanals(uniqueData);
-            setTotal(totalValue);  // Define o total corrigido
+            setTotal(totalValue); // Atualiza o total com o valor correto
           }
         })
         .catch((err) => {
