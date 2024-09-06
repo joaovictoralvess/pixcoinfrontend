@@ -52,21 +52,25 @@ const PagamentosSearch = (props) => {
 
   const removeDuplicateMP = (data) => {
     const uniqueData = [];
-    const seenItems = new Set();
+    const seenItems = new Map(); // Usando Map para associar o mercadoPagoId ao valor correto
     let totalValue = 0;
   
     data.forEach((item) => {
-      const key = item.mercadoPagoId; // Chave única baseada apenas no ID do MercadoPago
+      const key = item.mercadoPagoId;
   
       if (!seenItems.has(key)) {
+        // Adiciona ao Map o identificador único e o valor
+        seenItems.set(key, item.valor);
         uniqueData.push(item);
-        seenItems.add(key);
-        totalValue += item.valor; // Soma o valor da primeira ocorrência do item
       }
     });
   
+    // Agora recalcula o total somando os valores únicos
+    totalValue = Array.from(seenItems.values()).reduce((acc, val) => acc + val, 0);
+  
     return { uniqueData, totalValue };
   };
+  
   
   useEffect(() => {
     if (dataFim != null) {
