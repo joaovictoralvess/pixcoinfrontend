@@ -51,21 +51,22 @@ const PagamentosSearch = (props) => {
   }, []);
 
   // Função para remover duplicatas com base em identificador MP e valor
-const removeDuplicateMP = (data) => {
-  const uniqueData = [];
-  const seenItems = new Set();
-
-  data.forEach((item) => {
-    const key = `${item.mercadoPagoId}-${item.valor}`;
-    if (!seenItems.has(key)) {
-      uniqueData.push(item);
-      seenItems.add(key);
-    }
-  });
-
-  return uniqueData;
-};
-
+  const removeDuplicateMP = (data) => {
+    const uniqueData = [];
+    const seenItems = new Set();
+    let totalValue = 0;
+  
+    data.forEach((item) => {
+      const key = `${item.mercadoPagoId}-${item.valor}`;
+      if (!seenItems.has(key)) {
+        uniqueData.push(item);
+        seenItems.add(key);
+        totalValue += item.valor;  // Soma apenas os valores únicos
+      }
+    });
+  
+    return { uniqueData, totalValue };
+  };  
 
   useEffect(() => {
     if (dataFim != null) {
@@ -88,12 +89,12 @@ const removeDuplicateMP = (data) => {
           setEstornos(res.data.estornos);
           setCash(res?.data?.cash);
           setEstoque(res?.data?.estoque);
-          setTotal(res.data.total);
   
           if (res.status === 200 && Array.isArray(res.data.pagamentos)) {
-            // Filtra os duplicados baseados em mercadoPagoId e valor
-            const uniquePayments = removeDuplicateMP(res.data.pagamentos);
-            setListCanals(uniquePayments);
+            // Aplica a função de remoção de duplicatas e calcula o total correto
+            const { uniqueData, totalValue } = removeDuplicateMP(res.data.pagamentos);
+            setListCanals(uniqueData);
+            setTotal(totalValue);  // Define o total corrigido
           }
         })
         .catch((err) => {
