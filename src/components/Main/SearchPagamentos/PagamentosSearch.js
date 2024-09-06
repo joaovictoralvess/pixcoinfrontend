@@ -30,7 +30,6 @@ const PagamentosSearch = (props) => {
   let navigate = useNavigate();
   const token = authInfo?.dataUser?.token;
   const [isLoading, setIsLoading] = useState(false);
-  // const [searchText, setsearchText] = useState('');
   const [searchText, setSearchText] = useState("");
   const [listCanals, setListCanals] = useState([]);
   const [estornos, setEstornos] = useState("");
@@ -42,12 +41,11 @@ const PagamentosSearch = (props) => {
   const [dataFim, setDataFim] = useState(null);
   const [dataMaquinas, setDataMaquinas] = useState(null);
 
-  // const []
   const { id } = useParams();
   const { RangePicker } = DatePicker;
+
   useEffect(() => {
     getData(id);
-    // getMaquinas(id)
   }, []);
 
   useEffect(() => {
@@ -73,13 +71,14 @@ const PagamentosSearch = (props) => {
           setEstoque(res?.data?.estoque);
           setTotal(res.data.total);
           if (res.status === 200 && Array.isArray(res.data.pagamentos)) {
-            setListCanals(res.data.pagamentos);
+            // Filtra os duplicados aqui
+            const uniquePayments = _.uniqBy(res.data.pagamentos, 'mercadoPagoId');
+            setListCanals(uniquePayments);
           }
         })
         .catch((err) => {
           setLoadingTable(false);
           if ([401, 403].includes(err.response.status)) {
-            // setNotiMessage('A sua sessão expirou, para continuar faça login novamente.');
             setNotiMessage({
               type: "error",
               message:
@@ -90,25 +89,6 @@ const PagamentosSearch = (props) => {
           }
         });
     }
-  };
-
-  const getMaquinas = (id) => {
-    axios
-      .get(`${process.env.REACT_APP_SERVIDOR}/maquinas`, {
-        headers: {
-          "x-access-token": token,
-          "content-type": "application/json",
-        },
-      })
-      .then((res) => {
-        if (res.status === 200 && Array.isArray(res.data)) {
-          const maquinasData = res.data.find((item) => item.id === id);
-          setDataMaquinas(maquinasData ?? null);
-        } else {
-          throw new Error();
-        }
-      })
-      .catch((err) => {});
   };
 
   const getPaymentsPeriod = (dataInicio, dataFim) => {
@@ -135,13 +115,14 @@ const PagamentosSearch = (props) => {
           setCash(res?.data?.cash);
           setTotal(res.data.total);
           if (res.status === 200 && Array.isArray(res.data.pagamentos)) {
-            setListCanals(res.data.pagamentos);
+            // Filtra os duplicados aqui
+            const uniquePayments = _.uniqBy(res.data.pagamentos, 'mercadoPagoId');
+            setListCanals(uniquePayments);
           }
         })
         .catch((err) => {
           setLoadingTable(false);
           if ([401, 403].includes(err.response.status)) {
-            // setNotiMessage('A sua sessão expirou, para continuar faça login novamente.');
             setNotiMessage({
               type: "error",
               message:
@@ -168,7 +149,7 @@ const PagamentosSearch = (props) => {
       title: "Forma de pagamento",
       dataIndex: "tipo",
       key: "tipo",
-      render: (tipo, record) => (
+      render: (tipo) => (
         <span>
           {tipo === "bank_transfer"
             ? "PIX"
@@ -269,9 +250,6 @@ const PagamentosSearch = (props) => {
             <AiFillDelete />
             <span>Excluir Pagamentos</span>
           </Button>
-          {/*<Link to={links.REMOTE_CREDIT.replace(':id', id)}>*/}
-          {/*   */}
-          {/*</Link>*/}
           <Button
             className="PagamentosSearch_header_editBtn"
             onClick={() => {
@@ -284,7 +262,6 @@ const PagamentosSearch = (props) => {
             <span>Crédito Remoto</span>
           </Button>
           <div className="PagamentosSearch_datePicker">
-            {/* <span> Filtro por data:</span> */}
             <FontAwesomeIcon
               style={{ marginBottom: "10px", marginRight: "10px" }}
               icon={faSearch}
@@ -326,7 +303,7 @@ const PagamentosSearch = (props) => {
             style={{ marginBottom: "10px" }}
           >
             <div className="PagamentosSearch_titleList">
-            <div className="box">
+              <div className="box">
                 <div style={{ marginLeft: "20px" }}>Total</div>
                 <div className="PagamentosSearch_nbList">
                   {Intl.NumberFormat("pt-BR", {
@@ -363,17 +340,11 @@ const PagamentosSearch = (props) => {
                 </div>
               </div>
               <div className="box">
-              <div style={{ marginLeft: "20px" }}>Store ID</div>
-              <div className="PagamentosSearch_nbList">
-                {maquinaInfos.storeId}
+                <div style={{ marginLeft: "20px" }}>Store ID</div>
+                <div className="PagamentosSearch_nbList">
+                  {maquinaInfos.storeId}
+                </div>
               </div>
-              </div>
-              {/* <div style={{ marginLeft: "20px" }}>Estoque</div>
-              <div className="PagamentosSearch_nbList">
-              {estoque ?? ""}
-              </div> */}
-            
-            
             </div>
 
             {maquinaInfos.storeId && (
@@ -381,11 +352,6 @@ const PagamentosSearch = (props) => {
                 target="_blank"
                 to={`//www.mercadopago.com.br/stores/detail?store_id=${maquinaInfos.storeId}`}
               >
-                {/* <img
-                  className="PagamentosSearch_QR_Icon"
-                  src={qr_code_icon}
-                  alt="QR"
-                /> */}
               </Link>
             )}
           </div>
