@@ -50,28 +50,6 @@ const PagamentosSearch = (props) => {
     // getMaquinas(id)
   }, []);
 
-  const removeDuplicateMP = (data) => {
-    const uniqueData = [];
-    const seenItems = new Map(); // Usando Map para associar o mercadoPagoId ao valor correto
-    let totalValue = 0;
-  
-    data.forEach((item) => {
-      const key = item.mercadoPagoId;
-  
-      if (!seenItems.has(key)) {
-        // Adiciona ao Map o identificador único e o valor
-        seenItems.set(key, item.valor);
-        uniqueData.push(item);
-      }
-    });
-  
-    // Agora recalcula o total somando os valores únicos
-    totalValue = Array.from(seenItems.values()).reduce((acc, val) => acc + val, 0);
-  
-    return { uniqueData, totalValue };
-  };
-  
-  
   useEffect(() => {
     if (dataFim != null) {
       getPaymentsPeriod(dataInicio, dataFim);
@@ -93,17 +71,15 @@ const PagamentosSearch = (props) => {
           setEstornos(res.data.estornos);
           setCash(res?.data?.cash);
           setEstoque(res?.data?.estoque);
-  
+          setTotal(res.data.total);
           if (res.status === 200 && Array.isArray(res.data.pagamentos)) {
-            // Remove duplicatas e calcula o total correto
-            const { uniqueData, totalValue } = removeDuplicateMP(res.data.pagamentos);
-            setListCanals(uniqueData);
-            setTotal(totalValue); // Atualiza o total com o valor correto
+            setListCanals(res.data.pagamentos);
           }
         })
         .catch((err) => {
           setLoadingTable(false);
           if ([401, 403].includes(err.response.status)) {
+            // setNotiMessage('A sua sessão expirou, para continuar faça login novamente.');
             setNotiMessage({
               type: "error",
               message:
@@ -115,7 +91,6 @@ const PagamentosSearch = (props) => {
         });
     }
   };
-  
 
   const getMaquinas = (id) => {
     axios
