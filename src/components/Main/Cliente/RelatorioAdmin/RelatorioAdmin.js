@@ -55,11 +55,11 @@ const RelatorioAdmin = (props) => {
   const dataData = async () => {
     try {
       setIsLoading(true);
-
+  
       let body = { maquinaId: id };
       body.dataInicio = new Date(dataInicio.slice(0, 11) + "T00:00:00.000Z");
-      body.dataFim =  new Date(dataFim.slice(0, 11) + "T23:59:00.000Z");
-
+      body.dataFim = new Date(dataFim.slice(0, 11) + "T23:59:00.000Z");
+  
       const [estornosVal, taxasVal, pagamentosVal, cashVal] = await Promise.all(
         [
           axios.post(
@@ -104,33 +104,42 @@ const RelatorioAdmin = (props) => {
           ),
         ]
       );
+  
+      let credito = pagamentosVal.data.credito || "0";
+      let debito = pagamentosVal.data.debito || "0";
+  
+      // Lógica para remover duplicidade
+      if (credito !== "0" && debito !== "0") {
+        credito = "0"; // Mantemos apenas débito, mas pode ser ajustado conforme necessário
+      }
+  
       setEstornos({
         SOMA: estornosVal?.data?.valor || "0",
       });
-
+  
       setTaxas({
         PIX: taxasVal.data?.pix || "0",
         CREDITO: taxasVal.data?.credito || "0",
         DEBITO: taxasVal.data?.debito || "0",
       });
-
+  
       setPagamentos({
         PIX: pagamentosVal.data.pix || "0",
-        CREDITO: pagamentosVal.data.credito || "0",
-        DEBITO: pagamentosVal.data.debito || "0",
+        CREDITO: credito,
+        DEBITO: debito,
         ESPECIE: cashVal.data?.valor || "0",
       });
-
+  
       setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
-
       setNotiMessage({
         type: "error",
         message: "A sua sessão expirou, para continuar faça login novamente.",
       });
     }
   };
+  
 
   return (
     <div>
