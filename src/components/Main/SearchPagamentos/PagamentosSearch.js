@@ -1,33 +1,39 @@
-import React, { useCallback, useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import LoadingAction from "../../../themes/LoadingAction/LoadingAction";
 import "./PagamentosSearch.css";
-import { Button, Col, Input, Row, Table } from "antd";
+import { Button, Table, DatePicker } from "antd";
 import { AuthContext } from "../../../contexts/AuthContext";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link, useNavigate, useLocation, useParams } from "react-router-dom";
 import moment from "moment";
-import _, { debounce } from "lodash";
 import axios from "axios";
-import { useParams } from "react-router-dom";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
-import { DatePicker } from "antd";
 import "antd/dist/antd.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import * as links from "../../../utils/links";
-import {
-  AiOutlineEdit,
-  AiFillDelete,
-  AiFillDollarCircle,
-} from "react-icons/ai";
-import qr_code_icon from "../../../assets/images/QR.png";
+import { AiOutlineEdit, AiFillDelete, AiFillDollarCircle } from "react-icons/ai";
 import notes from "../../../assets/images/notes.png";
+
+// Função para remover duplicatas de identificadores MP
+const removeDuplicateMP = (data) => {
+  const uniqueData = [];
+  const seenIds = new Set();
+
+  data.forEach((item) => {
+    if (!seenIds.has(item.mercadoPagoId)) {
+      uniqueData.push(item);
+      seenIds.add(item.mercadoPagoId);
+    }
+  });
+
+  return uniqueData;
+};
 
 const PagamentosSearch = (props) => {
   const location = useLocation();
   const maquinaInfos = location.state;
-  const { setDataUser, loading, authInfo, setNotiMessage } =
-    useContext(AuthContext);
-  let navigate = useNavigate();
+  const { setDataUser, authInfo, setNotiMessage } = useContext(AuthContext);
+  const navigate = useNavigate();
   const token = authInfo?.dataUser?.token;
   const [isLoading, setIsLoading] = useState(false);
   const [searchText, setSearchText] = useState("");
@@ -39,20 +45,18 @@ const PagamentosSearch = (props) => {
   const [loadingTable, setLoadingTable] = useState(false);
   const [dataInicio, setDataInicio] = useState(null);
   const [dataFim, setDataFim] = useState(null);
-  const [dataMaquinas, setDataMaquinas] = useState(null);
-
   const { id } = useParams();
   const { RangePicker } = DatePicker;
 
   useEffect(() => {
     getData(id);
-  }, []);
+  }, [id]);
 
   useEffect(() => {
-    if (dataFim != null) {
+    if (dataFim) {
       getPaymentsPeriod(dataInicio, dataFim);
     }
-  }, [dataFim]);
+  }, [dataInicio, dataFim]);
 
   const getData = (id) => {
     if (id.trim() !== "") {
@@ -72,7 +76,7 @@ const PagamentosSearch = (props) => {
           setTotal(res.data.total);
           if (res.status === 200 && Array.isArray(res.data.pagamentos)) {
             // Filtra os duplicados aqui
-            const uniquePayments = _.uniqBy(res.data.pagamentos, 'mercadoPagoId');
+            const uniquePayments = removeDuplicateMP(res.data.pagamentos);
             setListCanals(uniquePayments);
           }
         })
@@ -116,7 +120,7 @@ const PagamentosSearch = (props) => {
           setTotal(res.data.total);
           if (res.status === 200 && Array.isArray(res.data.pagamentos)) {
             // Filtra os duplicados aqui
-            const uniquePayments = _.uniqBy(res.data.pagamentos, 'mercadoPagoId');
+            const uniquePayments = removeDuplicateMP(res.data.pagamentos);
             setListCanals(uniquePayments);
           }
         })
@@ -154,7 +158,7 @@ const PagamentosSearch = (props) => {
           {tipo === "bank_transfer"
             ? "PIX"
             : tipo === "CASH"
-            ? "Especie"
+            ? "Espécie"
             : tipo === "debit_card"
             ? "Débito"
             : tipo === "credit_card"
@@ -209,11 +213,11 @@ const PagamentosSearch = (props) => {
   ];
 
   const onRelatorioHandler = () => {
-    if (!dataInicio && !dataFim) {
+    if (!dataInicio || !dataFim) {
       setNotiMessage({
         type: "error",
         message:
-          "Selecione no calendario a esquerda a data de inicio e firm para gerar o relatorio para essa maquina!",
+          "Selecione no calendário a esquerda a data de início e fim para gerar o relatório para essa máquina!",
       });
     } else {
       navigate(`${links.RELATORIO}/${id}`, {
@@ -289,11 +293,11 @@ const PagamentosSearch = (props) => {
           </Button>
 
           <Link
-          className="PagamentosSearch_header_back"
-          to={links.DASHBOARD_FORNECEDOR}
-        >
-          VOLTAR
-        </Link>
+            className="PagamentosSearch_header_back"
+            to={links.DASHBOARD_FORNECEDOR}
+          >
+            VOLTAR
+          </Link>
         </div>
       </div>
       <div className="PagamentosSearch_body">
@@ -352,6 +356,7 @@ const PagamentosSearch = (props) => {
                 target="_blank"
                 to={`//www.mercadopago.com.br/stores/detail?store_id=${maquinaInfos.storeId}`}
               >
+                Ver loja
               </Link>
             )}
           </div>
@@ -359,19 +364,19 @@ const PagamentosSearch = (props) => {
 
           <div className="table-responsive">
             <Table
-                columns={columns}
-                dataSource={listCanals}
-                pagination={false}
-                loading={loadingTable}
-                locale={{
-                  emptyText:
-                    searchText.trim() !== "" ? (
-                      "-"
-                    ) : (
-                      <div>Não foram encontrados resultados para sua pesquisa.</div>
-                    ),
-                }}
-              />
+              columns={columns}
+              dataSource={listCanals}
+              pagination={false}
+              loading={loadingTable}
+              locale={{
+                emptyText:
+                  searchText.trim() !== "" ? (
+                    "-"
+                  ) : (
+                    <div>Não foram encontrados resultados para sua pesquisa.</div>
+                  ),
+              }}
+            />
           </div>
         </div>
       </div>
