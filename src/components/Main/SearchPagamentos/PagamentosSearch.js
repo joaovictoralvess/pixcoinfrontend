@@ -72,14 +72,23 @@ const PagamentosSearch = (props) => {
           setCash(res?.data?.cash);
           setEstoque(res?.data?.estoque);
           setTotal(res.data.total);
+          
           if (res.status === 200 && Array.isArray(res.data.pagamentos)) {
-            setListCanals(res.data.pagamentos);
+            // Verifique o resultado original
+            console.log("Pagamentos antes de remover duplicatas: ", res.data.pagamentos);
+            
+            // Filtra os duplicados
+            const uniquePayments = removeDuplicateMP(res.data.pagamentos);
+            
+            // Verifique o resultado após a remoção
+            console.log("Pagamentos após remover duplicatas: ", uniquePayments);
+            
+            setListCanals(uniquePayments);
           }
         })
         .catch((err) => {
           setLoadingTable(false);
           if ([401, 403].includes(err.response.status)) {
-            // setNotiMessage('A sua sessão expirou, para continuar faça login novamente.');
             setNotiMessage({
               type: "error",
               message:
@@ -134,14 +143,23 @@ const PagamentosSearch = (props) => {
           setEstornos(res.data.estornos);
           setCash(res?.data?.cash);
           setTotal(res.data.total);
+          
           if (res.status === 200 && Array.isArray(res.data.pagamentos)) {
-            setListCanals(res.data.pagamentos);
+            // Verifique o resultado original
+            console.log("Pagamentos antes de remover duplicatas: ", res.data.pagamentos);
+            
+            // Filtra os duplicados
+            const uniquePayments = removeDuplicateMP(res.data.pagamentos);
+            
+            // Verifique o resultado após a remoção
+            console.log("Pagamentos após remover duplicatas: ", uniquePayments);
+            
+            setListCanals(uniquePayments);
           }
         })
         .catch((err) => {
           setLoadingTable(false);
           if ([401, 403].includes(err.response.status)) {
-            // setNotiMessage('A sua sessão expirou, para continuar faça login novamente.');
             setNotiMessage({
               type: "error",
               message:
