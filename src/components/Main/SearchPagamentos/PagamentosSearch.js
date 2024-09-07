@@ -50,23 +50,6 @@ const PagamentosSearch = (props) => {
     // getMaquinas(id)
   }, []);
 
-  // Função para remover duplicatas com base em identificador MP e valor
-const removeDuplicateMP = (data) => {
-  const uniqueData = [];
-  const seenItems = new Set();
-
-  data.forEach((item) => {
-    const key = `${item.mercadoPagoId}-${item.valor}`;
-    if (!seenItems.has(key)) {
-      uniqueData.push(item);
-      seenItems.add(key);
-    }
-  });
-
-  return uniqueData;
-};
-
-
   useEffect(() => {
     if (dataFim != null) {
       getPaymentsPeriod(dataInicio, dataFim);
@@ -89,16 +72,14 @@ const removeDuplicateMP = (data) => {
           setCash(res?.data?.cash);
           setEstoque(res?.data?.estoque);
           setTotal(res.data.total);
-  
           if (res.status === 200 && Array.isArray(res.data.pagamentos)) {
-            // Filtra os duplicados baseados em mercadoPagoId e valor
-            const uniquePayments = removeDuplicateMP(res.data.pagamentos);
-            setListCanals(uniquePayments);
+            setListCanals(res.data.pagamentos);
           }
         })
         .catch((err) => {
           setLoadingTable(false);
           if ([401, 403].includes(err.response.status)) {
+            // setNotiMessage('A sua sessão expirou, para continuar faça login novamente.');
             setNotiMessage({
               type: "error",
               message:
@@ -110,7 +91,6 @@ const removeDuplicateMP = (data) => {
         });
     }
   };
-  
 
   const getMaquinas = (id) => {
     axios
@@ -193,7 +173,7 @@ const removeDuplicateMP = (data) => {
           {tipo === "bank_transfer"
             ? "PIX"
             : tipo === "CASH"
-            ? "Espécie"
+            ? "Especie"
             : tipo === "debit_card"
             ? "Débito"
             : tipo === "credit_card"
