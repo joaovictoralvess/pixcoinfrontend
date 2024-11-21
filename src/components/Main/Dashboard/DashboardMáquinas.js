@@ -12,7 +12,6 @@ import {
   faCheckCircle,
   faXmarkCircle,
 } from "@fortawesome/free-solid-svg-icons";
-import { AiOutlinePlusCircle } from "react-icons/ai";
 
 const DashboardFornecedor = (props) => {
   const { setDataUser, loading, authInfo, setNotiMessage } =
@@ -85,96 +84,98 @@ const DashboardFornecedor = (props) => {
   };
 
   return (
-    <div className="Dashboard_container">
-      {isLoading && <LoadingAction />}
-      {/* <div className="WarningMsg">
+      <div className="Dashboard_container">
+        {isLoading && <LoadingAction/>}
+        {/* <div className="WarningMsg">
                     {dataUser.warningMsg}
                 </div> */}
-      <div className="WarningMsgSpan">
-        <span>{dataUser.warningMsg}</span>
+        <div className="WarningMsgSpan">
+          <span>{dataUser.warningMsg}</span>
+        </div>
+        <div className="Dashboard_header">
+          <div className="Dashboard_staBlockTitle">Monitoramento</div>
+          {/*<Button className="Dashboard_addbtn">*/}
+          {/*    <AiOutlinePlusCircle />*/}
+          {/*    <span>Adcionar Máquina</span>*/}
+          {/*</Button>*/}
+        </div>
+        <div className="Dashboard_action">
+          <Button style={{margin: "0 15px"}} onClick={dataData}>
+            <FontAwesomeIcon
+                icon={faArrowsRotate}
+                style={{marginRight: "5px"}}
+            />
+            Atualizar
+          </Button>
+        </div>
+
+        <div className="alert-box">
+          <div className="alert-box-icon">
+            <span>!</span>
+          </div>
+          <p>
+            Por conta de uma falha de segurança do mercado pago, as transações de cartão de crédito e débito irão ter um
+            delay de aproximadamente 60 segundos.
+          </p>
+        </div>
+        <Row>
+          {totalFornecedores.map((post) => (
+              <Col xs={24} md={24} lg={8} xl={8} className="Dashboard_col">
+                <div
+                    className="maquina"
+                    key={post.id}
+                    onClick={() =>
+                        handleMaquinaClick(
+                            post.id,
+                            post.nome,
+                            post.store_id,
+                            post.pulso,
+                            post.estoque,
+                            post.descricao
+                        )
+                    }
+                >
+                  <div className="maquina-info">
+                    {(() => {
+                      switch (post.status) {
+                        case "ONLINE":
+                          return (
+                              <FontAwesomeIcon
+                                  icon={faCheckCircle}
+                                  color={"green"}
+                                  className="logout-icon fa-3x"
+                              />
+                          );
+                        case "OFFLINE":
+                          return (
+                              <FontAwesomeIcon
+                                  icon={faXmarkCircle}
+                                  color={"red"}
+                                  className="logout-icon fa-3x"
+                              />
+                          );
+                        case "PAGAMENTO_RECENTE":
+                          return (
+                              <FontAwesomeIcon
+                                  icon={faCheckCircle}
+                                  color={"blue"}
+                                  className="logout-icon fa-3x"
+                              />
+                          );
+                        default:
+                          return null;
+                      }
+                    })()}
+                    <h2>{post.nome}</h2>
+                    <h4 style={{fontWeight: "300"}}>
+                      {post.status} - {post.descricao}
+                    </h4>
+                  </div>
+                </div>
+              </Col>
+          ))}
+        </Row>
       </div>
-      <div className="Dashboard_header">
-        <div className="Dashboard_staBlockTitle">Monitoramento</div>
-        {/*<Button className="Dashboard_addbtn">*/}
-        {/*    <AiOutlinePlusCircle />*/}
-        {/*    <span>Adcionar Máquina</span>*/}
-        {/*</Button>*/}
-      </div>
-      <div className="Dashboard_action">
-        <Button style={{ margin: "0 15px" }} onClick={dataData}>
-          <FontAwesomeIcon
-            icon={faArrowsRotate}
-            style={{ marginRight: "5px" }}
-          />
-          Atualizar
-        </Button>
-        <Link to={links.ADD_MACHINE}>
-
-
-
-
-
-          
-        </Link>
-      </div>
-      <Row>
-        {totalFornecedores.map((post) => (
-          <Col xs={24} md={24} lg={8} xl={8} className="Dashboard_col">
-            <div
-              className="maquina"
-              key={post.id}
-              onClick={() =>
-                handleMaquinaClick(
-                  post.id,
-                  post.nome,
-                  post.store_id,
-                  post.pulso,
-                  post.estoque,
-                  post.descricao
-                )
-              }
-            >
-              <div className="maquina-info">
-                {(() => {
-                  switch (post.status) {
-                    case "ONLINE":
-                      return (
-                        <FontAwesomeIcon
-                          icon={faCheckCircle}
-                          color={"green"}
-                          className="logout-icon fa-3x"
-                        />
-                      );
-                    case "OFFLINE":
-                      return (
-                        <FontAwesomeIcon
-                          icon={faXmarkCircle}
-                          color={"red"}
-                          className="logout-icon fa-3x"
-                        />
-                      );
-                    case "PAGAMENTO_RECENTE":
-                      return (
-                        <FontAwesomeIcon
-                          icon={faCheckCircle}
-                          color={"blue"}
-                          className="logout-icon fa-3x"
-                        />
-                      );
-                    default:
-                      return null;
-                  }
-                })()}
-                <h2>{post.nome}</h2>
-                <h4 style={{ fontWeight: "300" }}>
-                  {post.status} - {post.descricao}
-                </h4>
-              </div>
-            </div>
-          </Col>
-        ))}
-      </Row>
-    </div>
   );
 };
 
