@@ -67,7 +67,6 @@ const AdminPagamentosSearch = (props) => {
           },
         })
         .then((res) => {
-          console.log(res.data);
           setLoadingTable(false);
           setEstornos(res.data.estornos);
           setCash(res?.data?.cash);
@@ -184,28 +183,42 @@ const AdminPagamentosSearch = (props) => {
       dataIndex: "estornado",
       key: "estornado",
       width: 100,
-      render: (estornado, record) =>
-        estornado ? (
-          <OverlayTrigger
-            key={record.key}
-            placement="top"
-            overlay={
-              <Tooltip id={`tooltip-top-${record.key}`}>
-                {record.motivoEstorno
-                  ? record.motivoEstorno
-                  : "Sem motivo registrado"}
-              </Tooltip>
-            }
-          >
-            <span style={{ color: "gray", cursor: "pointer" }}>
-              {estornado ? "Estornado" : "Recebido"}
+      render: (estornado, record) => {
+        const motivoEstorno = (record.motivoEstorno || "") === 'tramoia' ? 'Tentativa de golpe' : record.motivoEstorno;
+        const handleFeedback = () => {
+          if (estornado && motivoEstorno === "Tentativa de golpe") {
+            return motivoEstorno
+          }
+
+          if (estornado) {
+            return "Estornado";
+          }
+
+          return "Recebido"
+        }
+
+        return estornado ? (
+            <OverlayTrigger
+                key={record.key}
+                placement="top"
+                overlay={
+                  <Tooltip id={`tooltip-top-${record.key}`}>
+                    {motivoEstorno
+                        ? motivoEstorno
+                        : "Sem motivo registrado"}
+                  </Tooltip>
+                }
+            >
+            <span style={{color: "gray", cursor: "pointer"}}>
+              {handleFeedback()}
             </span>
-          </OverlayTrigger>
+            </OverlayTrigger>
         ) : (
-          <span style={{ color: estornado ? "gray" : "green" }}>
-            {estornado ? "Estornado" : "Recebido"}
+            <span style={{color: estornado ? "gray" : "green"}}>
+            {handleFeedback()}
           </span>
-        ),
+        );
+      },
     },
   ];
 
@@ -222,6 +235,20 @@ const AdminPagamentosSearch = (props) => {
       });
     }
   };
+
+  const filteredArray = Object.values(
+      listCanals.reduce((acc, item) => {
+        if (!isNaN(Number(item.mercadoPagoId))) {
+          const existing = acc[item.mercadoPagoId];
+          if (!existing || new Date(item.data) > new Date(existing.data)) {
+            acc[item.mercadoPagoId] = item;
+          }
+        } else {
+          acc[`${item.id}-${Math.random()}`] = item;
+        }
+        return acc;
+      }, {})
+  );
 
   return (
     <div className="Admin_PagamentosSearch_container">
@@ -379,7 +406,7 @@ const AdminPagamentosSearch = (props) => {
 
           <Table
             columns={columns}
-            dataSource={listCanals}
+            dataSource={filteredArray}
             pagination={false}
             loading={loadingTable}
             locale={{
