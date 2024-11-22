@@ -109,15 +109,16 @@ const DashboardFornecedor = (props) => {
           </Button>
         </div>
 
-        <div className="alert-box">
-          <div className="alert-box-icon">
-            <span>!</span>
-          </div>
-          <p>
-            Por conta de uma falha de segurança do mercado pago, as transações de cartão de crédito e débito irão ter um
-            delay de aproximadamente 60 segundos.
-          </p>
-        </div>
+        {/*@TODO: Descomentar quando fix da tramoia subir no back-end*/}
+        {/*<div className="alert-box">*/}
+        {/*  <div className="alert-box-icon">*/}
+        {/*    <span>!</span>*/}
+        {/*  </div>*/}
+        {/*  <p>*/}
+        {/*    Por conta de uma falha de segurança do mercado pago, as transações de cartão de crédito e débito irão ter um*/}
+        {/*    delay de aproximadamente 60 segundos.*/}
+        {/*  </p>*/}
+        {/*</div>*/}
         <Row>
           {totalFornecedores.map((post) => (
               <Col xs={24} md={24} lg={8} xl={8} className="Dashboard_col">
