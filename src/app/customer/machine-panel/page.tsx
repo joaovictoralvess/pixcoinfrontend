@@ -2,17 +2,21 @@ import Image from 'next/image';
 import { redirect } from 'next/navigation';
 
 import Header from '@/app/customer/machine-panel/components/Header/Header';
+import Machine from '@/app/customer/machine-panel/components/Machine/Machine';
 
 import { getSession } from '@/helpers/session';
 
+import MachineService from '@/services/Machine';
+
 import './styles.scss';
-import Machine from '@/app/customer/machine-panel/components/Machine/Machine';
 
 export default async function MachinePanel() {
 	const user = await getSession();
 	if (!user) {
 		redirect('/auth/customer/sign-in');
 	}
+
+	const machines = await MachineService.all();
 
 	return (
 		<>
@@ -30,9 +34,11 @@ export default async function MachinePanel() {
 						Atualizar
 					</button>
 
-					<div className='machine-panel__container__wrapper-machines'>
-						<Machine />
-					</div>
+					{machines && machines.length && machines.map((machine) => (
+						<div key={`${machine.id}`} className='machine-panel__container__wrapper-machines'>
+							<Machine machine={machine} />
+						</div>
+					))}
 				</div>
 			</main>
 		</>

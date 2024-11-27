@@ -4,13 +4,20 @@ import { IMachine } from '@/interfaces/IMachine';
 
 import './styles.scss';
 
+export interface IMachineProps {
+	machine: IMachine;
+}
+
 export default function Machine({
-	status,
-	nome,
-	descricao
-}: IMachine) {
+	machine: {
+		status,
+		nome,
+		descricao,
+		id
+	}
+}: IMachineProps) {
 	return (
-		<Link className='machine' href="#">
+		<Link className='machine' href={`/customer/machine-panel/${id}`}>
 			<div className='machine__header'>
 				{status === 'OFFLINE' ? (
 					<>
