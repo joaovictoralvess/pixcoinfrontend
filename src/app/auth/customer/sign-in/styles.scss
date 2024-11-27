@@ -1,0 +1,57 @@
+.sign-in-container {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+
+  &__left-section {
+    @media screen and (max-width: 1024px) {
+      max-width: 100%;
+    }
+
+    flex: 1;
+    max-width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+
+    &__title {
+      width: 14rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #0097b2;
+    }
+
+    &__subtitle {
+      color: #0097b2;
+      font-weight: 500;
+      display: inline-block;
+      margin-bottom: 2rem;
+    }
+
+    .text-input-container {
+      width: 250px;
+    }
+  }
+
+  &__right-section {
+    @media screen and (max-width: 1024px) {
+      display: none;
+    }
+
+    flex: 1;
+    max-width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}
