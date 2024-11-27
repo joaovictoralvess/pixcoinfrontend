@@ -76,4 +76,11 @@
       to { transform: scale3d(1, 1, 1); }
     }
   }
+
+  .icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+  }
 }
