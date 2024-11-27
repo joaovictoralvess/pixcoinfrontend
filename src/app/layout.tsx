@@ -1,10 +1,10 @@
 import { ReactNode } from 'react';
-import { Manrope } from 'next/font/google'
+import { Inter } from 'next/font/google'
 import type { Metadata } from 'next';
 
 import './globals.css';
 
-const manrope = Manrope({
+const inter = Inter({
 	subsets: ['latin']
 });
 
@@ -21,7 +21,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="pt-BR">
-			<body className={manrope.className}>
+			<body className={inter.className}>
 				{children}
 			</body>
 		</html>
