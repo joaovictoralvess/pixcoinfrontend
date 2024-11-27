@@ -64,6 +64,6 @@ export const handleSignInForm = async (prevState: any, formData: FormData) => {
 
 	await createSession(JSON.stringify(user));
 
-	revalidatePath('/');
-	redirect('/')
+	revalidatePath('/customer/machine-panel');
+	redirect('/customer/machine-panel')
 };
