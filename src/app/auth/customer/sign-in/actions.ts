@@ -1,8 +1,12 @@
 'use server';
 
+import { revalidatePath } from 'next/cache';
+import { redirect } from 'next/navigation';
 import { z, ZodError } from 'zod';
 
 import { dealWithZodErrors } from '@/helpers/zodError';
+import { createSession } from '@/helpers/session';
+import CustomersService from '@/services/Customers';
 
 export interface SignInError {
 	email?: string,
@@ -42,27 +46,24 @@ export const handleSignInForm = async (prevState: any, formData: FormData) => {
 		return {...prevState, ...validation};
 	}
 
-	// const data = {
-	// 	email: `${formData.get('email')}`,
-	// 	password: `${formData.get('password')}`,
-	// };
+	const data = {
+		email: `${formData.get('email')}`,
+		senha: `${formData.get('password')}`,
+	};
 
-	// const user = await UsersService.signIn(data);
-	// if (!user) {
-	// 	return {
-	// 		isValid: false,
-	// 		errors: {
-	// 			email: 'E-mail or password invalid!',
-	// 			password: 'E-mail or password invalid!',
-	// 		}
-	// 	}
-	// }
-
-	return {
-		isValid: false,
-		errors: {
-			email: 'E-mail ou senha inválido.',
-			password: 'E-mail ou senha inválido.',
+	const user = await CustomersService.signIn(data);
+	if (user?.error) {
+		return {
+			isValid: false,
+			errors: {
+				email: 'E-mail ou senha inválido.',
+				password: 'E-mail ou senha inválido.',
+			}
 		}
 	}
+
+	await createSession(JSON.stringify(user));
+
+	revalidatePath('/');
+	redirect('/')
 };
