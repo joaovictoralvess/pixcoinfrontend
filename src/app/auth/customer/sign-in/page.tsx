@@ -1,6 +1,7 @@
 import Image from 'next/image';
 
 import TextInput from '@/components/Forms/TextInput/TextInput';
+import Button from '@/components/Forms/Button/Button';
 
 import './styles.scss';
 
@@ -19,20 +20,24 @@ export default async function SignIn() {
 				</div>
 				<span className='sign-in-container__left-section__subtitle'>Preencha com e-mail e senha.</span>
 
-				<TextInput
-					name='email'
-					label='E-mail'
-					placeholder='E-mail'
-					inputMode='email'
-					type='email'
-				/>
+				<div className='sign-in-container__left-section__wrapper-input'>
+					<TextInput
+						name='email'
+						label='E-mail'
+						placeholder='E-mail'
+						inputMode='email'
+						type='email'
+					/>
 
-				<TextInput
-					name='passoword'
-					label='Senha'
-					placeholder='Senha'
-					type="password"
-				/>
+					<TextInput
+						name='passoword'
+						label='Senha'
+						placeholder='Senha'
+						type="password"
+					/>
+				</div>
+
+				<Button>Entrar</Button>
 			</div>
 
 			<div className='sign-in-container__right-section'>
@@ -46,6 +51,5 @@ export default async function SignIn() {
 				/>
 			</div>
 		</div>
-
 	)
 }

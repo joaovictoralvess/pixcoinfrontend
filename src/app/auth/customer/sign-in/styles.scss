@@ -4,10 +4,6 @@
   display: flex;
 
   &__left-section {
-    @media screen and (max-width: 1024px) {
-      max-width: 100%;
-    }
-
     flex: 1;
     max-width: 50%;
     display: flex;
@@ -15,6 +11,10 @@
     justify-content: center;
     align-items: center;
     padding: 2rem;
+
+    @media screen and (max-width: 1024px) {
+      max-width: 100%;
+    }
 
     &__title {
       width: 14rem;
@@ -31,22 +31,28 @@
       margin-bottom: 2rem;
     }
 
-    .text-input-container {
-      width: 250px;
+    &__wrapper-input {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+
+      .text-input-container {
+        width: 250px;
+      }
     }
   }
 
   &__right-section {
-    @media screen and (max-width: 1024px) {
-      display: none;
-    }
-
     flex: 1;
     max-width: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
+
+    @media screen and (max-width: 1024px) {
+      display: none;
+    }
 
     img {
       width: 100%;
