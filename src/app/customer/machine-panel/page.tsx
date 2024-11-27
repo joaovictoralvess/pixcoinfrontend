@@ -6,6 +6,7 @@ import Header from '@/app/customer/machine-panel/components/Header/Header';
 import { getSession } from '@/helpers/session';
 
 import './styles.scss';
+import Machine from '@/app/customer/machine-panel/components/Machine/Machine';
 
 export default async function MachinePanel() {
 	const user = await getSession();
@@ -28,6 +29,10 @@ export default async function MachinePanel() {
 						/>
 						Atualizar
 					</button>
+
+					<div className='machine-panel__container__wrapper-machines'>
+						<Machine />
+					</div>
 				</div>
 			</main>
 		</>

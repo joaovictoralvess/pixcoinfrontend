@@ -37,6 +37,13 @@
         }
       }
     }
+
+    &__wrapper-machines {
+      display: flex;
+      flex-flow: row wrap;
+      margin-top: 1rem;
+      gap: 20px;
+    }
   }
 }
 
