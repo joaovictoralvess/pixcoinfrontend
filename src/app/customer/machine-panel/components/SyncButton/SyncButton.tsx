@@ -3,9 +3,13 @@
 import { redirect } from 'next/navigation';
 import { SyncIcon } from '@/components/Icons/SyncIcon';
 
-export default function SyncButton() {
+export interface SyncButtonProps {
+	updateTo: string;
+}
+
+export default function SyncButton({ updateTo }: SyncButtonProps) {
 	return (
-		<button onClick={() => redirect('/customer/machine-panel')} className='machine-panel__container__btn'>
+		<button onClick={() => redirect(updateTo)} className='machine-panel__container__btn'>
 			<SyncIcon
 				width={10}
 				height={10}

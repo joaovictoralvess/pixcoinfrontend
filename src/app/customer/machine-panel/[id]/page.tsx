@@ -7,6 +7,7 @@ import Table from '@/app/customer/machine-panel/components/Table/Table';
 import transformPaymentsData from '@/app/customer/machine-panel/[id]/transformPaymentsData';
 
 import MachineService from '@/services/Machine';
+import PageTitleWithSync from '@/app/customer/machine-panel/components/PageTitleWithSync/PageTitleWithSync';
 
 export interface MachineDetailProps {
 	params: Params
@@ -24,9 +25,13 @@ export default async function MachineDetail(props: MachineDetailProps) {
 				<GoBackIcon goTo="/customer/machine-panel" />
 				}
 			/>
-			<Layout>
-				<Table tableData={tableData} />
-			</Layout>
+
+			<main className='machine-panel'>
+				<Layout className="machine-panel__container">
+					<PageTitleWithSync updateTo={`/customer/machine-panel/${id}`} title='Painel de pagamentos' />
+					<Table tableData={tableData} />
+				</Layout>
+			</main>
 		</>
 	)
 }

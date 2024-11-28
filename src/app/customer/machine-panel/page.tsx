@@ -2,7 +2,7 @@ import { redirect } from 'next/navigation';
 
 import Header from '@/app/customer/machine-panel/components/Header/Header';
 import Machine from '@/app/customer/machine-panel/components/Machine/Machine';
-import SyncButton from '@/app/customer/machine-panel/components/SyncButton/SyncButton';
+import PageTitleWithSync from '@/app/customer/machine-panel/components/PageTitleWithSync/PageTitleWithSync';
 import Layout from '@/app/customer/machine-panel/components/Layout/Layout';
 
 import { getSession } from '@/helpers/session';
@@ -24,8 +24,7 @@ export default async function MachinePanel() {
 			<Header />
 			<main className='machine-panel'>
 				<Layout className='machine-panel__container'>
-					<h1 className='machine-panel__container__title'>Painel de máquinas</h1>
-					<SyncButton />
+					<PageTitleWithSync updateTo='/customer/machine-panel' title='Painel de máquinas' />
 					{machines && machines.length && machines.map((machine) => (
 						<div key={`${machine.id}`} className='machine-panel__container__wrapper-machines'>
 							<Machine machine={machine} />
