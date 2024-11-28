@@ -13,7 +13,7 @@ export interface TableProps {
 	tableData: TableData[]
 }
 
-export default function Table({ tableData }: TableProps) {
+export default function PaymentTable({ tableData }: TableProps) {
 	return (
 		<div className='table-container'>
 			<table className='table-container__table'>

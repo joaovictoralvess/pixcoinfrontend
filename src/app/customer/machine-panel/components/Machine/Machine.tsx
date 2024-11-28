@@ -10,7 +10,6 @@ import { formatToBRL } from '@/helpers/payment';
 
 import './styles.scss';
 
-
 export interface IMachineProps {
 	machine: IMachine;
 }

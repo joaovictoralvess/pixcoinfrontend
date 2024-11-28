@@ -1,5 +1,5 @@
 import { IPayment } from '@/interfaces/IPayment';
-import { TableData } from '@/app/customer/machine-panel/components/Table/Table';
+import { TableData } from '@/app/customer/machine-panel/components/PaymentTable/PaymentTable';
 import { formatToBRL, retrieveFormattedDate, retrievePaymentForm, retrieveReversedText } from '@/helpers/payment';
 
 export default function transformPaymentsData(payments: IPayment[]): TableData[] {

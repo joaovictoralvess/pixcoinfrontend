@@ -3,7 +3,7 @@ import { Params } from '@/@types/params';
 import GoBackIcon from '@/components/Icons/GoBackIcon';
 import Header from '@/app/customer/machine-panel/components/Header/Header';
 import Layout from '@/app/customer/machine-panel/components/Layout/Layout';
-import Table from '@/app/customer/machine-panel/components/Table/Table';
+import PaymentTable from '@/app/customer/machine-panel/components/PaymentTable/PaymentTable';
 
 import transformPaymentsData from '@/helpers/transformPaymentsData';
 import PageTitleWithSync from '@/app/customer/machine-panel/components/PageTitleWithSync/PageTitleWithSync';
@@ -44,7 +44,7 @@ export default async function MachineDetail(props: MachineDetailProps) {
 						</ActionButton>
 					</div>
 
-					<Table tableData={tableData} />
+					<PaymentTable tableData={tableData} />
 				</Layout>
 			</main>
 		</>
