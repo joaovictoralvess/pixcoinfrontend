@@ -1,8 +1,10 @@
+@use '@/app/variables' as variables;
+
 .machine {
   text-decoration: none;
   display: inline-block;
   background-color: #ffffff;
-  border: 2px solid #0097b2;
+  border: 2px solid variables.$application-color;
   border-radius: 6px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 16px;

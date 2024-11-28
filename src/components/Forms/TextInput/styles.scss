@@ -1,3 +1,5 @@
+@use '@/app/variables' as variables;
+
 .text-input-container {
   position: relative;
 
@@ -40,7 +42,7 @@
       top: -2px;
       width: 0;
       height: 3px;
-      background-color: #0097b2;
+      background-color: variables.$application-color;
       transition: 0.4s;
     }
 
@@ -64,7 +66,7 @@
 
     &:focus ~ label {
       top: -16px;
-      color: #0097b2;
+      color: variables.$application-color;
       opacity: 1;
       z-index: 1;
       animation: bounceUp .4s forwards;

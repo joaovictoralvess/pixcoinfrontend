@@ -1,6 +1,8 @@
+@use '@/app/variables' as variables;
+
 .header {
   overflow: hidden;
-  background-color: #0097b2;
+  background-color: variables.$application-color;
   padding: 20px 10px;
   display: flex;
   justify-content: space-between;
