@@ -2,13 +2,10 @@ import Link from 'next/link';
 
 import { IMachine } from '@/interfaces/IMachine';
 
-import DollarIcon from '@/components/Icons/DollarIcon';
-import EditIcon from '@/components/Icons/EditIcon';
-import ActionButton from '@/app/customer/machine-panel/components/ActionButton/ActionButton';
-
 import { formatToBRL } from '@/helpers/payment';
 
 import './styles.scss';
+import MachineActions from '@/app/customer/machine-panel/components/MachineActions/MachineActions';
 
 export interface IMachineProps {
 	machine: IMachine;
@@ -53,21 +50,7 @@ export default function Machine({
 				</div>
 			</Link>
 
-			<div className='machine__action-buttons'>
-				<ActionButton
-					updateTo='/'
-					icon={<EditIcon width={10} height={10} />}
-				>
-					Editar máquina
-				</ActionButton>
-
-				<ActionButton
-					updateTo='/'
-					icon={<DollarIcon width={10} height={10} />}
-				>
-					Crédito remoto
-				</ActionButton>
-			</div>
+			<MachineActions />
 		</div>
 	);
 }

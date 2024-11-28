@@ -1,0 +1,11 @@
+.machine-action-buttons {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+
+  button {
+    svg {
+      animation: none !important;
+    }
+  }
+}
