@@ -1,6 +1,5 @@
 {
   "extends": ["next/core-web-vitals", "next/typescript", "prettier"],
-  "parser": "babel-eslint",
   "rules": {
     "prettier/prettier": ["error", { "endOfLine": "auto" }],
     "react/react-in-jsx-scope": "off"
