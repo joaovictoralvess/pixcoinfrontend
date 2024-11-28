@@ -2,16 +2,18 @@
   text-decoration: none;
   display: inline-block;
   background-color: #ffffff;
-  border: 1px solid #e0e0e0;
+  border: 2px solid #0097b2;
   border-radius: 6px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 16px;
-  max-width: 300px;
+  max-width: 400px;
+  max-height: 120px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 
   &:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+    border: none;
   }
 
   &__header {
