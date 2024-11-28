@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { IMachine } from '@/interfaces/IMachine';
 
 import './styles.scss';
+import { formatToBRL } from '@/helpers/payment';
 
 export interface IMachineProps {
 	machine: IMachine;
@@ -12,8 +13,9 @@ export default function Machine({
 	machine: {
 		status,
 		nome,
-		descricao,
-		id
+		id,
+		store_id,
+		pulso
 	}
 }: IMachineProps) {
 	return (
@@ -34,7 +36,8 @@ export default function Machine({
 
 			<div className="machine__body">
 				<h2 className="machine__body__title">{nome}</h2>
-				<p className="machine__body__description">{descricao}</p>
+				<p className="machine__body__description">StoreId: {store_id}</p>
+				<p className="machine__body__description">Pulso: {formatToBRL(pulso)}</p>
 			</div>
 		</Link>
 	);
