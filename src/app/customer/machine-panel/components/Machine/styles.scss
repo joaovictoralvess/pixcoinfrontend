@@ -1,8 +1,6 @@
 @use '@/app/variables' as variables;
 
 .machine {
-  text-decoration: none;
-  display: inline-block;
   background-color: #ffffff;
   border: 2px solid variables.$application-color;
   border-radius: 6px;
@@ -10,6 +8,12 @@
   padding: 16px;
   max-width: 400px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  a {
+    text-decoration: none;
+    display: inline-block;
+    width: 100%;
+  }
 
   &:hover {
     transform: translateY(-5px);
@@ -56,18 +60,29 @@
     text-align: left;
 
     &__title {
-      font-size: 18px;
+      font-size: 20px;
       color: #333;
       margin: 0 0 8px;
     }
 
     &__description {
-      font-size: 14px;
+      font-size: 18px;
       color: #666;
       margin: 0;
 
       &:not(:first-child) {
         margin-top: 5px;
+      }
+    }
+  }
+
+  &__action-buttons {
+    display: flex;
+    gap: 20px;
+
+    button {
+      svg {
+        animation: none !important;
       }
     }
   }
