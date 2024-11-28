@@ -13,4 +13,7 @@ export interface IMachine {
 	ultimaRequisicao: string;
 	ultimoPagamentoRecebido: string;
 	valorDoPix: string;
+	totalSemEstorno: number;
+	totalEspecie: number;
+	totalComEstorno: number;
 }
