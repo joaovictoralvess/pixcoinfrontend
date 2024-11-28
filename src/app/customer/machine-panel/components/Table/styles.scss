@@ -42,11 +42,10 @@
 
     tbody {
       tr {
-        &:nth-child(even) {
-          background-color: #f9f9f9;
-        }
+        transition: all 0.3s;
 
         &:hover {
+          box-shadow: 10px 10px 38px 5px rgba(0,0,0,0.75);
           background-color: #f1f1f1;
         }
 
