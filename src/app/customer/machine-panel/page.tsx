@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation';
 import Header from '@/app/customer/machine-panel/components/Header/Header';
 import Machine from '@/app/customer/machine-panel/components/Machine/Machine';
 import SyncButton from '@/app/customer/machine-panel/components/SyncButton/SyncButton';
+import Layout from '@/app/customer/machine-panel/components/Layout/Layout';
 
 import { getSession } from '@/helpers/session';
 
@@ -22,7 +23,7 @@ export default async function MachinePanel() {
 		<>
 			<Header />
 			<main className='machine-panel'>
-				<div className='machine-panel__container'>
+				<Layout className='machine-panel__container'>
 					<h1 className='machine-panel__container__title'>Painel de máquinas</h1>
 					<SyncButton />
 					{machines && machines.length && machines.map((machine) => (
@@ -30,7 +31,7 @@ export default async function MachinePanel() {
 							<Machine machine={machine} />
 						</div>
 					))}
-				</div>
+				</Layout>
 			</main>
 		</>
 	)
