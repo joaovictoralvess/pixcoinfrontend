@@ -9,6 +9,10 @@ import transformPaymentsData from '@/helpers/transformPaymentsData';
 import PageTitleWithSync from '@/app/customer/machine-panel/components/PageTitleWithSync/PageTitleWithSync';
 
 import MachineService from '@/services/Machine';
+import ActionButton from '@/app/customer/machine-panel/components/ActionButton/ActionButton';
+
+import './styles.scss';
+import EditIcon from '@/components/Icons/EditIcon';
 
 export interface MachineDetailProps {
 	params: Params
@@ -27,9 +31,19 @@ export default async function MachineDetail(props: MachineDetailProps) {
 				}
 			/>
 
-			<main className='machine-panel'>
-				<Layout className="machine-panel__container">
-					<PageTitleWithSync updateTo={`/customer/machine-panel/${id}`} title='Painel de pagamentos' />
+			<main className='payments-panel'>
+				<Layout className="payments-panel__container">
+					<div className='payments-panel__container__wrapper-buttons'>
+						<PageTitleWithSync updateTo={`/customer/machine-panel/${id}`} title='Painel de pagamentos' />
+						<ActionButton
+							className='payments-panel__container__wrapper-buttons__edit'
+							updateTo='/'
+							icon={<EditIcon width={10} height={10} />}
+						>
+							Editar
+						</ActionButton>
+					</div>
+
 					<Table tableData={tableData} />
 				</Layout>
 			</main>
