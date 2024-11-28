@@ -4,10 +4,11 @@ import GoBackIcon from '@/components/Icons/GoBackIcon';
 import Header from '@/app/customer/machine-panel/components/Header/Header';
 import Layout from '@/app/customer/machine-panel/components/Layout/Layout';
 import Table from '@/app/customer/machine-panel/components/Table/Table';
-import transformPaymentsData from '@/app/customer/machine-panel/[id]/transformPaymentsData';
+
+import transformPaymentsData from '@/helpers/transformPaymentsData';
+import PageTitleWithSync from '@/app/customer/machine-panel/components/PageTitleWithSync/PageTitleWithSync';
 
 import MachineService from '@/services/Machine';
-import PageTitleWithSync from '@/app/customer/machine-panel/components/PageTitleWithSync/PageTitleWithSync';
 
 export interface MachineDetailProps {
 	params: Params
