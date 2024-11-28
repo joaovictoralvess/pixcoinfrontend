@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 
+import { generateRandomEmoji } from '@/helpers/emojis';
 import { getSession } from '@/helpers/session';
 import { ICustomer } from '@/interfaces/ICustomer';
 
@@ -20,7 +21,7 @@ export default async function Header({
 		<header className='header'>
 			<div className='header__title-wrapper'>
 				<span className="header__title-wrapper__logo">PIXcoin</span>
-				<span className='header__title-wrapper__customer'>Olá, {user.name}</span>
+				<span className='header__title-wrapper__customer'>Olá, {user.name} {generateRandomEmoji()}</span>
 			</div>
 
 			<nav className="header__right">
