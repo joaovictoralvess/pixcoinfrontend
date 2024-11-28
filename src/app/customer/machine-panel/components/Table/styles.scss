@@ -3,7 +3,7 @@
   margin: 1rem 0;
   border: 1px solid #ddd;
   border-radius: 8px;
-  height: 300px;
+  height: 400px;
 
   &::-webkit-scrollbar {
     width: 4px;
@@ -51,6 +51,17 @@
         td {
           padding: 0.75rem;
           border-bottom: 1px solid #ddd;
+
+          .receive {
+            color: green;
+            font-weight: bold;
+          }
+
+          .reversed {
+            color: gray;
+            cursor: pointer;
+            font-weight: bold;
+          }
         }
       }
     }

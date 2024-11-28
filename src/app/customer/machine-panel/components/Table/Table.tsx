@@ -1,76 +1,19 @@
 import './styles.scss'
 
-export default function Table() {
-	const dados = [
-		{
-			data: '2024-11-25',
-			formaPagamento: 'Cartão de Crédito',
-			valor: 'R$ 150,00',
-			identificadorMP: '12345-ABCDE',
-			estornado: 'Não',
-		},
-		{
-			data: '2024-11-26',
-			formaPagamento: 'Boleto Bancário',
-			valor: 'R$ 200,00',
-			identificadorMP: '67890-FGHIJ',
-			estornado: 'Sim',
-		},
-		{
-			data: '2024-11-27',
-			formaPagamento: 'Pix',
-			valor: 'R$ 300,00',
-			identificadorMP: '11223-KLMNO',
-			estornado: 'Não',
-		},
-		{
-			data: '2024-11-27',
-			formaPagamento: 'Pix',
-			valor: 'R$ 300,00',
-			identificadorMP: '11223-KLMNO',
-			estornado: 'Não',
-		},
-		{
-			data: '2024-11-27',
-			formaPagamento: 'Pix',
-			valor: 'R$ 300,00',
-			identificadorMP: '11223-KLMNO',
-			estornado: 'Não',
-		},
-		{
-			data: '2024-11-27',
-			formaPagamento: 'Pix',
-			valor: 'R$ 300,00',
-			identificadorMP: '11223-KLMNO',
-			estornado: 'Não',
-		},
-		{
-			data: '2024-11-27',
-			formaPagamento: 'Pix',
-			valor: 'R$ 300,00',
-			identificadorMP: '11223-KLMNO',
-			estornado: 'Não',
-		},{
-			data: '2024-11-27',
-			formaPagamento: 'Pix',
-			valor: 'R$ 300,00',
-			identificadorMP: '11223-KLMNO',
-			estornado: 'Não',
-		},{
-			data: '2024-11-27',
-			formaPagamento: 'Pix',
-			valor: 'R$ 300,00',
-			identificadorMP: '11223-KLMNO',
-			estornado: 'Não',
-		},{
-			data: '2024-11-27',
-			formaPagamento: 'Pix',
-			valor: 'R$ 300,00',
-			identificadorMP: '11223-KLMNO',
-			estornado: 'Não',
-		},
-	];
+export interface TableData {
+	date: string;
+	paymentForm: string;
+	value: string;
+	identifierMP: string | number,
+	reversed: 'Recebido' | 'Estornado';
+	reason?: string;
+}
 
+export interface TableProps {
+	tableData: TableData[]
+}
+
+export default function Table({ tableData }: TableProps) {
 	return (
 		<div className='table-container'>
 			<table className='table-container__table'>
@@ -84,13 +27,19 @@ export default function Table() {
 				</tr>
 				</thead>
 				<tbody>
-				{dados.map((dado, index) => (
+				{tableData.map((dado, index) => (
 					<tr key={index}>
-						<td>{dado.data}</td>
-						<td>{dado.formaPagamento}</td>
-						<td>{dado.valor}</td>
-						<td>{dado.identificadorMP}</td>
-						<td>{dado.estornado}</td>
+						<td>{dado.date}</td>
+						<td>{dado.paymentForm}</td>
+						<td>{dado.value}</td>
+						<td>{dado.identifierMP}</td>
+						<td>
+							{dado.reversed === 'Recebido' ? (
+								<span className='receive'>{dado.reversed}</span>
+							) : (
+								<span className='reversed' title={dado.reason && dado.reason}>{dado.reversed}</span>
+							)}
+						</td>
 					</tr>
 				))}
 				</tbody>
