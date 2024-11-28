@@ -8,7 +8,7 @@ export interface IMachine {
 	nome: string;
 	pessoaId: string;
 	pulso: string;
-	status: 'ONLINE' | 'OFFLINE';
+	status: 'ONLINE' | 'OFFLINE' | 'PAGAMENTO_RECENTE';
 	store_id: string;
 	ultimaRequisicao: string;
 	ultimoPagamentoRecebido: string;
