@@ -32,9 +32,21 @@
   &__right {
     margin-right: 4rem;
     &__list {
+      display: flex;
+      align-items: center;
+      gap: 20px;
       list-style: none;
 
       &__item {
+        svg {
+          color: #fff;
+          cursor: pointer;
+
+          &:hover {
+            opacity: 0.7;
+          }
+        }
+
         &__button {
           border: none;
           background: none;

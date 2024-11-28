@@ -1,5 +1,6 @@
 import { Params } from '@/@types/params';
 
+import GoBackIcon from '@/components/Icons/GoBackIcon';
 import Header from '@/app/customer/machine-panel/components/Header/Header';
 import Layout from '@/app/customer/machine-panel/components/Layout/Layout';
 import Table from '@/app/customer/machine-panel/components/Table/Table';
@@ -19,7 +20,10 @@ export default async function MachineDetail(props: MachineDetailProps) {
 
 	return (
 		<>
-			<Header />
+			<Header iconLeft={
+				<GoBackIcon goTo="/customer/machine-panel" />
+				}
+			/>
 			<Layout>
 				<Table tableData={tableData} />
 			</Layout>

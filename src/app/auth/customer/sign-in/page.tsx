@@ -2,15 +2,14 @@ import Image from 'next/image';
 
 import './styles.scss';
 import SignInForm from '@/app/auth/customer/sign-in/SignInForm';
+import LoginIcon from '@/components/Icons/LoginIcon';
 
 export default async function SignIn() {
 	return (
 		<div className='sign-in-container'>
 			<div className='sign-in-container__left-section'>
 				<div className='sign-in-container__left-section__title'>
-					<Image
-						src='/assets/images/login.svg'
-						alt='Ícone de seta simbolizando login'
+					<LoginIcon
 						width={24}
 						height={24}
 					/>
