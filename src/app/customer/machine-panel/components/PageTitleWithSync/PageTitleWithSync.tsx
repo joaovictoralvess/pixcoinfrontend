@@ -1,4 +1,5 @@
-import SyncButton from '@/app/customer/machine-panel/components/SyncButton/SyncButton';
+import ActionButton from '@/app/customer/machine-panel/components/ActionButton/ActionButton';
+import { SyncIcon } from '@/components/Icons/SyncIcon';
 
 export interface PageTitleWithSyncProps {
 	title: string;
@@ -11,7 +12,15 @@ export default function PageTitleWithSync({ title, updateTo }: PageTitleWithSync
 	return (
 		<>
 			<h1 className='page-title-with-sync--title'>{title}</h1>
-			<SyncButton updateTo={updateTo}  />
+			<ActionButton
+				icon={<SyncIcon
+					width={10}
+					height={10}
+				/>}
+				updateTo={updateTo}
+			>
+				Atualizar
+			</ActionButton>
 		</>
 	)
 }
