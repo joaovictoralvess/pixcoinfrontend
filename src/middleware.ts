@@ -1,12 +1,24 @@
-import {NextRequest, NextResponse} from 'next/server';
-import {updateSession} from '@/helpers/session';
+import { NextRequest, NextResponse } from 'next/server';
+import { getSession, isTokenExpired, logout, updateSession } from '@/helpers/session';
+import { ICustomer } from '@/interfaces/ICustomer';
 
 export async function middleware(request: NextRequest) {
     const updatedSession = await updateSession();
     if (!updatedSession) return;
 
+    await redirectToLoginIfInvalidToken(NextResponse, request);
+
     const resp = NextResponse.next();
     resp.cookies.set(updatedSession);
 
     return resp;
+}
+
+const redirectToLoginIfInvalidToken = async (NextResponse: any, request: NextRequest) => {
+    const user = await getSession() as Pick<ICustomer, 'token'>;
+
+    if (user.token && isTokenExpired(user.token)) {
+        await logout();
+        return NextResponse.redirect(new URL('/auth/customer/sign-in', request.url));
+    }
 }
