@@ -1,9 +1,9 @@
 'use server';
 
 import { redirect } from 'next/navigation';
-import { logout } from "@/helpers/session";
+import { logout } from '@/helpers/session';
 
-export const customerSignOut = async () => {
+export const signOut = async () => {
     await logout();
     return redirect('/auth/customer/sign-in');
 }

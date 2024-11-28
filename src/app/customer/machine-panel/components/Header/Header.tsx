@@ -1,8 +1,9 @@
 import { getSession } from '@/helpers/session';
 import { ICustomer } from '@/interfaces/ICustomer';
 
+import { signOut } from '@/app/auth/customer/sign-out/actions';
+
 import './styles.scss';
-import { customerSignOut } from '@/app/auth/customer-sign-out/actions';
 
 export default async function Header() {
 	const user = await getSession() as ICustomer;
@@ -17,7 +18,7 @@ export default async function Header() {
 			<nav className="header__right">
 				<ul className='header__right__list'>
 					<li className='header__right__list__item'>
-						<button onClick={customerSignOut} type='button' className='header__right__list__item__button'>Sair</button>
+						<button onClick={signOut} type='button' className='header__right__list__item__button'>Sair</button>
 					</li>
 				</ul>
 			</nav>
