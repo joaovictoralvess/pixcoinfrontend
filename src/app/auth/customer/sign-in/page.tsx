@@ -28,6 +28,7 @@ export default async function SignIn() {
 					height={0}
 					sizes="100vw"
 					style={{ width: '100%', height: '100vh', objectFit: 'cover' }}
+					priority
 				/>
 			</div>
 		</div>
