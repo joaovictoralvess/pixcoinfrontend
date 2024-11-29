@@ -21,9 +21,10 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="pt-BR">
-			<body className={inter.className}>
-				{children}
-			</body>
+		<body className={inter.className}>
+		{children}
+		<div id="modal-root"></div>
+		</body>
 		</html>
 	);
 }
