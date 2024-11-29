@@ -55,6 +55,18 @@ export default function EditMachineForm({ machine }: EditMachineFormProps) {
 				defaultValue={machine.estoque || '0'}
 			/>
 
+			<TextInput
+				name='storeId'
+				defaultValue={machine.store_id || '0'}
+				type='hidden'
+			/>
+
+			<TextInput
+				name='id'
+				defaultValue={machine.id || '0'}
+				type='hidden'
+			/>
+
 			<Button type="submit" title='Editar máquina'>Editar máquina</Button>
 		</form>
 	)
