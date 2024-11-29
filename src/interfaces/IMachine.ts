@@ -30,3 +30,12 @@ export interface UpdateMachineRequest {
 export interface UpdateMachineResponse {
 	error?: string;
 }
+
+export interface AddRemoteCrediteRequest {
+	id: string;
+	valor: string;
+}
+
+export interface AddRemoteCrediteResponse {
+	msg?: string;
+}

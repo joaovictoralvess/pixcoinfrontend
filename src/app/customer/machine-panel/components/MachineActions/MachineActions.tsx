@@ -7,6 +7,7 @@ import Modal from '@/components/UI/Modal/Modal';
 import DollarIcon from '@/components/Icons/DollarIcon';
 import ActionButton from '@/app/customer/machine-panel/components/ActionButton/ActionButton';
 import EditMachineForm from '@/app/customer/machine-panel/components/EdiMachineForm/EditMachineForm';
+import AddRemoteCreditForm from '@/app/customer/machine-panel/components/AddRemoteCreditForm/AddRemoteCreditForm';
 
 import { IMachine } from '@/interfaces/IMachine';
 
@@ -15,6 +16,7 @@ export interface MachineActionsProps {
 }
 
 import './styles.scss';
+
 
 export default function MachineActions({ machine }: MachineActionsProps) {
 	const [selectedModal, setSelectedModal] = useState<'edit' | 'credit' | ''>('');
@@ -26,7 +28,7 @@ export default function MachineActions({ machine }: MachineActionsProps) {
 			case 'edit':
 				return <EditMachineForm machine={machine} />;
 			case 'credit':
-				return 'CRÉDITO REMOTO';
+				return <AddRemoteCreditForm machineId={machine.id} />;
 			default:
 				return null;
 		}

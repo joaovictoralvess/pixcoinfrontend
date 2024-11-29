@@ -1,4 +1,10 @@
-import { IMachine, UpdateMachineRequest, UpdateMachineResponse } from '@/interfaces/IMachine';
+import {
+	AddRemoteCrediteRequest,
+	AddRemoteCrediteResponse,
+	IMachine,
+	UpdateMachineRequest,
+	UpdateMachineResponse,
+} from '@/interfaces/IMachine';
 import { ICustomer } from '@/interfaces/ICustomer';
 import { IPaymentResponse } from '@/interfaces/IPayment';
 
@@ -36,6 +42,20 @@ const MachineService = {
 
 		const response = await fetch(`${process.env.REACT_APP_SERVIDOR}/maquina-cliente`, {
 			method: 'PUT',
+			headers: {
+				"Content-Type": "application/json",
+				"x-access-token": user.token
+			},
+			body: JSON.stringify(data)
+		});
+
+		return await response.json();
+	},
+	addRemoteCredit: async (data: AddRemoteCrediteRequest): Promise<AddRemoteCrediteResponse> => {
+		const user = await getSession() as ICustomer;
+
+		const response = await fetch(`${process.env.REACT_APP_SERVIDOR}/credito-remoto-cliente`, {
+			method: 'POST',
 			headers: {
 				"Content-Type": "application/json",
 				"x-access-token": user.token
