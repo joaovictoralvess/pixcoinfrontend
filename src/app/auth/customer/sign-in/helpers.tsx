@@ -5,12 +5,12 @@ import { SignInState } from '@/app/auth/customer/sign-in/actions';
 export const resolvePasswordIcon = (inputType: string, callback: (value: (((prevState: ('password' | 'text')) => ('password' | 'text')) | 'password' | 'text')) => void): ReactNode => {
 	if (inputType === 'password') {
 		return (
-			<span onClick={() => callback('text')}>🙈</span>
+			<span title='Exibir senha' onClick={() => callback('text')}>🙈</span>
 		);
 	}
 
 	return (
-		<span onClick={() => callback('password')}>🐵</span>
+		<span title='Esconder senha' onClick={() => callback('password')}>🐵</span>
 	);
 }
 

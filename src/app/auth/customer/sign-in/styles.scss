@@ -18,19 +18,23 @@
       max-width: 100%;
     }
 
-    &__title {
-      width: 14rem;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      color: variables.$application-color;
-    }
+    &__wrapper {
+      min-width: 250px;
 
-    &__subtitle {
-      color: variables.$application-color;
-      font-weight: 500;
-      display: inline-block;
-      margin-bottom: 2rem;
+      &__title {
+        width: 14rem;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: variables.$application-color;
+      }
+
+      &__subtitle {
+        color: variables.$application-color;
+        font-weight: 500;
+        display: inline-block;
+        margin-bottom: 2rem;
+      }
     }
 
     &__wrapper-input {
@@ -40,6 +44,10 @@
 
       .text-input-container {
         width: 250px;
+      }
+
+      & ~ button {
+        min-width: 250px;
       }
     }
   }
