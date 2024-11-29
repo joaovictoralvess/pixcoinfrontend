@@ -19,7 +19,7 @@ import './styles.scss';
 
 
 export default function MachineActions({ machine }: MachineActionsProps) {
-	const [selectedModal, setSelectedModal] = useState<'edit' | 'credit' | ''>('');
+	const [selectedModal, setSelectedModal] = useState<'edit' | 'credit' | 'destroy' | ''>('');
 
 	const handleCloseModal = () => setSelectedModal('');
 
@@ -59,6 +59,14 @@ export default function MachineActions({ machine }: MachineActionsProps) {
 				icon={<DollarIcon width={10} height={10} />}
 			>
 				Crédito remoto
+			</ActionButton>
+
+			{/* @TODO: Imlementar excluir máquina */}
+			<ActionButton
+				callback={() => setSelectedModal('destroy')}
+				icon={<DollarIcon width={10} height={10} />}
+			>
+				Excluir máquina
 			</ActionButton>
 
 			{selectedModal && (
