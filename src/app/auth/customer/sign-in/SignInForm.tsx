@@ -18,6 +18,7 @@ export default function SignInForm() {
 		<form action={formAction}>
 			<div className='sign-in-container__left-section__wrapper-input'>
 				<TextInput
+					className='text-input-container'
 					name='email'
 					label='E-mail'
 					placeholder='E-mail'
@@ -28,6 +29,7 @@ export default function SignInForm() {
 				/>
 
 				<TextInput
+					className='text-input-container'
 					name='password'
 					label='Senha'
 					placeholder='Senha'

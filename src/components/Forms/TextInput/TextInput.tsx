@@ -8,6 +8,7 @@ export interface TextInputProps extends InputHTMLAttributes<HTMLInputElement> {
 	label?: string;
 	icon?: ReactNode;
 	error?: string;
+	className?: string;
 }
 
 export default function TextInput({
@@ -16,10 +17,11 @@ export default function TextInput({
 	icon,
 	error,
 	type,
+	className,
 	...rest
 }: TextInputProps) {
 	return (
-		<div className={`input-ui ${type === 'hidden' ? 'input-ui--hidden' : ''}`}>
+		<div className={`input-ui ${className ? className : ''} ${type === 'hidden' ? 'input-ui--hidden' : ''} `}>
 			<input type={type} name={name} id={name} {...rest} />
 			{label && <label htmlFor={name}>{label}</label>}
 			<span className="bar"></span>
