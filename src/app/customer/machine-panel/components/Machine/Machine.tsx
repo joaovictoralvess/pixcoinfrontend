@@ -3,11 +3,13 @@ import Link from 'next/link';
 
 import { IMachine } from '@/interfaces/IMachine';
 
-import { formatToBRL, statusMap } from '@/helpers/payment';
+import { formatToBRL } from '@/helpers/payment';
+import { statusMap } from '@/helpers/machine';
 
 import MachineActions from '@/app/customer/machine-panel/components/MachineActions/MachineActions';
 
 import './styles.scss';
+
 
 export interface IMachineProps {
 	machine: IMachine;
