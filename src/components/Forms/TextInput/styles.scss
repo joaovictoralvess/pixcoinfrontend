@@ -1,7 +1,11 @@
 @use '@/app/variables' as variables;
 
-.text-input-container {
+.input-ui {
   position: relative;
+
+  &--hidden {
+    display: none;
+  }
 
   input {
     position: relative;

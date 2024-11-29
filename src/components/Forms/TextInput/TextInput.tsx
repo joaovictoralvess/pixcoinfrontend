@@ -4,6 +4,7 @@ import './styles.scss';
 
 export interface TextInputProps extends InputHTMLAttributes<HTMLInputElement> {
 	name: string;
+	type?: string;
 	label?: string;
 	icon?: ReactNode;
 	error?: string;
@@ -14,11 +15,12 @@ export default function TextInput({
 	label,
 	icon,
 	error,
+	type,
 	...rest
 }: TextInputProps) {
 	return (
-		<div className='text-input-container'>
-			<input name={name} id={name} {...rest} />
+		<div className={`input-ui ${type === 'hidden' ? 'input-ui--hidden' : ''}`}>
+			<input type={type} name={name} id={name} {...rest} />
 			{label && <label htmlFor={name}>{label}</label>}
 			<span className="bar"></span>
 			{icon && (<span className='icon'>{icon}</span>)}
