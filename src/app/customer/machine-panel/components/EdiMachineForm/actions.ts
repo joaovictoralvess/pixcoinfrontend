@@ -24,16 +24,7 @@ const validateEditMachineForm = (formData: FormData): EditMachineState => {
 			.object({
 				name: z.string().min(3, '"Nome" deve conter no mínimo 3 dígitos.'),
 				description: z.string().min(3, '"Descrição" deve conter no mínimo 3 dígitos.'),
-				alue: z
-					.string()
-					.refine((val) => Number(val) > 0, {
-						message: '"Valor" deve ser maior que 0.',
-					}),
-				stock: z
-					.string()
-					.refine((val) => Number(val) > 0, {
-						message: '"Estoque" deve ser maior que 0.',
-					}),
+				value: z.string().min(1, '"Valor do pulso" nao pode ser vazio.'),
 			});
 
 	try {
@@ -51,18 +42,21 @@ const validateEditMachineForm = (formData: FormData): EditMachineState => {
 };
 
 export const handleEditMachine = async (prevState: any, formData: FormData) => {
+	console.log(formData);
 	const validation = validateEditMachineForm(formData);
 	if (!validation.isValid) {
 		return {...prevState, ...validation};
 	}
 
 	const data = {
-		name: `${formData.get('name')}`,
-		description: `${formData.get('description')}`,
+		nome: `${formData.get('name')}`,
+		descricao: `${formData.get('description')}`,
+		estoque: `${formData.get('stock')}`,
+		valorDoPulso: `${formData.get('value')}`,
 	};
 
 	console.log(data);
 
-	revalidatePath('/customer/machine-panel');
-	redirect('/customer/machine-panel')
+	// revalidatePath('/customer/machine-panel');
+	// redirect('/customer/machine-panel')
 };

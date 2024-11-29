@@ -51,7 +51,7 @@ export default function EditMachineForm({ machine }: EditMachineFormProps) {
 				label='Estoque'
 				placeholder='Estoque'
 				title='Estoque'
-				error={state.errors.value}
+				error={state.errors.stock}
 				defaultValue={machine.estoque || '0'}
 			/>
 
