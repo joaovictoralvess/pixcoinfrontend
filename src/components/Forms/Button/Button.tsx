@@ -8,6 +8,6 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 export default function Button({ children, ...rest }: ButtonProps) {
 	return (
-		<button {...rest}>{children}</button>
+		<button className='button-ui' {...rest}>{children}</button>
 	)
 }
