@@ -31,7 +31,7 @@ export default function Modal({ children, onClose, title, id = 'modal', ...rest 
 		<div id={id} className='modal' onClick={handleOutsideClick} {...rest}>
 			<div className='modal__container'>
 				<div className='modal__container__header'>
-					<button onClick={onClose} className="modal__container__header__close" />
+					<button title='Fechar modal' onClick={onClose} className="modal__container__header__close" />
 					<h1 className="modal__container__header__title">{title}</h1>
 				</div>
 

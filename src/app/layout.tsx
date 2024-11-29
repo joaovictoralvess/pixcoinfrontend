@@ -20,10 +20,10 @@ export default function RootLayout({
 	children: ReactNode;
 }>) {
 	return (
-		<html lang="pt-BR">
+		<html lang='pt-BR'>
 		<body className={inter.className}>
 		{children}
-		<div id="modal-root"></div>
+		<div id='modal-root'></div>
 		</body>
 		</html>
 	);
