@@ -5,6 +5,9 @@ import { redirect } from 'next/navigation';
 import { z, ZodError } from 'zod';
 
 import { dealWithZodErrors } from '@/helpers/zodError';
+import { UpdateMachineRequest } from '@/interfaces/IMachine';
+
+import MachineService from '@/services/Machine';
 
 export interface EditMachineErros {
 	name?: string,
@@ -42,21 +45,30 @@ const validateEditMachineForm = (formData: FormData): EditMachineState => {
 };
 
 export const handleEditMachine = async (prevState: any, formData: FormData) => {
-	console.log(formData);
 	const validation = validateEditMachineForm(formData);
 	if (!validation.isValid) {
 		return {...prevState, ...validation};
 	}
 
-	const data = {
+	const data: UpdateMachineRequest = {
 		nome: `${formData.get('name')}`,
 		descricao: `${formData.get('description')}`,
-		estoque: `${formData.get('stock')}`,
+		estoque: Number(formData.get('stock')),
 		valorDoPulso: `${formData.get('value')}`,
+		store_id: `${formData.get('storeId')}`,
+		id: `${formData.get('id')}`,
 	};
 
-	console.log(data);
+	const resp = await MachineService.update(data);
+	if (resp.error) {
+		return {
+			isValid: false,
+			errors: {
+				name: resp.error.split(',')[0]
+			}
+		}
+	}
 
-	// revalidatePath('/customer/machine-panel');
-	// redirect('/customer/machine-panel')
+	revalidatePath('/customer/machine-panel');
+	redirect('/customer/machine-panel')
 };

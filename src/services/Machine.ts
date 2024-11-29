@@ -1,4 +1,4 @@
-import { IMachine } from '@/interfaces/IMachine';
+import { IMachine, UpdateMachineRequest, UpdateMachineResponse } from '@/interfaces/IMachine';
 import { ICustomer } from '@/interfaces/ICustomer';
 import { IPaymentResponse } from '@/interfaces/IPayment';
 
@@ -27,6 +27,20 @@ const MachineService = {
 				"Content-Type": "application/json",
 				"x-access-token": user.token
 			},
+		});
+
+		return await response.json();
+	},
+	update: async (data: UpdateMachineRequest): Promise<UpdateMachineResponse> => {
+		const user = await getSession() as ICustomer;
+
+		const response = await fetch(`${process.env.REACT_APP_SERVIDOR}/maquina-cliente`, {
+			method: 'PUT',
+			headers: {
+				"Content-Type": "application/json",
+				"x-access-token": user.token
+			},
+			body: JSON.stringify(data)
 		});
 
 		return await response.json();

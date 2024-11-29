@@ -17,3 +17,16 @@ export interface IMachine {
 	totalEspecie: number;
 	totalComEstorno: number;
 }
+
+export interface UpdateMachineRequest {
+	descricao: string;
+	estoque: number;
+	id: string;
+	nome: string;
+	store_id: string;
+	valorDoPulso: string;
+}
+
+export interface UpdateMachineResponse {
+	error?: string;
+}

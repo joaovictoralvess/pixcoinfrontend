@@ -35,9 +35,9 @@ export default function MachineActions({ machine }: MachineActionsProps) {
 	const resolveModalTitle = () => {
 		switch (selectedModal) {
 			case 'edit':
-				return `Editar máquina ${machine.nome}`;
+				return `Editar ${machine.nome}`;
 			case 'credit':
-				return 'Adição de crédito';
+				return `Créditos em ${machine.nome}`;
 			default:
 				return '';
 		}
