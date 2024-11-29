@@ -8,9 +8,15 @@ import DollarIcon from '@/components/Icons/DollarIcon';
 import ActionButton from '@/app/customer/machine-panel/components/ActionButton/ActionButton';
 import EditMachineForm from '@/app/customer/machine-panel/components/EdiMachineForm/EditMachineForm';
 
+import { IMachine } from '@/interfaces/IMachine';
+
+export interface MachineActionsProps {
+	machine: IMachine;
+}
+
 import './styles.scss';
 
-export default function MachineActions() {
+export default function MachineActions({ machine }: MachineActionsProps) {
 	const [selectedModal, setSelectedModal] = useState<'edit' | 'credit' | ''>('');
 
 	const handleCloseModal = () => setSelectedModal('');
@@ -18,7 +24,7 @@ export default function MachineActions() {
 	const renderModalContent = () => {
 		switch (selectedModal) {
 			case 'edit':
-				return <EditMachineForm />;
+				return <EditMachineForm machine={machine} />;
 			case 'credit':
 				return 'CRÉDITO REMOTO';
 			default:
@@ -29,7 +35,7 @@ export default function MachineActions() {
 	const resolveModalTitle = () => {
 		switch (selectedModal) {
 			case 'edit':
-				return 'Editar máquina';
+				return `Editar máquina ${machine.nome}`;
 			case 'credit':
 				return 'Adição de crédito';
 			default:

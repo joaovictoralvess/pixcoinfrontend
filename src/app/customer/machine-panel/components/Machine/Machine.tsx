@@ -4,15 +4,18 @@ import { IMachine } from '@/interfaces/IMachine';
 
 import { formatToBRL } from '@/helpers/payment';
 
-import './styles.scss';
 import MachineActions from '@/app/customer/machine-panel/components/MachineActions/MachineActions';
+
+import './styles.scss';
 
 export interface IMachineProps {
 	machine: IMachine;
 }
 
 export default function Machine({
-	machine: {
+	machine
+}: IMachineProps) {
+	const  {
 		status,
 		nome,
 		id,
@@ -21,8 +24,8 @@ export default function Machine({
 		totalComEstorno,
 		totalEspecie,
 		totalSemEstorno
-	}
-}: IMachineProps) {
+	} = machine;
+
 	return (
 		<div className='machine'>
 			<Link href={`/customer/machine-panel/${id}`}>
@@ -50,7 +53,7 @@ export default function Machine({
 				</div>
 			</Link>
 
-			<MachineActions />
+			<MachineActions machine={machine} />
 		</div>
 	);
 }

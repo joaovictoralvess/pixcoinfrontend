@@ -6,9 +6,15 @@ import Button from '@/components/Forms/Button/Button';
 import { handleEditMachine } from '@/app/customer/machine-panel/components/EdiMachineForm/actions';
 import { initialState } from '@/app/customer/machine-panel/components/EdiMachineForm/helpers';
 
+import { IMachine } from '@/interfaces/IMachine';
+
+export interface EditMachineFormProps {
+	machine: IMachine;
+}
+
 import './styles.scss';
 
-export default function EditMachineForm() {
+export default function EditMachineForm({ machine }: EditMachineFormProps) {
 	const [state, formAction] = useActionState(handleEditMachine, initialState);
 	return (
 		<form className='edit-machine-form' action={formAction}>
@@ -19,6 +25,7 @@ export default function EditMachineForm() {
 				type='text'
 				title='Nome da máquina'
 				error={state.errors.name}
+				defaultValue={machine.nome}
 			/>
 
 			<TextInput
@@ -27,6 +34,7 @@ export default function EditMachineForm() {
 				placeholder='Descrição'
 				title='Descrição da máquina'
 				error={state.errors.description}
+				defaultValue={machine.descricao}
 			/>
 
 			<TextInput
@@ -35,6 +43,7 @@ export default function EditMachineForm() {
 				placeholder='Valor do pulso'
 				title='Valor do pulso'
 				error={state.errors.value}
+				defaultValue={machine.pulso}
 			/>
 
 			<TextInput
@@ -43,6 +52,7 @@ export default function EditMachineForm() {
 				placeholder='Estoque'
 				title='Estoque'
 				error={state.errors.value}
+				defaultValue={machine.estoque || '0'}
 			/>
 
 			<Button type="submit" title='Editar máquina'>Editar máquina</Button>
