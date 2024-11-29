@@ -6,6 +6,7 @@ import EditIcon from '@/components/Icons/EditIcon';
 import Modal from '@/components/UI/Modal/Modal';
 import DollarIcon from '@/components/Icons/DollarIcon';
 import ActionButton from '@/app/customer/machine-panel/components/ActionButton/ActionButton';
+import EditMachineForm from '@/app/customer/machine-panel/components/EdiMachineForm/EditMachineForm';
 
 import './styles.scss';
 
@@ -17,7 +18,7 @@ export default function MachineActions() {
 	const renderModalContent = () => {
 		switch (selectedModal) {
 			case 'edit':
-				return 'EDIÇÃO DE MÁQUINA';
+				return <EditMachineForm />;
 			case 'credit':
 				return 'CRÉDITO REMOTO';
 			default:
