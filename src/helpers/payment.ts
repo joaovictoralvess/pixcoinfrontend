@@ -42,3 +42,9 @@ export const retrieveReversedText = (reversed: boolean): 'Recebido' | 'Estornado
 
 	return 'Recebido'
 }
+
+export const statusMap = {
+	PAGAMENTO_RECENTE: 'PAGAMENTO RECENTE',
+	OFFLINE: 'OFFLINE',
+	ONLINE: 'ONLINE',
+};

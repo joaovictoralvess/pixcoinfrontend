@@ -1,8 +1,9 @@
+import { ReactNode } from 'react';
 import Link from 'next/link';
 
 import { IMachine } from '@/interfaces/IMachine';
 
-import { formatToBRL } from '@/helpers/payment';
+import { formatToBRL, statusMap } from '@/helpers/payment';
 
 import MachineActions from '@/app/customer/machine-panel/components/MachineActions/MachineActions';
 
@@ -26,21 +27,29 @@ export default function Machine({
 		totalSemEstorno
 	} = machine;
 
+	const resolveMachineStatus = (): ReactNode => {
+		if (statusMap[status] === 'OFFLINE') {
+			return (
+				<>
+					<span className="machine__header__icon machine__header__icon--offline">✖</span>
+					<span className="machine__header__text machine__header__text--offline">{statusMap[status]}</span>
+				</>
+			)
+		}
+
+		return (
+			<>
+				<span className="machine__header__icon">✔</span>
+				<span className="machine__header__text">{statusMap[status]}</span>
+			</>
+		)
+	}
+
 	return (
 		<div className='machine'>
 			<Link href={`/customer/machine-panel/${id}`}>
 				<div className='machine__header'>
-					{status === 'OFFLINE' ? (
-						<>
-							<span className="machine__header__icon machine__header__icon--offline">✖</span>
-							<span className="machine__header__text machine__header__text--offline">{status}</span>
-						</>
-					) : (
-						<>
-							<span className="machine__header__icon">✔</span>
-							<span className="machine__header__text">{status}</span>
-						</>
-					)}
+					{resolveMachineStatus()}
 				</div>
 
 				<div className="machine__body">
