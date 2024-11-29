@@ -17,7 +17,6 @@ export interface MachineActionsProps {
 
 import './styles.scss';
 
-
 export default function MachineActions({ machine }: MachineActionsProps) {
 	const [selectedModal, setSelectedModal] = useState<'edit' | 'credit' | 'destroy' | ''>('');
 

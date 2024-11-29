@@ -10,7 +10,6 @@ import MachineActions from '@/app/customer/machine-panel/components/MachineActio
 
 import './styles.scss';
 
-
 export interface IMachineProps {
 	machine: IMachine;
 }

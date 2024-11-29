@@ -1,18 +1,19 @@
 import { Params } from '@/@types/params';
 
 import GoBackIcon from '@/components/Icons/GoBackIcon';
+import EditIcon from '@/components/Icons/EditIcon';
+
 import Header from '@/app/customer/machine-panel/components/Header/Header';
 import Layout from '@/app/customer/machine-panel/components/Layout/Layout';
-import PaymentTable from '@/app/customer/machine-panel/components/PaymentTable/PaymentTable';
-
-import transformPaymentsData from '@/helpers/transformPaymentsData';
 import PageTitleWithSync from '@/app/customer/machine-panel/components/PageTitleWithSync/PageTitleWithSync';
 
-import MachineService from '@/services/Machine';
 import ActionButton from '@/app/customer/machine-panel/components/ActionButton/ActionButton';
+import PaymentTable from '@/app/customer/machine-panel/components/PaymentTable/PaymentTable';
+import transformPaymentsData from '@/helpers/payment';
+
+import MachineService from '@/services/Machine';
 
 import './styles.scss';
-import EditIcon from '@/components/Icons/EditIcon';
 
 export interface MachineDetailProps {
 	params: Params
