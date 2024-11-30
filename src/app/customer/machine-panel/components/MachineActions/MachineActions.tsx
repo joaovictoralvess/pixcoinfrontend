@@ -16,11 +16,12 @@ import { IMachine } from '@/interfaces/IMachine';
 
 export interface MachineActionsProps {
 	machine: IMachine;
+	shouldRender?: 'all' | 'edit-only' | 'credit-only' | 'delete-only';
 }
 
 import './styles.scss';
 
-export default function MachineActions({ machine }: MachineActionsProps) {
+export default function MachineActions({ machine, shouldRender = 'all' }: MachineActionsProps) {
 	const [selectedModal, setSelectedModal] = useState<'edit' | 'credit' | 'destroy-payments' | ''>('');
 
 	const handleCloseModal = () => setSelectedModal('');
@@ -51,35 +52,61 @@ export default function MachineActions({ machine }: MachineActionsProps) {
 		}
 	}
 
-	return (
-		<div className='machine-action-buttons'>
-			<ActionButton
-				callback={() => setSelectedModal('edit')}
-				icon={<EditIcon width={10} height={10} />}
-			>
-				Editar máquina
-			</ActionButton>
+	const render = () => {
+		if (shouldRender === 'all') {
+			return (
+				<div className='machine-action-buttons'>
+					<ActionButton
+						callback={() => setSelectedModal('edit')}
+						icon={<EditIcon width={10} height={10} />}
+					>
+						Editar máquina
+					</ActionButton>
 
-			<ActionButton
-				callback={() => setSelectedModal('credit')}
-				icon={<DollarIcon width={10} height={10} />}
-			>
-				Crédito remoto
-			</ActionButton>
+					<ActionButton
+						callback={() => setSelectedModal('credit')}
+						icon={<DollarIcon width={10} height={10} />}
+					>
+						Crédito remoto
+					</ActionButton>
 
-			<ActionButton
-				className='machine-action-buttons--delete'
-				callback={() => setSelectedModal('destroy-payments')}
-				icon={<TrashIcon width={10} height={10} />}
-			>
-				Excluir pagamentos
-			</ActionButton>
+					<ActionButton
+						className='machine-action-buttons--delete'
+						callback={() => setSelectedModal('destroy-payments')}
+						icon={<TrashIcon width={10} height={10} />}
+					>
+						Excluir pagamentos
+					</ActionButton>
 
-			{selectedModal && (
-				<Modal onClose={handleCloseModal} title={resolveModalTitle()}>
-					{renderModalContent()}
-				</Modal>
-			)}
-		</div>
-	);
+					{selectedModal && (
+						<Modal onClose={handleCloseModal} title={resolveModalTitle()}>
+							{renderModalContent()}
+						</Modal>
+					)}
+				</div>
+			)
+		}
+
+		if (shouldRender === 'delete-only') {
+			return (
+				<div className='machine-action-buttons'>
+					<ActionButton
+						className='machine-action-buttons--delete'
+						callback={() => setSelectedModal('destroy-payments')}
+						icon={<TrashIcon width={10} height={10} />}
+					>
+						Excluir pagamentos
+					</ActionButton>
+
+					{selectedModal && (
+						<Modal onClose={handleCloseModal} title={resolveModalTitle()}>
+							{renderModalContent()}
+						</Modal>
+					)}
+				</div>
+			)
+		}
+	}
+
+	return render();
 }
