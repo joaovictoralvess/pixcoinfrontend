@@ -4,9 +4,7 @@
   flex-wrap: wrap;
 
   &--delete {
-    &:hover {
-      border: 1px solid #ff4c4c !important;
-    }
+    border: 1px solid #ff4c4c !important;
 
     svg {
       color: #ff4c4c !important;
@@ -14,6 +12,9 @@
   }
 
   button {
+    width: 170px !important;
+    justify-content: center !important;
+
     svg {
       animation: none !important;
     }
