@@ -11,6 +11,8 @@ import ActionButton from '@/app/customer/machine-panel/components/ActionButton/A
 import PaymentTable from '@/app/customer/machine-panel/components/PaymentTable/PaymentTable';
 import transformPaymentsData from '@/helpers/payment';
 
+import { redirectCustomerToLoginIfNotLogged } from '@/helpers/customer';
+
 import MachineService from '@/services/Machine';
 
 import './styles.scss';
@@ -20,6 +22,8 @@ export interface MachineDetailProps {
 }
 
 export default async function MachineDetail(props: MachineDetailProps) {
+	await redirectCustomerToLoginIfNotLogged()
+
 	const { id } = await props.params;
 
 	const data = await MachineService.payments(id);
