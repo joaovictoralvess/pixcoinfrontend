@@ -19,6 +19,5 @@ const redirectToLoginIfInvalidToken = async (NextResponse: any, request: NextReq
 
     if (user.token && isTokenExpired(user.token)) {
         await logout();
-        return NextResponse.redirect(new URL('/auth/customer/sign-in', request.url));
     }
 }
