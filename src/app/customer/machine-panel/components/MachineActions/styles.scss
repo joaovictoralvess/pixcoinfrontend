@@ -3,6 +3,16 @@
   gap: 20px;
   flex-wrap: wrap;
 
+  &--delete {
+    &:hover {
+      border: 1px solid #ff4c4c !important;
+    }
+
+    svg {
+      color: #ff4c4c !important;
+    }
+  }
+
   button {
     svg {
       animation: none !important;

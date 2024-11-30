@@ -16,9 +16,10 @@ export interface MachineActionsProps {
 }
 
 import './styles.scss';
+import TrashIcon from '@/components/Icons/TrashIcon';
 
 export default function MachineActions({ machine }: MachineActionsProps) {
-	const [selectedModal, setSelectedModal] = useState<'edit' | 'credit' | 'destroy' | ''>('');
+	const [selectedModal, setSelectedModal] = useState<'edit' | 'credit' | 'destroy-payments' | ''>('');
 
 	const handleCloseModal = () => setSelectedModal('');
 
@@ -39,6 +40,8 @@ export default function MachineActions({ machine }: MachineActionsProps) {
 				return `Editar ${machine.nome}`;
 			case 'credit':
 				return `Créditos em ${machine.nome}`;
+			case 'destroy-payments':
+				return 'Excluir todos os pagamentos'
 			default:
 				return '';
 		}
@@ -60,12 +63,12 @@ export default function MachineActions({ machine }: MachineActionsProps) {
 				Crédito remoto
 			</ActionButton>
 
-			{/* @TODO: Imlementar excluir máquina */}
 			<ActionButton
-				callback={() => setSelectedModal('destroy')}
-				icon={<DollarIcon width={10} height={10} />}
+				className='machine-action-buttons--delete'
+				callback={() => setSelectedModal('destroy-payments')}
+				icon={<TrashIcon width={10} height={10} />}
 			>
-				Excluir máquina
+				Excluir pagamentos
 			</ActionButton>
 
 			{selectedModal && (
