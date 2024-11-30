@@ -18,7 +18,11 @@ export const getSession = async (): Promise<any | undefined> => {
 	const session = cookieStore.get(SESSION_NAME)?.value;
 	if (!session) return undefined;
 
-	return JSON.parse(session);
+	try {
+		return JSON.parse(session);
+	} catch (error) {
+		return undefined;
+	}
 };
 
 export const updateSession = async () => {
