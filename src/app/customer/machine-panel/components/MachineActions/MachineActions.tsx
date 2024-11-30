@@ -2,9 +2,11 @@
 
 import { useState } from 'react';
 
-import EditIcon from '@/components/Icons/EditIcon';
 import Modal from '@/components/UI/Modal/Modal';
+import EditIcon from '@/components/Icons/EditIcon';
 import DollarIcon from '@/components/Icons/DollarIcon';
+import TrashIcon from '@/components/Icons/TrashIcon';
+
 import ActionButton from '@/app/customer/machine-panel/components/ActionButton/ActionButton';
 import EditMachineForm from '@/app/customer/machine-panel/components/EdiMachineForm/EditMachineForm';
 import AddRemoteCreditForm from '@/app/customer/machine-panel/components/AddRemoteCreditForm/AddRemoteCreditForm';
@@ -16,7 +18,6 @@ export interface MachineActionsProps {
 }
 
 import './styles.scss';
-import TrashIcon from '@/components/Icons/TrashIcon';
 
 export default function MachineActions({ machine }: MachineActionsProps) {
 	const [selectedModal, setSelectedModal] = useState<'edit' | 'credit' | 'destroy-payments' | ''>('');
