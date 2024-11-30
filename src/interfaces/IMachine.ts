@@ -39,3 +39,7 @@ export interface AddRemoteCrediteRequest {
 export interface AddRemoteCrediteResponse {
 	msg?: string;
 }
+
+export interface RemovePaymentsResponse {
+	message: string;
+}

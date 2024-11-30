@@ -10,6 +10,7 @@ import TrashIcon from '@/components/Icons/TrashIcon';
 import ActionButton from '@/app/customer/machine-panel/components/ActionButton/ActionButton';
 import EditMachineForm from '@/app/customer/machine-panel/components/EdiMachineForm/EditMachineForm';
 import AddRemoteCreditForm from '@/app/customer/machine-panel/components/AddRemoteCreditForm/AddRemoteCreditForm';
+import RemoveAllPaymentsForm from '@/app/customer/machine-panel/components/RemoveAllPaymentsForm/RemoveAllPaymentsForm';
 
 import { IMachine } from '@/interfaces/IMachine';
 
@@ -30,6 +31,8 @@ export default function MachineActions({ machine }: MachineActionsProps) {
 				return <EditMachineForm machine={machine} />;
 			case 'credit':
 				return <AddRemoteCreditForm machineId={machine.id} />;
+			case 'destroy-payments':
+				return <RemoveAllPaymentsForm machineId={machine.id} cancelAction={handleCloseModal} />;
 			default:
 				return null;
 		}

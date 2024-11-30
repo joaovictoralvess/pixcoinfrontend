@@ -1,7 +1,8 @@
 import {
+	IMachine,
 	AddRemoteCrediteRequest,
 	AddRemoteCrediteResponse,
-	IMachine,
+	RemovePaymentsResponse,
 	UpdateMachineRequest,
 	UpdateMachineResponse,
 } from '@/interfaces/IMachine';
@@ -61,6 +62,20 @@ const MachineService = {
 				"x-access-token": user.token
 			},
 			body: JSON.stringify(data)
+		});
+
+		return await response.json();
+	},
+
+	removeAllPayments: async (machineId: string): Promise<RemovePaymentsResponse> => {
+		const user = await getSession() as ICustomer;
+
+		const response = await fetch(`${process.env.REACT_APP_SERVIDOR}/delete-pagamentos/${machineId}`, {
+			method: 'DELETE',
+			headers: {
+				"Content-Type": "application/json",
+				"x-access-token": user.token
+			},
 		});
 
 		return await response.json();
