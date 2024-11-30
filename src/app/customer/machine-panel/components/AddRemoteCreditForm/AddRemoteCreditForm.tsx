@@ -1,10 +1,11 @@
 import { useActionState } from 'react';
 
 import TextInput from '@/components/Forms/TextInput/TextInput';
+import Button from '@/components/Forms/Button/Button';
+
 import { handleAddMachineCredit } from '@/app/customer/machine-panel/components/AddRemoteCreditForm/actions';
 
 import { initialState } from '@/app/customer/machine-panel/components/AddRemoteCreditForm/helpers';
-import Button from '@/components/Forms/Button/Button';
 
 import './styles.scss';
 
