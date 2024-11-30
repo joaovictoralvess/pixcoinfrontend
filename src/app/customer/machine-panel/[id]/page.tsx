@@ -1,13 +1,14 @@
 import { Params } from '@/@types/params';
 
 import GoBackIcon from '@/components/Icons/GoBackIcon';
-import EditIcon from '@/components/Icons/EditIcon';
+
+import { IMachine } from '@/interfaces/IMachine';
 
 import Header from '@/app/customer/machine-panel/components/Header/Header';
 import Layout from '@/app/customer/machine-panel/components/Layout/Layout';
+import MachineActions from '@/app/customer/machine-panel/components/MachineActions/MachineActions';
 import PageTitleWithSync from '@/app/customer/machine-panel/components/PageTitleWithSync/PageTitleWithSync';
 
-import ActionButton from '@/app/customer/machine-panel/components/ActionButton/ActionButton';
 import PaymentTable from '@/app/customer/machine-panel/components/PaymentTable/PaymentTable';
 import transformPaymentsData from '@/helpers/payment';
 
@@ -40,13 +41,7 @@ export default async function MachineDetail(props: MachineDetailProps) {
 				<Layout className="payments-panel__container">
 					<div className='payments-panel__container__wrapper-buttons'>
 						<PageTitleWithSync updateTo={`/customer/machine-panel/${id}`} title='Painel de pagamentos' />
-						<ActionButton
-							className='payments-panel__container__wrapper-buttons__edit'
-							updateTo='/'
-							icon={<EditIcon width={10} height={10} />}
-						>
-							Editar
-						</ActionButton>
+						<MachineActions machine={{ id } as IMachine} shouldRender='delete-only' />
 					</div>
 
 					<PaymentTable tableData={tableData} />

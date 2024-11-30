@@ -7,6 +7,7 @@
     &__wrapper-buttons {
       position: relative;
       max-width: 300px;
+      flex-wrap: wrap;
 
       &__edit {
         position: absolute;
@@ -17,6 +18,12 @@
           color: variables.$application-color;
           animation: none !important;
         }
+      }
+
+      .machine-action-buttons {
+        position: absolute;
+        top: 27px;
+        right: 15px;
       }
     }
   }
