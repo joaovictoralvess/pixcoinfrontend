@@ -8,7 +8,7 @@ import './styles.scss';
 
 export interface ActionButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 	updateTo?: string;
-	icon: ReactNode
+	icon?: ReactNode
 	className?: string;
 	callback?: () => void;
 }
@@ -27,7 +27,7 @@ export default function ActionButton({ updateTo, icon, className, children, call
 
 	return (
 		<button onClick={() => handleClick()} className={`action-button ${className ? className : ''}`} {...rest}>
-			{icon}
+			{icon && icon}
 			{children}
 		</button>
 	)
