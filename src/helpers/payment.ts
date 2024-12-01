@@ -56,3 +56,13 @@ export default function transformPaymentsData(payments: IPayment[]): TableData[]
 		reason: payment.motivoEstorno,
 	}));
 }
+
+export const retrieveDate = (isoDate: string): string => {
+	const data = new Date(isoDate);
+
+	const dia = String(data.getUTCDate()).padStart(2, '0');
+	const mes = String(data.getUTCMonth() + 1).padStart(2, '0'); // Janeiro é 0
+	const ano = data.getUTCFullYear();
+
+	return  `${dia}/${mes}/${ano}`;
+}

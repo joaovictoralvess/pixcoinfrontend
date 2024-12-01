@@ -8,6 +8,7 @@ import Header from '@/app/customer/machine-panel/components/Header/Header';
 import Layout from '@/app/customer/machine-panel/components/Layout/Layout';
 import MachineActions from '@/app/customer/machine-panel/components/MachineActions/MachineActions';
 import PageTitleWithSync from '@/app/customer/machine-panel/components/PageTitleWithSync/PageTitleWithSync';
+import PaymentReport from '@/components/UI/PaymentReport/PaymentReport';
 
 import PaymentTable from '@/app/customer/machine-panel/components/PaymentTable/PaymentTable';
 import transformPaymentsData from '@/helpers/payment';
@@ -23,7 +24,7 @@ export interface MachineDetailProps {
 }
 
 export default async function MachineDetail(props: MachineDetailProps) {
-	await redirectCustomerToLoginIfNotLogged()
+	await redirectCustomerToLoginIfNotLogged();
 
 	const { id } = await props.params;
 
@@ -42,6 +43,7 @@ export default async function MachineDetail(props: MachineDetailProps) {
 					<div className='payments-panel__container__wrapper-buttons'>
 						<PageTitleWithSync updateTo={`/customer/machine-panel/${id}`} title='Painel de pagamentos' />
 						<MachineActions machine={{ id } as IMachine} shouldRender='delete-only' />
+						<PaymentReport machineId={id} />
 					</div>
 
 					<PaymentTable tableData={tableData} />
