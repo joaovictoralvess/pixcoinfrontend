@@ -54,6 +54,10 @@ const adminLogin = async (data: SignInUser) => {
 			}
 		}
 	}
+
+	await createSession(JSON.stringify(user));
+	revalidatePath('/admin/customers');
+	redirect('/admin/customers');
 }
 
 export const handleSignInForm = async (prevState: any, formData: FormData) => {
@@ -67,11 +71,8 @@ export const handleSignInForm = async (prevState: any, formData: FormData) => {
 		senha: `${formData.get('password')}`,
 	};
 
-	const isAdmin = `${formData.get('admin')}`;
-
-	if (isAdmin) {
-		await adminLogin(data);
-		return;
+	if (formData.get('admin') !== null) {
+		return await adminLogin(data);
 	}
 
 	const user = await CustomersService.signIn(data);
