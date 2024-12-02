@@ -1,10 +1,11 @@
 import { SearchParams } from '@/@types/searchParams';
 import { Params } from '@/@types/params';
 
+import Header from '@/components/UI/Header/Header';
+import Layout from '@/components/UI/Layout/Layout';
+
 import PageTitleWithSync from '@/app/customer/machine-panel/components/PageTitleWithSync/PageTitleWithSync';
 import GoBackIcon from '@/components/Icons/GoBackIcon';
-import Header from '@/app/customer/machine-panel/components/Header/Header';
-import Layout from '@/app/customer/machine-panel/components/Layout/Layout';
 import PaymentCharts from '@/app/customer/payment-report/components/PaymentCharts/PaymentCharts';
 
 import { redirectCustomerToLoginIfNotLogged } from '@/helpers/customer';

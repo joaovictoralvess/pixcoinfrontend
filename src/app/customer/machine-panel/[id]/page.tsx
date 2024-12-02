@@ -6,11 +6,11 @@ import GoBackIcon from '@/components/Icons/GoBackIcon';
 import { IMachine } from '@/interfaces/IMachine';
 import { IPaymentResponse } from '@/interfaces/IPayment';
 
-import Layout from '@/app/customer/machine-panel/components/Layout/Layout';
 import MachineActions from '@/app/customer/machine-panel/components/MachineActions/MachineActions';
 import PageTitleWithSync from '@/app/customer/machine-panel/components/PageTitleWithSync/PageTitleWithSync';
 import PaymentReport from '@/components/UI/PaymentReport/PaymentReport';
 import Header from '@/components/UI/Header/Header';
+import Layout from '@/components/UI/Layout/Layout';
 
 import PaymentTable from '@/app/customer/machine-panel/components/PaymentTable/PaymentTable';
 import transformPaymentsData from '@/helpers/payment';
