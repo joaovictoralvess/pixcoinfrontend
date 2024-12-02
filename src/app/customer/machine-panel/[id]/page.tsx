@@ -37,7 +37,6 @@ export default async function MachineDetail(props: MachineDetailProps) {
 
 	const resolveFetchPayments = async (): Promise<IPaymentResponse> => {
 		if (startDate !== '' && endDate !== '') {
-			console.log(startDate);
 			const newEndDate = new Date(`${endDate}`);
 			newEndDate.setUTCHours(23, 59, 0, 0);
 			return await MachineService.paymentsByPeriod(id, {
