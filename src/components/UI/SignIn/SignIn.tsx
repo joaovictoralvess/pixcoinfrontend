@@ -5,11 +5,13 @@ import SignInForm from '@/components/UI/SignIn/SignInForm';
 
 export interface SignInProps {
 	isAdmin?: boolean;
+	title?: string;
+	subtitle?: string;
 }
 
 import './styles.scss';
 
-export default function SignIn({ isAdmin = false }: SignInProps) {
+export default function SignIn({ isAdmin = false, title = 'Login', subtitle = 'Bem-vindo de volta! 😊' }: SignInProps) {
 	return (
 		<div className='sign-in-container'>
 			<div className='sign-in-container__left-section'>
@@ -19,9 +21,9 @@ export default function SignIn({ isAdmin = false }: SignInProps) {
 							width={24}
 							height={24}
 						/>
-						<h1>Login</h1>
+						<h1>{title}</h1>
 					</div>
-					<span className="sign-in-container__left-section__wrapper__subtitle">Bem-vindo de volta! 😊</span>
+					<span className="sign-in-container__left-section__wrapper__subtitle">{subtitle}</span>
 				</div>
 
 				<SignInForm isAdmin={isAdmin} />

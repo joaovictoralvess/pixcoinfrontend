@@ -6,7 +6,10 @@ import { z, ZodError } from 'zod';
 
 import { dealWithZodErrors } from '@/helpers/zodError';
 import { createSession } from '@/helpers/session';
+import { ISignInCustomer } from '@/interfaces/ICustomer';
+
 import CustomersService from '@/services/Customers';
+import AdminService from '@/services/Admin';
 
 export interface SignInError {
 	email?: string,
@@ -40,6 +43,19 @@ const validateSignUpForm = (formData: FormData): SignInState => {
 	}
 };
 
+const adminLogin = async (data: ISignInCustomer) => {
+	const user = await AdminService.signIn(data);
+	if (user?.error) {
+		return {
+			isValid: false,
+			errors: {
+				email: 'E-mail ou senha inválido.',
+				password: 'E-mail ou senha inválido.',
+			}
+		}
+	}
+}
+
 export const handleSignInForm = async (prevState: any, formData: FormData) => {
 	const validation = validateSignUpForm(formData);
 	if (!validation.isValid) {
@@ -50,6 +66,13 @@ export const handleSignInForm = async (prevState: any, formData: FormData) => {
 		email: `${formData.get('email')}`,
 		senha: `${formData.get('password')}`,
 	};
+
+	const isAdmin = `${formData.get('admin')}`;
+
+	if (isAdmin) {
+		await adminLogin(data);
+		return;
+	}
 
 	const user = await CustomersService.signIn(data);
 	if (user?.error) {
