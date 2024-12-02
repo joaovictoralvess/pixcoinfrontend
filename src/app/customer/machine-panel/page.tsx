@@ -1,7 +1,8 @@
 import Header from '@/components/UI/Header/Header';
 import Layout from '@/components/UI/Layout/Layout';
+import PageTitleWithSync from '@/components/UI/PageTitleWithSync/PageTitleWithSync';
+
 import Machine from '@/app/customer/machine-panel/components/Machine/Machine';
-import PageTitleWithSync from '@/app/customer/machine-panel/components/PageTitleWithSync/PageTitleWithSync';
 
 import { redirectCustomerToLoginIfNotLogged } from '@/helpers/customer';
 

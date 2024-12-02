@@ -7,8 +7,9 @@ import { IMachine } from '@/interfaces/IMachine';
 import { IPaymentResponse } from '@/interfaces/IPayment';
 
 import MachineActions from '@/app/customer/machine-panel/components/MachineActions/MachineActions';
-import PageTitleWithSync from '@/app/customer/machine-panel/components/PageTitleWithSync/PageTitleWithSync';
+
 import PaymentReport from '@/components/UI/PaymentReport/PaymentReport';
+import PageTitleWithSync from '@/components/UI/PageTitleWithSync/PageTitleWithSync';
 import Header from '@/components/UI/Header/Header';
 import Layout from '@/components/UI/Layout/Layout';
 
