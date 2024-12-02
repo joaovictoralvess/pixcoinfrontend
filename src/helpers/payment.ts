@@ -16,18 +16,15 @@ export const retrieveFormattedDate = (isoDate: string): string => {
 };
 
 export const retrievePaymentForm = (currentPaymentForm: string): string => {
-	switch (currentPaymentForm) {
-		case 'bank_transfer':
-			return 'PIX';
-		case 'CASH':
-			return 'Especie';
-		case 'debit_card':
-			return 'Débito';
-		case 'credit_card':
-			return 'Crédito';
-		default:
-			return ''
-	}
+	const paymentFormMap: Record<string, string> = {
+		bank_transfer: 'PIX',
+		CASH: 'Especie',
+		debit_card: 'Débito',
+		credit_card: 'Crédito',
+		account_money: '',
+	};
+
+	return paymentFormMap[currentPaymentForm] || '';
 };
 
 export const formatToBRL = (value: string): string => {
