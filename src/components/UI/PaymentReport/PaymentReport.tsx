@@ -22,6 +22,7 @@ export default function PaymentReport({ machineId }: PaymentReportProps) {
 				onSelectEndDate={(e) => setEndDate(new Date(e.target.value).toISOString())}
 			/>
 
+			<ActionButton updateTo={`/customer/machine-panel/${machineId}?startDate=${startDate}&endDate=${endDate}`} disabled={!(startDate && endDate)}>Filtrar</ActionButton>
 			<ActionButton updateTo={`/customer/payment-report/${machineId}?startDate=${startDate}&endDate=${endDate}`} disabled={!(startDate && endDate)}>Relatório</ActionButton>
 		</div>
 	);

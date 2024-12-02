@@ -17,4 +17,24 @@
       font-weight: bold;
     }
   }
+
+  &__graph {
+    display: flex;
+    flex-flow: wrap row;
+    margin-top: 1rem;
+
+    &__data {
+      display: flex;
+      gap: 10px;
+
+      &__tax {
+        span {
+          font-style: italic;
+        }
+
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
 }

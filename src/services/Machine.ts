@@ -25,19 +25,6 @@ const MachineService = {
 
 		return await response.json();
 	},
-	payments: async (machineId: string): Promise<IPaymentResponse> => {
-		const user = await getSession() as ICustomer;
-
-		const response = await fetch(`${process.env.REACT_APP_SERVIDOR}/pagamentos/${machineId}`, {
-			method: 'GET',
-			headers: {
-				"Content-Type": "application/json",
-				"x-access-token": user.token
-			},
-		});
-
-		return await response.json();
-	},
 	update: async (data: UpdateMachineRequest): Promise<UpdateMachineResponse> => {
 		const user = await getSession() as ICustomer;
 
@@ -67,6 +54,38 @@ const MachineService = {
 		return await response.json();
 	},
 
+	paymentsByPeriod: async (machineId: string, data: {
+		dataFim: string;
+		dataInicio: string;
+	}): Promise<IPaymentResponse> => {
+		const user = await getSession() as ICustomer;
+
+		const payload = JSON.stringify(data);
+
+		const response = await fetch(`${process.env.REACT_APP_SERVIDOR}/pagamentos-periodo/${machineId}`, {
+			method: 'POST',
+			headers: {
+				"Content-Type": "application/json",
+				"x-access-token": user.token
+			},
+			body: payload
+		});
+
+		return await response.json();
+	},
+	payments: async (machineId: string): Promise<IPaymentResponse> => {
+		const user = await getSession() as ICustomer;
+
+		const response = await fetch(`${process.env.REACT_APP_SERVIDOR}/pagamentos/${machineId}`, {
+			method: 'GET',
+			headers: {
+				"Content-Type": "application/json",
+				"x-access-token": user.token
+			},
+		});
+
+		return await response.json();
+	},
 	removeAllPayments: async (machineId: string): Promise<RemovePaymentsResponse> => {
 		const user = await getSession() as ICustomer;
 

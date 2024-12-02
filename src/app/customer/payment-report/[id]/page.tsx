@@ -5,9 +5,10 @@ import PageTitleWithSync from '@/app/customer/machine-panel/components/PageTitle
 import GoBackIcon from '@/components/Icons/GoBackIcon';
 import Header from '@/app/customer/machine-panel/components/Header/Header';
 import Layout from '@/app/customer/machine-panel/components/Layout/Layout';
+import PaymentCharts from '@/app/customer/payment-report/components/PaymentCharts/PaymentCharts';
 
 import { redirectCustomerToLoginIfNotLogged } from '@/helpers/customer';
-import { retrieveDate, retrieveFormattedDate } from '@/helpers/payment';
+import { formatToBRL, retrieveDate, retrieveFormattedDate } from '@/helpers/payment';
 
 export interface PaymentReportScreen {
 	searchParams: SearchParams;
@@ -15,6 +16,7 @@ export interface PaymentReportScreen {
 }
 
 import './styles.scss';
+import ReportService from '@/services/Report';
 
 export default async function PaymentReportScreen(props: PaymentReportScreen) {
 	await redirectCustomerToLoginIfNotLogged();
@@ -24,6 +26,20 @@ export default async function PaymentReportScreen(props: PaymentReportScreen) {
 
 	const startDate = String(searchParams?.startDate) || '';
 	const endDate = String(searchParams?.endDate) || '';
+	const newEndDate = new Date(endDate);
+
+	newEndDate.setUTCHours(23, 59, 0, 0);
+
+	const {
+		payments,
+		tax,
+		reverses,
+		money
+	}  = await ReportService.allReports({
+		dataInicio: startDate,
+		dataFim: newEndDate.toISOString(),
+		maquinaId: id,
+	});
 
 	return (
 		<>
@@ -47,6 +63,24 @@ export default async function PaymentReportScreen(props: PaymentReportScreen) {
 							Gerado em {retrieveFormattedDate(new Date().toISOString())}
 						</span>
 					</div>
+
+					<div className='payment-report-screen__graph'>
+						<div className="payment-report-screen__graph__data">
+							<div className="payment-report-screen__graph__data__tax">
+								<h2>TAXAS</h2>
+								<span>PIX - {formatToBRL(`${tax.pix}`)}</span>
+								<span>CRÉDITO - {formatToBRL(`${tax.credito}`)}</span>
+								<span>DÉBITO - {formatToBRL(`${tax.debito}`)}</span>
+							</div>
+							<h2>Total de estornos - {formatToBRL(`${reverses.valor}`)}</h2>
+						</div>
+
+						<PaymentCharts
+							labels={['PIX', 'ESPÉCIE', 'CRÉDITO', 'DÉBITO']}
+							values={[payments.pix, money.valor, payments.credito, payments.debito]}
+						/>
+					</div>
+
 				</Layout>
 			</main>
 		</>

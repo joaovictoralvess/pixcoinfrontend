@@ -1,4 +1,5 @@
 import { Params } from '@/@types/params';
+import { SearchParams } from '@/@types/searchParams';
 
 import GoBackIcon from '@/components/Icons/GoBackIcon';
 
@@ -18,17 +19,37 @@ import { redirectCustomerToLoginIfNotLogged } from '@/helpers/customer';
 import MachineService from '@/services/Machine';
 
 import './styles.scss';
+import { IPaymentResponse } from '@/interfaces/IPayment';
 
 export interface MachineDetailProps {
-	params: Params
+	params: Params;
+	searchParams: SearchParams;
 }
 
 export default async function MachineDetail(props: MachineDetailProps) {
 	await redirectCustomerToLoginIfNotLogged();
 
 	const { id } = await props.params;
+	const searchParams = await props.searchParams;
 
-	const data = await MachineService.payments(id);
+	const startDate = searchParams?.startDate || '';
+	const endDate = searchParams?.endDate || '';
+
+	const resolveFetchPayments = async (): Promise<IPaymentResponse> => {
+		if (startDate !== '' && endDate !== '') {
+			console.log(startDate);
+			const newEndDate = new Date(`${endDate}`);
+			newEndDate.setUTCHours(23, 59, 0, 0);
+			return await MachineService.paymentsByPeriod(id, {
+				dataInicio: `${startDate}`,
+				dataFim: `${newEndDate.toISOString()}`,
+			});
+		}
+
+		return await MachineService.payments(id);
+	}
+
+	const data = await resolveFetchPayments();
 	const tableData = transformPaymentsData(data.pagamentos);
 
 	return (
