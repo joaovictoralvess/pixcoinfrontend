@@ -1,6 +1,5 @@
 import { ReactNode } from 'react';
-
-import { SignInState } from '@/app/auth/customer/sign-in/actions';
+import { SignInState } from '@/components/UI/SignIn/actions';
 
 export const resolvePasswordIcon = (inputType: string, callback: (value: (((prevState: ('password' | 'text')) => ('password' | 'text')) | 'password' | 'text')) => void): ReactNode => {
 	if (inputType === 'password') {

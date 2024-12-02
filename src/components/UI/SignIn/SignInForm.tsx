@@ -1,15 +1,18 @@
 'use client';
 
-import { useState } from 'react';
-import { useActionState } from 'react';
+import { useActionState, useState } from 'react';
 
 import TextInput from '@/components/Forms/TextInput/TextInput';
 import Button from '@/components/Forms/Button/Button';
 
-import { handleSignInForm } from '@/app/auth/customer/sign-in/actions';
-import { initialState, resolvePasswordIcon } from '@/app/auth/customer/sign-in/helpers';
+import { handleSignInForm } from '@/components/UI/SignIn/actions';
+import { initialState, resolvePasswordIcon } from '@/components/UI/SignIn/helpers';
 
-export default function SignInForm() {
+export interface SignInFormProps {
+	isAdmin?: boolean;
+}
+
+export default function SignInForm({ isAdmin = false }: SignInFormProps) {
 	const [inputType, setInputType] = useState<'password' | 'text'>('password');
 
 	const [state, formAction] = useActionState((handleSignInForm), initialState);
@@ -38,6 +41,14 @@ export default function SignInForm() {
 					title='Sua senha'
 					error={state.errors.password}
 				/>
+
+				{isAdmin && (
+					<TextInput
+						name='admin'
+						type='hidden'
+						defaultValue='admin'
+					/>
+				)}
 			</div>
 
 			<Button type="submit" title='Entrar na sua conta'>Entrar</Button>
