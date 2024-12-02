@@ -4,12 +4,13 @@ import { SearchParams } from '@/@types/searchParams';
 import GoBackIcon from '@/components/Icons/GoBackIcon';
 
 import { IMachine } from '@/interfaces/IMachine';
+import { IPaymentResponse } from '@/interfaces/IPayment';
 
-import Header from '@/app/customer/machine-panel/components/Header/Header';
 import Layout from '@/app/customer/machine-panel/components/Layout/Layout';
 import MachineActions from '@/app/customer/machine-panel/components/MachineActions/MachineActions';
 import PageTitleWithSync from '@/app/customer/machine-panel/components/PageTitleWithSync/PageTitleWithSync';
 import PaymentReport from '@/components/UI/PaymentReport/PaymentReport';
+import Header from '@/components/UI/Header/Header';
 
 import PaymentTable from '@/app/customer/machine-panel/components/PaymentTable/PaymentTable';
 import transformPaymentsData from '@/helpers/payment';
@@ -19,7 +20,6 @@ import { redirectCustomerToLoginIfNotLogged } from '@/helpers/customer';
 import MachineService from '@/services/Machine';
 
 import './styles.scss';
-import { IPaymentResponse } from '@/interfaces/IPayment';
 
 export interface MachineDetailProps {
 	params: Params;

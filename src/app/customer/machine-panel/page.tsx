@@ -1,4 +1,4 @@
-import Header from '@/app/customer/machine-panel/components/Header/Header';
+import Header from '@/components/UI/Header/Header';
 import Machine from '@/app/customer/machine-panel/components/Machine/Machine';
 import PageTitleWithSync from '@/app/customer/machine-panel/components/PageTitleWithSync/PageTitleWithSync';
 import Layout from '@/app/customer/machine-panel/components/Layout/Layout';
