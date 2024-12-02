@@ -1,4 +1,4 @@
-export interface ICustomer {
+export interface User {
 	ativo: boolean;
 	email: string;
 	id: string;
@@ -12,7 +12,7 @@ export interface ICustomer {
 	error?: string;
 }
 
-export interface ISignInCustomer {
+export interface SignInUser {
 	email: string;
 	senha: string;
 }

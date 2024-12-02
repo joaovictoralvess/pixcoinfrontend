@@ -1,11 +1,11 @@
 import { getSession } from '@/helpers/session';
 
-import { ICustomer } from '@/interfaces/ICustomer';
+import { User } from '@/interfaces/User';
 import { AllReportRequest, AllReportResponse } from '@/interfaces/Report';
 
 const ReportService = {
 	allReports: async (data: AllReportRequest): Promise<AllReportResponse> => {
-	const user = await getSession() as ICustomer;
+	const user = await getSession() as User;
 
 	const requests = [
 		fetch(`${process.env.REACT_APP_SERVIDOR}/relatorio-03-pagamentos`, {

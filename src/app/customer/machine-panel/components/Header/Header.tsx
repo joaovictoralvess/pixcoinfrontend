@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 
 import { generateRandomEmoji } from '@/helpers/emojis';
 import { getSession } from '@/helpers/session';
-import { ICustomer } from '@/interfaces/ICustomer';
+import { User } from '@/interfaces/User';
 
 import { signOut } from '@/app/auth/customer/sign-out/actions';
 
@@ -15,7 +15,7 @@ export interface HeaderProps {
 export default async function Header({
 	iconLeft,
 }: HeaderProps) {
-	const user = await getSession() as ICustomer;
+	const user = await getSession() as User;
 
 	return (
 		<header className='header'>

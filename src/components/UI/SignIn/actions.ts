@@ -6,7 +6,7 @@ import { z, ZodError } from 'zod';
 
 import { dealWithZodErrors } from '@/helpers/zodError';
 import { createSession } from '@/helpers/session';
-import { ISignInCustomer } from '@/interfaces/ICustomer';
+import { SignInUser } from '@/interfaces/User';
 
 import CustomersService from '@/services/Customers';
 import AdminService from '@/services/Admin';
@@ -43,7 +43,7 @@ const validateSignUpForm = (formData: FormData): SignInState => {
 	}
 };
 
-const adminLogin = async (data: ISignInCustomer) => {
+const adminLogin = async (data: SignInUser) => {
 	const user = await AdminService.signIn(data);
 	if (user?.error) {
 		return {

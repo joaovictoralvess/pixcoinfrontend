@@ -6,14 +6,14 @@ import {
 	UpdateMachineRequest,
 	UpdateMachineResponse,
 } from '@/interfaces/IMachine';
-import { ICustomer } from '@/interfaces/ICustomer';
+import { User } from '@/interfaces/User';
 import { IPaymentResponse } from '@/interfaces/IPayment';
 
 import { getSession } from '@/helpers/session';
 
 const MachineService = {
 	all: async (): Promise<IMachine[]> => {
-		const user = await getSession() as ICustomer;
+		const user = await getSession() as User;
 
 		const response = await fetch(`${process.env.REACT_APP_SERVIDOR}/maquinas`, {
 			method: 'GET',
@@ -26,7 +26,7 @@ const MachineService = {
 		return await response.json();
 	},
 	update: async (data: UpdateMachineRequest): Promise<UpdateMachineResponse> => {
-		const user = await getSession() as ICustomer;
+		const user = await getSession() as User;
 
 		const response = await fetch(`${process.env.REACT_APP_SERVIDOR}/maquina-cliente`, {
 			method: 'PUT',
@@ -40,7 +40,7 @@ const MachineService = {
 		return await response.json();
 	},
 	addRemoteCredit: async (data: AddRemoteCrediteRequest): Promise<AddRemoteCrediteResponse> => {
-		const user = await getSession() as ICustomer;
+		const user = await getSession() as User;
 
 		const response = await fetch(`${process.env.REACT_APP_SERVIDOR}/credito-remoto-cliente`, {
 			method: 'POST',
@@ -58,7 +58,7 @@ const MachineService = {
 		dataFim: string;
 		dataInicio: string;
 	}): Promise<IPaymentResponse> => {
-		const user = await getSession() as ICustomer;
+		const user = await getSession() as User;
 
 		const payload = JSON.stringify(data);
 
@@ -74,7 +74,7 @@ const MachineService = {
 		return await response.json();
 	},
 	payments: async (machineId: string): Promise<IPaymentResponse> => {
-		const user = await getSession() as ICustomer;
+		const user = await getSession() as User;
 
 		const response = await fetch(`${process.env.REACT_APP_SERVIDOR}/pagamentos/${machineId}`, {
 			method: 'GET',
@@ -87,7 +87,7 @@ const MachineService = {
 		return await response.json();
 	},
 	removeAllPayments: async (machineId: string): Promise<RemovePaymentsResponse> => {
-		const user = await getSession() as ICustomer;
+		const user = await getSession() as User;
 
 		const response = await fetch(`${process.env.REACT_APP_SERVIDOR}/delete-pagamentos/${machineId}`, {
 			method: 'DELETE',
