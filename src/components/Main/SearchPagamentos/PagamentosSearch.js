@@ -375,6 +375,16 @@ const PagamentosSearch = (props) => {
             
             
             </div>
+            <div className="alert-box">
+              <div className="alert-box-icon">
+                <span>!</span>
+              </div>
+              <p>
+                Atenção! Todos os pagamentos serão deletados mensalmente. Isto é,
+                todo pagamento feito durante o mês anterior, do dia 01 ao 30/31 será removido.
+                Todo dia 04 iremos limpar o mês anterior por completo.
+              </p>
+            </div>
 
             {maquinaInfos.storeId && (
               <Link
