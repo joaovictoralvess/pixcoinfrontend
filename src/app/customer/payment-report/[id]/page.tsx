@@ -1,15 +1,17 @@
 import { SearchParams } from '@/@types/searchParams';
 import { Params } from '@/@types/params';
 
+import PageTitleWithSync from '@/components/UI/PageTitleWithSync/PageTitleWithSync';
 import Header from '@/components/UI/Header/Header';
 import Layout from '@/components/UI/Layout/Layout';
 
-import PageTitleWithSync from '@/app/customer/machine-panel/components/PageTitleWithSync/PageTitleWithSync';
 import GoBackIcon from '@/components/Icons/GoBackIcon';
 import PaymentCharts from '@/app/customer/payment-report/components/PaymentCharts/PaymentCharts';
 
 import { redirectCustomerToLoginIfNotLogged } from '@/helpers/customer';
 import { formatToBRL, retrieveDate, retrieveFormattedDate } from '@/helpers/payment';
+
+import ReportService from '@/services/Report';
 
 export interface PaymentReportScreen {
 	searchParams: SearchParams;
@@ -17,7 +19,7 @@ export interface PaymentReportScreen {
 }
 
 import './styles.scss';
-import ReportService from '@/services/Report';
+
 
 export default async function PaymentReportScreen(props: PaymentReportScreen) {
 	await redirectCustomerToLoginIfNotLogged();
