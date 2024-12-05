@@ -4,6 +4,12 @@ export interface AllReportRequest {
 	maquinaId: string;
 }
 
+export interface DownloadReportRequest {
+	startDate: string;
+	endDate: string;
+	machineId: string;
+}
+
 export interface AllReportResponse {
 	payments: {
 		[key: string]: number;
