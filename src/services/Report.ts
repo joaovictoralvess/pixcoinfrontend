@@ -1,7 +1,7 @@
 import { getSession } from '@/helpers/session';
 
 import { User } from '@/interfaces/User';
-import { AllReportRequest, AllReportResponse } from '@/interfaces/Report';
+import { AllReportRequest, AllReportResponse, DownloadReportRequest } from '@/interfaces/Report';
 
 const ReportService = {
 	allReports: async (data: AllReportRequest): Promise<AllReportResponse> => {
@@ -49,6 +49,20 @@ const ReportService = {
 			tax: await responses[2].json(),
 			money: await responses[3].json()
 		}
+	},
+	downloadReport: async (data: DownloadReportRequest): Promise<Blob> => {
+		const user = await getSession() as User;
+
+		const resp = await fetch(`${process.env.REACT_APP_SERVIDOR}/relatorio-pagamento-pdf`, {
+			method: 'POST',
+			headers: {
+				"Content-Type": "application/json",
+				"x-access-token": user.token
+			},
+			body: JSON.stringify(data),
+		});
+
+		return resp.blob();
 	}
 }
 
