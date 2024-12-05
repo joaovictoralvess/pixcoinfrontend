@@ -1,18 +1,32 @@
 import { IPayment } from '@/interfaces/IPayment';
 import { TableData } from '@/app/customer/machine-panel/components/PaymentTable/PaymentTable';
 
-export const retrieveFormattedDate = (isoDate: string): string => {
+export const retrieveFormattedDate = (
+	isoDate: string,
+	useUTC = true,
+	format = "DD/MM/YYYY HH:mm:ss"
+): string => {
 	const date = new Date(isoDate);
 
-	const day = String(date.getDate()).padStart(2, '0');
-	const month = String(date.getMonth() + 1).padStart(2, '0');
-	const year = date.getFullYear();
+	const pad = (num: number) => String(num).padStart(2, "0");
 
-	const hours = String(date.getHours()).padStart(2, '0');
-	const minutes = String(date.getMinutes()).padStart(2, '0');
-	const seconds = String(date.getSeconds()).padStart(2, '0');
+	const getDatePart = (method: string) =>
+		useUTC ? (date as any)[`getUTC${method}`]() : (date as any)[`get${method}`]();
 
-	return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
+	const day = pad(getDatePart("Date"));
+	const month = pad(getDatePart("Month") + 1);
+	const year = getDatePart("FullYear");
+	const hours = pad(getDatePart("Hours"));
+	const minutes = pad(getDatePart("Minutes"));
+	const seconds = pad(getDatePart("Seconds"));
+
+	return format
+		.replace("DD", day)
+		.replace("MM", month)
+		.replace("YYYY", String(year))
+		.replace("HH", hours)
+		.replace("mm", minutes)
+		.replace("ss", seconds);
 };
 
 export const retrievePaymentForm = (currentPaymentForm: string): string => {

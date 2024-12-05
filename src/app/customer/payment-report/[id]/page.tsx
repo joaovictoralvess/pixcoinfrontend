@@ -63,7 +63,7 @@ export default async function PaymentReportScreen(props: PaymentReportScreen) {
 						</span>
 
 						<span className='payment-report-screen__dates__generate-in'>
-							Gerado em {retrieveFormattedDate(new Date().toISOString())}
+							Gerado em {retrieveFormattedDate(new Date().toISOString(), false)}
 						</span>
 					</div>
 
