@@ -17,6 +17,7 @@ import './styles.scss';
 export default function PaymentReport({ machineId }: PaymentReportProps) {
 	const [startDate, setStartDate] = useState<string>('');
 	const [endDate, setEndDate] = useState<string>('');
+	const [clearInput, setClearInput] = useState<boolean>(false);
 
 	const handleDownloadReport = async () => {
 		const newEndDate = new Date(endDate);
@@ -44,13 +45,27 @@ export default function PaymentReport({ machineId }: PaymentReportProps) {
 	return (
 		<div className='payment-report'>
 			<DatePickerRange
-				onSelectStartDate={(e) => setStartDate(new Date(e.target.value).toISOString())}
-				onSelectEndDate={(e) => setEndDate(new Date(e.target.value).toISOString())}
+				onSelectStartDate={(e) => {
+					if (e.target.value) {
+						setStartDate(new Date(e.target.value).toISOString());
+					}
+				}}
+				onSelectEndDate={(e) => {
+					if (e.target.value) {
+						setEndDate(new Date(e.target.value).toISOString());
+					}
+				}}
+				shouldClear={clearInput}
 			/>
 
 			<ActionButton updateTo={`/customer/machine-panel/${machineId}?startDate=${startDate}&endDate=${endDate}`} disabled={!(startDate && endDate)}>Filtrar</ActionButton>
 			<ActionButton updateTo={`/customer/payment-report/${machineId}?startDate=${startDate}&endDate=${endDate}`} disabled={!(startDate && endDate)}>Relatório</ActionButton>
 			<ActionButton callback={() => handleDownloadReport()}  disabled={!(startDate && endDate)}>PDF</ActionButton>
+			<ActionButton callback={() => {
+				setStartDate('');
+				setEndDate('');
+				setClearInput(true)
+			}} updateTo={`/customer/machine-panel/${machineId}`}  disabled={!(startDate && endDate)}>Limpar Filtros</ActionButton>
 		</div>
 	);
 }

@@ -16,6 +16,12 @@ export interface ActionButtonProps extends ButtonHTMLAttributes<HTMLButtonElemen
 export default function ActionButton({ updateTo, icon, className, children, callback,  ...rest }: ActionButtonProps) {
 
 	const handleClick = () => {
+
+		if (callback !== undefined && updateTo) {
+			callback();
+			redirect(updateTo)
+		}
+
 		if (updateTo) {
 			redirect(updateTo);
 		}
