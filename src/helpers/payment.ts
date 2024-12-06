@@ -59,7 +59,7 @@ export const retrieveReversedText = (reversed: boolean): 'Recebido' | 'Estornado
 
 export default function transformPaymentsData(payments: IPayment[]): TableData[] {
 	return payments.map(payment => ({
-		date: retrieveFormattedDate(payment.data),
+		date: retrieveFormattedDate(payment.data, false),
 		paymentForm: retrievePaymentForm(payment.tipo),
 		value: formatToBRL(payment.valor),
 		identifierMP: payment.mercadoPagoId,
