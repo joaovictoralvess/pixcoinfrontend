@@ -1,5 +1,6 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { useActionState, useState } from 'react';
 
 import TextInput from '@/components/Forms/TextInput/TextInput';
@@ -43,11 +44,29 @@ export default function SignInForm({ isAdmin = false }: SignInFormProps) {
 				/>
 
 				{isAdmin && (
-					<TextInput
-						name='admin'
-						type='hidden'
-						defaultValue='admin'
-					/>
+					<>
+						<TextInput
+							name="admin"
+							type="hidden"
+							defaultValue="admin"
+						/>
+
+						<a
+							className="sign-in-container__left-section__wrapper-input__link"
+							href="/auth/customer/sign-in"
+						>
+							Login como cliente
+						</a>
+					</>
+				)}
+
+				{!isAdmin && (
+					<a
+						className="sign-in-container__left-section__wrapper-input__link"
+						href="/auth/admin/sign-in"
+					>
+						Login como administrador
+					</a>
 				)}
 			</div>
 
