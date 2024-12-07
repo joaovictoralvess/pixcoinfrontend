@@ -6,6 +6,7 @@ import Modal from '@/components/UI/Modal/Modal';
 import ActionButton from '@/app/customer/machine-panel/components/ActionButton/ActionButton';
 
 import './styles.scss';
+import AddMoreCustomerForm from '@/app/admin/customers/components/AddMoreCustomer/AddMoreCustomerForm/AddMoreCustomerForm';
 
 export default function AddCustomerButton() {
 	const [open, setOpen] = useState(false);
@@ -16,7 +17,7 @@ export default function AddCustomerButton() {
 
 			{open && (
 				<Modal onClose={() => setOpen(!open)} title='Criar novo cliente'>
-					OI
+					<AddMoreCustomerForm />
 				</Modal>
 			)}
 		</div>

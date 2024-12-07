@@ -1,4 +1,6 @@
 import { User, SignInUser } from '@/interfaces/User';
+import { CreateCustomerRequest, ICustomer } from '@/interfaces/ICustomer';
+import { getSession } from '@/helpers/session';
 
 const AdminService = {
 	signIn: async (data: SignInUser): Promise<User> => {
@@ -7,6 +9,20 @@ const AdminService = {
 			body: JSON.stringify(data),
 			headers: {
 				"Content-Type": "application/json",
+			},
+		});
+
+		return await response.json();
+	},
+	createCustomer: async (data: CreateCustomerRequest): Promise<ICustomer> => {
+		const user = await getSession() as User;
+
+		const response = await fetch(`${process.env.REACT_APP_SERVIDOR}/cliente`, {
+			method: 'POST',
+			body: JSON.stringify(data),
+			headers: {
+				"Content-Type": "application/json",
+				"x-access-token": user.token
 			},
 		});
 
