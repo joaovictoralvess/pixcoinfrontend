@@ -21,11 +21,11 @@ export default function DatePickerRange({
 		if (shouldClear) {
 			if (startDateRef.current) {
 				startDateRef.current.value = "";
-				onSelectStartDate({ target: { value: "" } } as ChangeEvent<HTMLInputElement>);
+				// onSelectStartDate({ target: { value: "" } } as ChangeEvent<HTMLInputElement>);
 			}
 			if (endDateRef.current) {
 				endDateRef.current.value = "";
-				onSelectEndDate({ target: { value: "" } } as ChangeEvent<HTMLInputElement>);
+				// onSelectEndDate({ target: { value: "" } } as ChangeEvent<HTMLInputElement>);
 			}
 		}
 	}, [shouldClear, onSelectStartDate, onSelectEndDate]);

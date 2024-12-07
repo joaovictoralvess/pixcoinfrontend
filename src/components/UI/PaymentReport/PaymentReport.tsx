@@ -48,11 +48,13 @@ export default function PaymentReport({ machineId }: PaymentReportProps) {
 				onSelectStartDate={(e) => {
 					if (e.target.value) {
 						setStartDate(new Date(e.target.value).toISOString());
+						setClearInput(false);
 					}
 				}}
 				onSelectEndDate={(e) => {
 					if (e.target.value) {
 						setEndDate(new Date(e.target.value).toISOString());
+						setClearInput(false);
 					}
 				}}
 				shouldClear={clearInput}
