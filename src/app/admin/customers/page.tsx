@@ -5,10 +5,13 @@ import PageTitleWithSync from '@/components/UI/PageTitleWithSync/PageTitleWithSy
 import AddCustomerButton from '@/app/admin/customers/components/AddMoreCustomer/AddCustomerButton/AddCustomerButton';
 import CustomerCard from '@/app/admin/customers/components/CustomerCard/CustomerCard';
 
+import AdminService from '@/services/Admin';
+
 import './styles.scss';
 
+export default async function AdminCustomers() {
+	const customers = await AdminService.allCustomers();
 
-export default function AdminCustomers() {
 	return (
 		<>
 			<Header />
@@ -21,7 +24,9 @@ export default function AdminCustomers() {
 				</Layout>
 
 				<div className='customers__container__wrapper-customers'>
-					<CustomerCard />
+					{customers.map((customer) => (
+						<CustomerCard key={customer.id} customer={customer}  />
+					))}
 				</div>
 			</main>
 		</>

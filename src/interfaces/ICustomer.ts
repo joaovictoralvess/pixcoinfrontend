@@ -1,3 +1,5 @@
+import { IMachine } from '@/interfaces/IMachine';
+
 export interface CreateCustomerRequest {
 	dataVencimento: string
 	email: string;
@@ -20,4 +22,5 @@ export interface ICustomer {
 	senha: string;
 	ultimoAcesso: string | null;
 	error?: string;
+	Maquina: IMachine[]
 }

@@ -1,29 +1,37 @@
-import './styles.scss';
+import { ICustomer } from '@/interfaces/ICustomer';
+import { retrieveDate } from '@/helpers/payment';
 
-export default function CustomerCard() {
+export interface CustomerCardProps {
+	customer: ICustomer
+}
+
+import './styles.scss';
+import Link from 'next/link';
+
+export default function CustomerCard({ customer }: CustomerCardProps) {
 	return (
-		<div className='customer-card'>
+		<Link href={`/admin/customers/${customer.id}`} className='customer-card'>
 			<div className='customer-card__customer'>
 				<div className='customer-card__customer__data'>
-					<h1>NOME DO CLIENTE</h1>
-					<span>Email do cliente</span>
-					<span>Máquinas</span>
+					<h1>{customer.nome}</h1>
+					<h3>{customer.email}</h3>
+					<h3>Total de máquinas: {customer.Maquina.length}</h3>
 				</div>
 
 				<div className='customer-card__customer__situation'>
 					<h3>
-						Situação <span>Regular</span>
+						Situação: Regular
 					</h3>
 					<h3>
-						Vencimento <span>26/11/2032</span>
+						Vencimento: {retrieveDate(customer.dataVencimento)}
 					</h3>
 				</div>
 			</div>
 
 			<div className='customer-card__dates'>
-				<span>Data de inclusão: 26/11/2023</span>
-				<span>Ultimo acesso: 25/11/2323</span>
+				<span>Data de inclusão: {retrieveDate(customer.dataInclusao)}</span>
+				{customer.ultimoAcesso && (<span>Ultimo acesso: {retrieveDate(customer.ultimoAcesso)}</span>)}
 			</div>
-		</div>
+		</Link>
 	)
 }

@@ -27,6 +27,19 @@ const AdminService = {
 		});
 
 		return await response.json();
+	},
+	allCustomers: async (): Promise<ICustomer[]> => {
+		const user = await getSession() as User;
+
+		const response = await fetch(`${process.env.REACT_APP_SERVIDOR}/clientes`, {
+			method: 'GET',
+			headers: {
+				"Content-Type": "application/json",
+				"x-access-token": user.token
+			},
+		});
+
+		return await response.json();
 	}
 };
 
