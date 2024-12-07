@@ -8,7 +8,7 @@ import ActionButton from '@/app/customer/machine-panel/components/ActionButton/A
 import './styles.scss';
 import AddMoreCustomerForm from '@/app/admin/customers/components/AddMoreCustomer/AddMoreCustomerForm/AddMoreCustomerForm';
 
-export default function AddCustomerButton() {
+export default function CustomerActions() {
 	const [open, setOpen] = useState(false);
 
 	return (

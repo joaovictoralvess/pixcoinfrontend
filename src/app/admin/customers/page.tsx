@@ -2,7 +2,7 @@ import Header from '@/components/UI/Header/Header';
 import Layout from '@/components/UI/Layout/Layout';
 import PageTitleWithSync from '@/components/UI/PageTitleWithSync/PageTitleWithSync';
 
-import AddCustomerButton from '@/app/admin/customers/components/AddMoreCustomer/AddCustomerButton/AddCustomerButton';
+import CustomerActions from '@/app/admin/customers/components/AddMoreCustomer/CustomerActions/CustomerActions';
 import CustomerCard from '@/app/admin/customers/components/CustomerCard/CustomerCard';
 
 import AdminService from '@/services/Admin';
@@ -19,7 +19,7 @@ export default async function AdminCustomers() {
 				<Layout className='customers__container'>
 					<div className='customers__container__wrapper-button'>
 						<PageTitleWithSync updateTo='/admin/customers' title='Painel de clientes' />
-						<AddCustomerButton />
+						<CustomerActions />
 					</div>
 				</Layout>
 
