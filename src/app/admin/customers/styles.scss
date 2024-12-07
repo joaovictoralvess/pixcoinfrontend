@@ -5,5 +5,10 @@
     &__wrapper-button {
       position: relative;
     }
+
+    &__wrapper-customers {
+      max-width: 60rem;
+      margin: 2rem auto auto;
+    }
   }
 }

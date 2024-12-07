@@ -1,0 +1,30 @@
+@use '@/app/variables' as variables;
+
+.customer-card {
+  border: 1px solid variables.$application-color;
+  border-radius: 1rem;
+  padding: 3rem;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+
+  &__customer {
+    display: flex;
+    justify-content: space-between;
+
+    &__data {
+      display: flex;
+      flex-direction: column;
+
+      h1 {
+        margin-bottom: 1rem;
+      }
+    }
+  }
+
+  &__dates {
+    margin-top: 1rem;
+    display: flex;
+    gap: 20px;
+  }
+}
