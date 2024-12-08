@@ -19,7 +19,6 @@ import Machine from '@/app/customer/machine-panel/components/Machine/Machine';
 export default async function AdminCustomer(props: AdminCustomerProps) {
 	const { id } = await props.params;
 	const customer = await AdminService.customer(id);
-	console.log(customer);
 
 	return (
 		<>
@@ -30,7 +29,7 @@ export default async function AdminCustomer(props: AdminCustomerProps) {
 			<main className='customer'>
 				<Layout className='customer__container'>
 					<div className='customer__container__wrapper-button'>
-						<PageTitleWithSync updateTo={`/admin/customers/${id}`} title='Cliente XPTO' />
+						<PageTitleWithSync updateTo={`/admin/customers/${id}`} title={customer.nome} />
 						<CustomerActions />
 					</div>
 
