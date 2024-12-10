@@ -8,6 +8,8 @@ import { dealWithZodErrors } from '@/helpers/zodError';
 import { UpdateMachineRequest } from '@/interfaces/IMachine';
 
 import MachineService from '@/services/Machine';
+import { getSession } from '@/helpers/session';
+import { User } from '@/interfaces/User';
 
 export interface EditMachineErros {
 	name?: string,
@@ -66,6 +68,14 @@ export const handleEditMachine = async (prevState: any, formData: FormData) => {
 			errors: {
 				name: resp.error.split(',')[0]
 			}
+		}
+	}
+
+	const user = await getSession() as User;
+	if (user.key === 'ADMIN') {
+		return {
+			isValid: true,
+			errors: {}
 		}
 	}
 

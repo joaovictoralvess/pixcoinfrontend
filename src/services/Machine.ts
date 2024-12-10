@@ -28,7 +28,9 @@ const MachineService = {
 	update: async (data: UpdateMachineRequest): Promise<UpdateMachineResponse> => {
 		const user = await getSession() as User;
 
-		const response = await fetch(`${process.env.REACT_APP_SERVIDOR}/maquina-cliente`, {
+		const URI = `${process.env.REACT_APP_SERVIDOR}/${user.key === 'ADMIN' ? 'maquina' : 'maquina-cliente'}`;
+
+		const response = await fetch(URI, {
 			method: 'PUT',
 			headers: {
 				"Content-Type": "application/json",
