@@ -93,7 +93,9 @@ const MachineService = {
 	removeAllPayments: async (machineId: string): Promise<RemovePaymentsResponse> => {
 		const user = await getSession() as User;
 
-		const response = await fetch(`${process.env.REACT_APP_SERVIDOR}/delete-pagamentos/${machineId}`, {
+		const path = user.key === 'ADMIN' ? 'delete-pagamentos-adm' : 'delete-pagamentos';
+
+		const response = await fetch(`${process.env.REACT_APP_SERVIDOR}/${path}/${machineId}`, {
 			method: 'DELETE',
 			headers: {
 				"Content-Type": "application/json",
