@@ -44,7 +44,9 @@ const MachineService = {
 	addRemoteCredit: async (data: AddRemoteCrediteRequest): Promise<AddRemoteCrediteResponse> => {
 		const user = await getSession() as User;
 
-		const response = await fetch(`${process.env.REACT_APP_SERVIDOR}/credito-remoto-cliente`, {
+		const URI = `${process.env.REACT_APP_SERVIDOR}/${user.key === 'ADMIN' ? 'credito-remoto' : 'credito-remoto-cliente'}`;
+
+		const response = await fetch(URI, {
 			method: 'POST',
 			headers: {
 				"Content-Type": "application/json",

@@ -7,6 +7,8 @@ import { z, ZodError } from 'zod';
 import { dealWithZodErrors } from '@/helpers/zodError';
 
 import MachineService from '@/services/Machine';
+import { getSession } from '@/helpers/session';
+import { User } from '@/interfaces/User';
 
 export interface AddRemoteCreditErrors {
 	value?: string,
@@ -57,6 +59,14 @@ export const handleAddMachineCredit = async (prevState: any, formData: FormData)
 			errors: {
 				value: resp.msg
 			}
+		}
+	}
+
+	const user = await getSession() as User;
+	if (user.key === 'ADMIN') {
+		return {
+			isValid: true,
+			errors: {}
 		}
 	}
 
