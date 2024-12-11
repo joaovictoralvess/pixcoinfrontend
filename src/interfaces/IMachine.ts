@@ -43,3 +43,24 @@ export interface AddRemoteCrediteResponse {
 export interface RemovePaymentsResponse {
 	message: string;
 }
+
+export interface CreateMachineRequest {
+	clienteId: string;
+	descricao: string;
+	nome: string;
+	store_id: string;
+	valorDoPulso: string;
+	valorDoPix: string;
+}
+
+export interface CreateMachineResponse {
+	clienteId: string;
+	dataInclusao: string;
+	descricao: string;
+	id: string;
+	maquininha_serial: string;
+	nome: string;
+	pessoaId: string;
+	store_id: string;
+	valorDoPulso: string;
+}

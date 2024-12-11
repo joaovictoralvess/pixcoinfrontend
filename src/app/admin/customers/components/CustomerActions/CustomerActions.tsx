@@ -4,15 +4,18 @@ import { useState } from 'react';
 
 import Modal from '@/components/UI/Modal/Modal';
 import ActionButton from '@/app/customer/machine-panel/components/ActionButton/ActionButton';
+
 import AddMoreCustomerForm from '@/app/admin/customers/components/AddMoreCustomerForm/AddMoreCustomerForm';
+import AddMoreMachineForm from '@/app/admin/customers/components/AddMoreMachineForm/AddMoreMachineForm';
 
 export interface CustomerActionsProps {
-	shouldRender?: 'all' | 'new-customer' | 'new-machine'
+	shouldRender?: 'all' | 'new-customer' | 'new-machine',
+	clientId?: string;
 }
 
 import './styles.scss';
 
-export default function CustomerActions({ shouldRender = 'all' }: CustomerActionsProps) {
+export default function CustomerActions({ shouldRender = 'all', clientId = '' }: CustomerActionsProps) {
 	const [selectedModal, setSelectedModal] = useState<'new-customer' | 'new-machine' | ''>('');
 
 	const handleCloseModal = () => setSelectedModal('');
@@ -21,6 +24,8 @@ export default function CustomerActions({ shouldRender = 'all' }: CustomerAction
 		switch (selectedModal) {
 			case 'new-customer':
 				return <AddMoreCustomerForm />;
+			case 'new-machine':
+				return <AddMoreMachineForm clientId={clientId}  />;
 			default:
 				return null;
 		}
