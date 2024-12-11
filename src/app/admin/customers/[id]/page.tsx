@@ -15,8 +15,11 @@ export interface AdminCustomerProps {
 }
 
 import './styles.scss';
+import { redirectAdminToLoginIfNotLogged } from '@/helpers/admin';
 
 export default async function AdminCustomer(props: AdminCustomerProps) {
+	await redirectAdminToLoginIfNotLogged();
+
 	const { id } = await props.params;
 	const customer = await AdminService.customer(id);
 

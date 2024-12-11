@@ -8,9 +8,13 @@ import AdminService from '@/services/Admin';
 
 import CustomerActions from '@/app/admin/customers/components/CustomerActions/CustomerActions';
 
+import { redirectAdminToLoginIfNotLogged } from '@/helpers/admin';
+
 import './styles.scss';
 
 export default async function AdminCustomers() {
+	await redirectAdminToLoginIfNotLogged();
+
 	const customers = await AdminService.allCustomers();
 
 	return (
