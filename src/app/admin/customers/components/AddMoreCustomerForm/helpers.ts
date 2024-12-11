@@ -1,4 +1,4 @@
-import { AddMoreCustomerState } from '@/app/admin/customers/components/AddMoreCustomer/AddMoreCustomerForm/actions';
+import { AddMoreCustomerState } from '@/app/admin/customers/components/AddMoreCustomerForm/actions';
 
 
 export const initialState: AddMoreCustomerState = {

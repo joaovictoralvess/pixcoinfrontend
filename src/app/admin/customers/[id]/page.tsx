@@ -5,8 +5,6 @@ import Machine from '@/components/UI/Machine/Machine';
 
 import PageTitleWithSync from '@/components/UI/PageTitleWithSync/PageTitleWithSync';
 
-import CustomerActions from '@/app/admin/customers/components/AddMoreCustomer/CustomerActions/CustomerActions';
-
 import { Params } from '@/@types/params';
 
 import AdminService from '@/services/Admin';
@@ -16,6 +14,7 @@ export interface AdminCustomerProps {
 }
 
 import './styles.scss';
+import CustomerActions from '@/app/admin/customers/components/CustomerActions/CustomerActions';
 
 export default async function AdminCustomer(props: AdminCustomerProps) {
 	const { id } = await props.params;
@@ -31,7 +30,7 @@ export default async function AdminCustomer(props: AdminCustomerProps) {
 				<Layout className='customer__container'>
 					<div className='customer__container__wrapper-button'>
 						<PageTitleWithSync updateTo={`/admin/customers/${id}`} title={customer.nome} />
-						<CustomerActions />
+						<CustomerActions shouldRender="new-machine" />
 					</div>
 
 					<div className='customer__container__wrapper-machines'>

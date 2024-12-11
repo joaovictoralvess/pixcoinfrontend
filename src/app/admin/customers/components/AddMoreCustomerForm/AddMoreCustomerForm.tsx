@@ -3,9 +3,8 @@ import { useActionState } from 'react';
 import TextInput from '@/components/Forms/TextInput/TextInput';
 import Button from '@/components/Forms/Button/Button';
 
-import { handeCreateMoreCustomer } from '@/app/admin/customers/components/AddMoreCustomer/AddMoreCustomerForm/actions';
-
-import { initialState } from '@/app/admin/customers/components/AddMoreCustomer/AddMoreCustomerForm/helpers';
+import { handeCreateMoreCustomer } from '@/app/admin/customers/components/AddMoreCustomerForm/actions';
+import { initialState } from '@/app/admin/customers/components/AddMoreCustomerForm/helpers';
 
 import './styles.scss';
 
