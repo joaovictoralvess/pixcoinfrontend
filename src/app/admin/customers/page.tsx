@@ -6,8 +6,9 @@ import CustomerCard from '@/app/admin/customers/components/CustomerCard/Customer
 
 import AdminService from '@/services/Admin';
 
-import './styles.scss';
 import CustomerActions from '@/app/admin/customers/components/CustomerActions/CustomerActions';
+
+import './styles.scss';
 
 export default async function AdminCustomers() {
 	const customers = await AdminService.allCustomers();
