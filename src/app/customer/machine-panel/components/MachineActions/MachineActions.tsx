@@ -11,6 +11,7 @@ import ActionButton from '@/app/customer/machine-panel/components/ActionButton/A
 import EditMachineForm from '@/app/customer/machine-panel/components/EdiMachineForm/EditMachineForm';
 import AddRemoteCreditForm from '@/app/customer/machine-panel/components/AddRemoteCreditForm/AddRemoteCreditForm';
 import RemoveAllPaymentsForm from '@/app/customer/machine-panel/components/RemoveAllPaymentsForm/RemoveAllPaymentsForm';
+import RemoveMachineForm from '@/app/customer/machine-panel/components/RemoveMachineForm/RemoveMachineForm';
 
 import { IMachine } from '@/interfaces/IMachine';
 
@@ -35,6 +36,8 @@ export default function MachineActions({ machine, isAdmin, shouldRender = 'all' 
 				return <AddRemoteCreditForm machineId={machine.id} />;
 			case 'destroy-payments':
 				return <RemoveAllPaymentsForm machineId={machine.id} cancelAction={handleCloseModal} />;
+			case 'delete-machine':
+				return <RemoveMachineForm machineId={machine.id} cancelAction={handleCloseModal} />
 			default:
 				return null;
 		}

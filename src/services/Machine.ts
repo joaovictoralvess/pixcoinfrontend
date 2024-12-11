@@ -5,6 +5,7 @@ import {
 	RemovePaymentsResponse,
 	UpdateMachineRequest,
 	UpdateMachineResponse,
+	RemoveMachineResponse,
 } from '@/interfaces/IMachine';
 import { User } from '@/interfaces/User';
 import { IPaymentResponse } from '@/interfaces/IPayment';
@@ -101,6 +102,20 @@ const MachineService = {
 				"Content-Type": "application/json",
 				"x-access-token": user.token
 			},
+		});
+
+		return await response.json();
+	},
+	removeMachine: async (machineId: string): Promise<RemoveMachineResponse> => {
+		const user = await getSession() as User;
+
+		const response = await fetch(`${process.env.REACT_APP_SERVIDOR}/maquina`, {
+			method: 'DELETE',
+			headers: {
+				"Content-Type": "application/json",
+				"x-access-token": user.token
+			},
+			body: JSON.stringify({id: machineId})
 		});
 
 		return await response.json();

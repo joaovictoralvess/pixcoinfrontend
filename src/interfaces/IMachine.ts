@@ -44,6 +44,10 @@ export interface RemovePaymentsResponse {
 	message: string;
 }
 
+export interface RemoveMachineResponse {
+	message: string;
+}
+
 export interface CreateMachineRequest {
 	clienteId: string;
 	descricao: string;
