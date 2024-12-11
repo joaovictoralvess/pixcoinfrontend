@@ -1,7 +1,7 @@
 import { User, SignInUser } from '@/interfaces/User';
-import { CreateCustomerRequest, ICustomer } from '@/interfaces/ICustomer';
+import { CreateCustomerRequest, EditCustomerRequest, ICustomer } from '@/interfaces/ICustomer';
 import { getSession } from '@/helpers/session';
-import { CreateMachineRequest, CreateMachineResponse } from '@/interfaces/IMachine';
+import { CreateMachineRequest, CreateMachineResponse, UpdateMachineRequest } from '@/interfaces/IMachine';
 
 const AdminService = {
 	signIn: async (data: SignInUser): Promise<User> => {
@@ -60,6 +60,20 @@ const AdminService = {
 
 		const response = await fetch(`${process.env.REACT_APP_SERVIDOR}/maquina`, {
 			method: 'POST',
+			headers: {
+				"Content-Type": "application/json",
+				"x-access-token": user.token
+			},
+			body: JSON.stringify(data),
+		});
+
+		return await response.json();
+	},
+	updateCustomer: async (data: EditCustomerRequest, id: string): Promise<ICustomer> => {
+		const user = await getSession() as User;
+
+		const response = await fetch(`${process.env.REACT_APP_SERVIDOR}/alterar-cliente-adm-new/${id}`, {
+			method: 'PUT',
 			headers: {
 				"Content-Type": "application/json",
 				"x-access-token": user.token

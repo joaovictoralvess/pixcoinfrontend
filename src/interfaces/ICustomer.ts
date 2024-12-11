@@ -24,3 +24,8 @@ export interface ICustomer {
 	error?: string;
 	Maquina: IMachine[]
 }
+
+export interface EditCustomerRequest {
+	dataVencimento: string
+	nome: string
+}

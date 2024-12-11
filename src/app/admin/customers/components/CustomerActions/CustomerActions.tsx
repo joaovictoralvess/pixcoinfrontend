@@ -2,20 +2,24 @@
 
 import { useState } from 'react';
 
+import { ICustomer } from '@/interfaces/ICustomer';
+
 import Modal from '@/components/UI/Modal/Modal';
 import ActionButton from '@/app/customer/machine-panel/components/ActionButton/ActionButton';
 
 import AddMoreCustomerForm from '@/app/admin/customers/components/AddMoreCustomerForm/AddMoreCustomerForm';
 import AddMoreMachineForm from '@/app/admin/customers/components/AddMoreMachineForm/AddMoreMachineForm';
+import EditCustomerForm from '@/app/admin/customers/components/EditCustomerForm/EditCustomerForm';
 
 export interface CustomerActionsProps {
 	shouldRender?: 'all' | 'new-customer' | 'new-machine' | 'edit-customer-and-add-machine',
 	clientId?: string;
+	customer?: ICustomer;
 }
 
 import './styles.scss';
 
-export default function CustomerActions({ shouldRender = 'all', clientId = '' }: CustomerActionsProps) {
+export default function CustomerActions({ customer, shouldRender = 'all', clientId = '' }: CustomerActionsProps) {
 	const [selectedModal, setSelectedModal] = useState<'new-customer' | 'new-machine' | 'edit-customer' | ''>('');
 
 	const handleCloseModal = () => setSelectedModal('');
@@ -26,6 +30,8 @@ export default function CustomerActions({ shouldRender = 'all', clientId = '' }:
 				return <AddMoreCustomerForm />;
 			case 'new-machine':
 				return <AddMoreMachineForm clientId={clientId}  />;
+			case 'edit-customer':
+				return <EditCustomerForm customer={customer!} />
 			default:
 				return null;
 		}
