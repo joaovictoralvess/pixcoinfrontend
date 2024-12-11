@@ -9,14 +9,14 @@ import AddMoreCustomerForm from '@/app/admin/customers/components/AddMoreCustome
 import AddMoreMachineForm from '@/app/admin/customers/components/AddMoreMachineForm/AddMoreMachineForm';
 
 export interface CustomerActionsProps {
-	shouldRender?: 'all' | 'new-customer' | 'new-machine',
+	shouldRender?: 'all' | 'new-customer' | 'new-machine' | 'edit-customer-and-add-machine',
 	clientId?: string;
 }
 
 import './styles.scss';
 
 export default function CustomerActions({ shouldRender = 'all', clientId = '' }: CustomerActionsProps) {
-	const [selectedModal, setSelectedModal] = useState<'new-customer' | 'new-machine' | ''>('');
+	const [selectedModal, setSelectedModal] = useState<'new-customer' | 'new-machine' | 'edit-customer' | ''>('');
 
 	const handleCloseModal = () => setSelectedModal('');
 
@@ -37,6 +37,8 @@ export default function CustomerActions({ shouldRender = 'all', clientId = '' }:
 				return `Criar novo cliente`;
 			case 'new-machine':
 				return 'Nova máquina'
+			case 'edit-customer':
+				return 'Editar cliente'
 			default:
 				return '';
 		}
@@ -49,6 +51,8 @@ export default function CustomerActions({ shouldRender = 'all', clientId = '' }:
 					<ActionButton callback={() => setSelectedModal('new-customer')}>Criar novo cliente</ActionButton>
 
 					<ActionButton callback={() => setSelectedModal('new-machine')}>Adicionar máquina</ActionButton>
+
+					<ActionButton callback={() => setSelectedModal('edit-customer')}>Editar cliente</ActionButton>
 
 					{selectedModal && (
 						<Modal onClose={handleCloseModal} title={resolveModalTitle()}>
@@ -77,6 +81,22 @@ export default function CustomerActions({ shouldRender = 'all', clientId = '' }:
 			return (
 				<div className='customer-action-button-container'>
 					<ActionButton callback={() => setSelectedModal('new-customer')}>Criar novo cliente</ActionButton>
+
+					{selectedModal && (
+						<Modal onClose={handleCloseModal} title={resolveModalTitle()}>
+							{renderModalContent()}
+						</Modal>
+					)}
+				</div>
+			)
+		}
+
+		if (shouldRender === 'edit-customer-and-add-machine') {
+			return (
+				<div className='customer-action-button-container'>
+					<ActionButton callback={() => setSelectedModal('new-machine')}>Adicionar máquina</ActionButton>
+
+					<ActionButton callback={() => setSelectedModal('edit-customer')}>Editar cliente</ActionButton>
 
 					{selectedModal && (
 						<Modal onClose={handleCloseModal} title={resolveModalTitle()}>
