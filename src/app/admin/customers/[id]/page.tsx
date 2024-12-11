@@ -2,6 +2,7 @@ import GoBackIcon from '@/components/Icons/GoBackIcon';
 import Header from '@/components/UI/Header/Header';
 import Layout from '@/components/UI/Layout/Layout';
 import Machine from '@/components/UI/Machine/Machine';
+import CustomerActions from '@/app/admin/customers/components/CustomerActions/CustomerActions';
 
 import PageTitleWithSync from '@/components/UI/PageTitleWithSync/PageTitleWithSync';
 
@@ -14,7 +15,6 @@ export interface AdminCustomerProps {
 }
 
 import './styles.scss';
-import CustomerActions from '@/app/admin/customers/components/CustomerActions/CustomerActions';
 
 export default async function AdminCustomer(props: AdminCustomerProps) {
 	const { id } = await props.params;
