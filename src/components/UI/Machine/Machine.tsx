@@ -2,8 +2,10 @@ import { ReactNode } from 'react';
 import Link from 'next/link';
 
 import { IMachine } from '@/interfaces/IMachine';
+import { User } from '@/interfaces/User';
 
 import { formatToBRL } from '@/helpers/payment';
+import { getSession } from '@/helpers/session';
 import { statusMap } from '@/helpers/machine';
 
 import MachineActions from '@/app/customer/machine-panel/components/MachineActions/MachineActions';
@@ -14,9 +16,10 @@ export interface IMachineProps {
 	machine: IMachine;
 }
 
-export default function Machine({
+export default async function Machine({
 	machine
 }: IMachineProps) {
+	const user = await getSession() as User;
 	const  {
 		status,
 		nome,
@@ -63,7 +66,7 @@ export default function Machine({
 				</div>
 			</Link>
 
-			<MachineActions machine={machine} />
+			<MachineActions isAdmin={user.key === 'ADMIN'} machine={machine} />
 		</div>
 	);
 }

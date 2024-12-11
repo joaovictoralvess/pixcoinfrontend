@@ -16,13 +16,14 @@ import { IMachine } from '@/interfaces/IMachine';
 
 export interface MachineActionsProps {
 	machine: IMachine;
-	shouldRender?: 'all' | 'edit-only' | 'credit-only' | 'delete-only';
+	shouldRender?: 'all' | 'edit-only' | 'credit-only' | 'delete-only' | 'delete-machine';
+	isAdmin: boolean;
 }
 
 import './styles.scss';
 
-export default function MachineActions({ machine, shouldRender = 'all' }: MachineActionsProps) {
-	const [selectedModal, setSelectedModal] = useState<'edit' | 'credit' | 'destroy-payments' | ''>('');
+export default function MachineActions({ machine, isAdmin, shouldRender = 'all' }: MachineActionsProps) {
+	const [selectedModal, setSelectedModal] = useState<'edit' | 'credit' | 'destroy-payments' | 'delete-machine' | ''>('');
 
 	const handleCloseModal = () => setSelectedModal('');
 
@@ -46,7 +47,9 @@ export default function MachineActions({ machine, shouldRender = 'all' }: Machin
 			case 'credit':
 				return `Créditos em ${machine.nome}`;
 			case 'destroy-payments':
-				return 'Excluir todos os pagamentos'
+				return 'Excluir todos os pagamentos';
+			case 'delete-machine':
+				return `Excluir máquina ${machine.nome}`;
 			default:
 				return '';
 		}
@@ -77,6 +80,16 @@ export default function MachineActions({ machine, shouldRender = 'all' }: Machin
 					>
 						Excluir pagamentos
 					</ActionButton>
+
+					{isAdmin && (
+						<ActionButton
+							className='machine-action-buttons--delete'
+							callback={() => setSelectedModal('delete-machine')}
+							icon={<TrashIcon width={10} height={10} />}
+						>
+							Excluir máquina
+						</ActionButton>
+					)}
 
 					{selectedModal && (
 						<Modal onClose={handleCloseModal} title={resolveModalTitle()}>
