@@ -38,6 +38,7 @@ export default async function MachinePanel() {
 
 		return (
 			<>
+				<p className='machine-panel__tip'>Selecione uma máquina para ver mais detalhes</p>
 				{machines && machines.length && machines.map((machine) => (
 					<div key={`${machine.id}`} className="machine-panel__container__wrapper-machines">
 						<Machine machine={machine} />
