@@ -1,0 +1,30 @@
+@use '@/app/variables' as variables;
+
+.customer-payments-panel {
+  padding: 10px 10px;
+
+  &__container {
+    &__wrapper-buttons {
+      position: relative;
+      max-width: 300px;
+      flex-wrap: wrap;
+
+      &__edit {
+        position: absolute;
+        top: 39%;
+        right: 35%;
+
+        svg {
+          color: variables.$application-color;
+          animation: none !important;
+        }
+      }
+
+      .machine-action-buttons {
+        position: absolute;
+        top: 27px;
+        right: 15px;
+      }
+    }
+  }
+}

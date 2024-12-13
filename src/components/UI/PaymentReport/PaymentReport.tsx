@@ -10,11 +10,13 @@ import { downloadReport } from '@/components/UI/PaymentReport/download';
 
 export interface PaymentReportProps {
 	machineId: string;
+	isAdmin?: boolean;
+	customerId?: string;
 }
 
 import './styles.scss';
 
-export default function PaymentReport({ machineId }: PaymentReportProps) {
+export default function PaymentReport({ machineId, isAdmin, customerId }: PaymentReportProps) {
 	const [startDate, setStartDate] = useState<string>('');
 	const [endDate, setEndDate] = useState<string>('');
 	const [clearInput, setClearInput] = useState<boolean>(false);
@@ -42,6 +44,22 @@ export default function PaymentReport({ machineId }: PaymentReportProps) {
 		}
 	}
 
+	const resolvePathToFilter = (): string => {
+		if (isAdmin) {
+			return `/admin/customers/${customerId}/machine/${machineId}?startDate=${startDate}&endDate=${endDate}`;
+		}
+
+		return `/customer/machine-panel/${machineId}?startDate=${startDate}&endDate=${endDate}`;
+	}
+
+	const resolvePathToClearFilters = (): string => {
+		if (isAdmin) {
+			return `/admin/customers/${customerId}/machine/${machineId}`;
+		}
+
+		return `/customer/machine-panel/${machineId}`;
+	}
+
 	return (
 		<div className='payment-report'>
 			<DatePickerRange
@@ -60,14 +78,14 @@ export default function PaymentReport({ machineId }: PaymentReportProps) {
 				shouldClear={clearInput}
 			/>
 
-			<ActionButton updateTo={`/customer/machine-panel/${machineId}?startDate=${startDate}&endDate=${endDate}`} disabled={!(startDate && endDate)}>Filtrar</ActionButton>
+			<ActionButton updateTo={resolvePathToFilter()} disabled={!(startDate && endDate)}>Filtrar</ActionButton>
 			<ActionButton updateTo={`/customer/payment-report/${machineId}?startDate=${startDate}&endDate=${endDate}`} disabled={!(startDate && endDate)}>Relatório</ActionButton>
 			<ActionButton callback={() => handleDownloadReport()}  disabled={!(startDate && endDate)}>PDF</ActionButton>
 			<ActionButton callback={() => {
 				setStartDate('');
 				setEndDate('');
 				setClearInput(true)
-			}} updateTo={`/customer/machine-panel/${machineId}`}  disabled={!(startDate && endDate)}>Limpar Filtros</ActionButton>
+			}} updateTo={resolvePathToClearFilters()}  disabled={!(startDate && endDate)}>Limpar Filtros</ActionButton>
 		</div>
 	);
 }

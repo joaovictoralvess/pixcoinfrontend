@@ -2,6 +2,7 @@ import { User, SignInUser } from '@/interfaces/User';
 import { CreateCustomerRequest, EditCustomerRequest, ICustomer } from '@/interfaces/ICustomer';
 import { getSession } from '@/helpers/session';
 import { CreateMachineRequest, CreateMachineResponse, UpdateMachineRequest } from '@/interfaces/IMachine';
+import { IPaymentResponse } from '@/interfaces/IPayment';
 
 const AdminService = {
 	signIn: async (data: SignInUser): Promise<User> => {
@@ -82,7 +83,39 @@ const AdminService = {
 		});
 
 		return await response.json();
-	}
+	},
+	payments: async (machineId: string): Promise<IPaymentResponse> => {
+		const user = await getSession() as User;
+
+		const response = await fetch(`${process.env.REACT_APP_SERVIDOR}/pagamentos-adm/${machineId}`, {
+			method: 'GET',
+			headers: {
+				"Content-Type": "application/json",
+				"x-access-token": user.token
+			},
+		});
+
+		return await response.json();
+	},
+	paymentsByPeriod: async (machineId: string, data: {
+		dataFim: string;
+		dataInicio: string;
+	}): Promise<IPaymentResponse> => {
+		const user = await getSession() as User;
+
+		const payload = JSON.stringify(data);
+
+		const response = await fetch(`${process.env.REACT_APP_SERVIDOR}/pagamentos-periodo-adm/${machineId}`, {
+			method: 'POST',
+			headers: {
+				"Content-Type": "application/json",
+				"x-access-token": user.token
+			},
+			body: payload
+		});
+
+		return await response.json();
+	},
 };
 
 export default AdminService;
