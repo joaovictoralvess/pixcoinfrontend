@@ -54,7 +54,7 @@ export default function WellComeCustomer({ name }: WellComeCustomerProps) {
 
 				<p>
 					Abraços,
-					Equipe Pixcoin
+					Equipe Pixcoin ❤️
 				</p>
 			</div>
 
