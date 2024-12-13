@@ -39,7 +39,7 @@ export default function WellComeCustomer({ name }: WellComeCustomerProps) {
 			<div className="wellcome-text">
 				<p>
 					Olá, {name}!
-					Que alegria ter você conosco! É uma honra enorme apresentar a você o nosso novo site, feito com muito carinho
+					Que alegria ter você conosco! É uma honra enorme apresentar a você a nova telemetria, feito com muito carinho
 					para oferecer uma experiência ainda mais incrível.
 				</p>
 
