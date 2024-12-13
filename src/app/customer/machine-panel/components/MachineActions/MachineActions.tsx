@@ -18,7 +18,7 @@ import { IMachine } from '@/interfaces/IMachine';
 export interface MachineActionsProps {
 	machine: IMachine;
 	shouldRender?: 'all' | 'edit-only' | 'credit-only' | 'delete-only' | 'delete-machine';
-	isAdmin: boolean;
+	isAdmin?: boolean;
 }
 
 import './styles.scss';

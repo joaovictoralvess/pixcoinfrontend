@@ -10,16 +10,20 @@ import { statusMap } from '@/helpers/machine';
 
 import MachineActions from '@/app/customer/machine-panel/components/MachineActions/MachineActions';
 
-import './styles.scss';
-
 export interface IMachineProps {
 	machine: IMachine;
+	customerId?: string;
 }
 
+import './styles.scss';
+
 export default async function Machine({
-	machine
+	machine,
+	customerId
 }: IMachineProps) {
 	const user = await getSession() as User;
+	const isAdmin = user.key === 'ADMIN';
+
 	const  {
 		status,
 		nome,
@@ -51,7 +55,7 @@ export default async function Machine({
 
 	return (
 		<div className='machine'>
-			<Link href={`/customer/machine-panel/${id}`}>
+			<Link href={isAdmin ? `/admin/customers/${customerId}/machine/${id}` : `/customer/machine-panel/${id}`}>
 				<div className='machine__header'>
 					{resolveMachineStatus()}
 				</div>
@@ -66,7 +70,7 @@ export default async function Machine({
 				</div>
 			</Link>
 
-			<MachineActions isAdmin={user.key === 'ADMIN'} machine={machine} />
+			<MachineActions isAdmin={isAdmin} machine={machine} />
 		</div>
 	);
 }

@@ -14,8 +14,9 @@ export interface AdminCustomerProps {
 	params: Params;
 }
 
-import './styles.scss';
 import { redirectAdminToLoginIfNotLogged } from '@/helpers/admin';
+
+import './styles.scss';
 
 export default async function AdminCustomer(props: AdminCustomerProps) {
 	await redirectAdminToLoginIfNotLogged();
@@ -38,7 +39,7 @@ export default async function AdminCustomer(props: AdminCustomerProps) {
 
 					<div className='customer__container__wrapper-machines'>
 						{customer.Maquina && customer.Maquina.length && customer.Maquina.map((machine) => (
-							<Machine key={`${machine.id}`} machine={machine} />
+							<Machine customerId={customer.id} key={`${machine.id}`} machine={machine} />
 						))}
 					</div>
 				</Layout>
