@@ -116,6 +116,19 @@ const AdminService = {
 
 		return await response.json();
 	},
+	disabledMachinesByCustomerId: async (customerId: string): Promise<{message: string}> => {
+		const user = await getSession() as User;
+
+		const response = await fetch(`${process.env.REACT_APP_SERVIDOR}/disabled-machine-by-customer/${customerId}`, {
+			method: 'POST',
+			headers: {
+				"Content-Type": "application/json",
+				"x-access-token": user.token
+			},
+		});
+
+		return await response.json();
+	}
 };
 
 export default AdminService;

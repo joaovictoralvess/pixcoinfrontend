@@ -10,9 +10,10 @@ import ActionButton from '@/app/customer/machine-panel/components/ActionButton/A
 import AddMoreCustomerForm from '@/app/admin/customers/components/AddMoreCustomerForm/AddMoreCustomerForm';
 import AddMoreMachineForm from '@/app/admin/customers/components/AddMoreMachineForm/AddMoreMachineForm';
 import EditCustomerForm from '@/app/admin/customers/components/EditCustomerForm/EditCustomerForm';
+import DisableMachinesForm from '@/app/admin/customers/components/DisableMachinesForm/DisableMachinesForm';
 
 export interface CustomerActionsProps {
-	shouldRender?: 'all' | 'new-customer' | 'new-machine' | 'edit-customer-and-add-machine',
+	shouldRender?: 'all' | 'new-customer' | 'new-machine' | 'edit-customer-and-add-machine' | 'edit-customer-and-add-machine-and-disabled-all-machines',
 	clientId?: string;
 	customer?: ICustomer;
 }
@@ -20,7 +21,7 @@ export interface CustomerActionsProps {
 import './styles.scss';
 
 export default function CustomerActions({ customer, shouldRender = 'all', clientId = '' }: CustomerActionsProps) {
-	const [selectedModal, setSelectedModal] = useState<'new-customer' | 'new-machine' | 'edit-customer' | ''>('');
+	const [selectedModal, setSelectedModal] = useState<'new-customer' | 'new-machine' | 'edit-customer' | 'desative-machine' | ''>('');
 
 	const handleCloseModal = () => setSelectedModal('');
 
@@ -32,6 +33,8 @@ export default function CustomerActions({ customer, shouldRender = 'all', client
 				return <AddMoreMachineForm clientId={clientId}  />;
 			case 'edit-customer':
 				return <EditCustomerForm customer={customer!} />
+			case 'desative-machine':
+				return <DisableMachinesForm cancelAction={() => setSelectedModal('')} customerId={clientId} />
 			default:
 				return null;
 		}
@@ -45,6 +48,8 @@ export default function CustomerActions({ customer, shouldRender = 'all', client
 				return 'Nova máquina'
 			case 'edit-customer':
 				return 'Editar cliente'
+			case 'desative-machine':
+				return 'Ativar/Desativar máquinas'
 			default:
 				return '';
 		}
@@ -59,6 +64,8 @@ export default function CustomerActions({ customer, shouldRender = 'all', client
 					<ActionButton callback={() => setSelectedModal('new-machine')}>Adicionar máquina</ActionButton>
 
 					<ActionButton callback={() => setSelectedModal('edit-customer')}>Editar cliente</ActionButton>
+
+					<ActionButton callback={() => setSelectedModal('desative-machine')}>Desativar máquinas</ActionButton>
 
 					{selectedModal && (
 						<Modal onClose={handleCloseModal} title={resolveModalTitle()}>
@@ -103,6 +110,24 @@ export default function CustomerActions({ customer, shouldRender = 'all', client
 					<ActionButton callback={() => setSelectedModal('new-machine')}>Adicionar máquina</ActionButton>
 
 					<ActionButton callback={() => setSelectedModal('edit-customer')}>Editar cliente</ActionButton>
+
+					{selectedModal && (
+						<Modal onClose={handleCloseModal} title={resolveModalTitle()}>
+							{renderModalContent()}
+						</Modal>
+					)}
+				</div>
+			)
+		}
+
+		if (shouldRender === 'edit-customer-and-add-machine-and-disabled-all-machines') {
+			return (
+				<div className='customer-action-button-container'>
+					<ActionButton callback={() => setSelectedModal('new-machine')}>Adicionar máquina</ActionButton>
+
+					<ActionButton callback={() => setSelectedModal('edit-customer')}>Editar cliente</ActionButton>
+
+					<ActionButton callback={() => setSelectedModal('desative-machine')}>Ativar/Desativar máquinas</ActionButton>
 
 					{selectedModal && (
 						<Modal onClose={handleCloseModal} title={resolveModalTitle()}>
