@@ -16,6 +16,7 @@ export interface IMachine {
 	totalSemEstorno: number;
 	totalEspecie: number;
 	totalComEstorno: number;
+	disabled: boolean
 }
 
 export interface UpdateMachineRequest {

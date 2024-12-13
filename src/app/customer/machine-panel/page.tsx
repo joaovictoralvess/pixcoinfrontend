@@ -18,19 +18,43 @@ export default async function MachinePanel() {
 	const user = await getSession() as User;
 
 	const machines = await MachineService.all();
+	const machinesDisabled = machines.every(machine => machine.disabled);
+
+	const renderContent = () => {
+		if (machinesDisabled) {
+			return (
+				<div className="machine-panel__container__disabled-machine">
+					<p>Informamos que as máquinas vinculadas ao seu cadastro foram desabilitadas devido à pendência de pagamento.
+						Por favor, regularize sua situação para reativar os serviços. 😉</p>
+				</div>
+			);
+		}
+
+		if (machines.length === 0) {
+			return (
+				<h1>Nenhuma máquina encontrada...</h1>
+			)
+		}
+
+		return (
+			<>
+				{machines && machines.length && machines.map((machine) => (
+					<div key={`${machine.id}`} className="machine-panel__container__wrapper-machines">
+						<Machine machine={machine} />
+					</div>
+				))}
+			</>
+		)
+	}
 
 	return (
 		<>
 			<WellComeCustomer name={user.name} />
 			<Header />
-			<main className='machine-panel'>
-				<Layout className='machine-panel__container'>
-					<PageTitleWithSync updateTo='/customer/machine-panel' title='Painel de máquinas' />
-					{machines && machines.length && machines.map((machine) => (
-						<div key={`${machine.id}`} className='machine-panel__container__wrapper-machines'>
-							<Machine machine={machine} />
-						</div>
-					))}
+			<main className="machine-panel">
+				<Layout className="machine-panel__container">
+					<PageTitleWithSync updateTo="/customer/machine-panel" title="Painel de máquinas" />
+					{renderContent()}
 				</Layout>
 			</main>
 		</>
