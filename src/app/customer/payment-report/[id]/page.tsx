@@ -19,10 +19,14 @@ export interface PaymentReportScreen {
 }
 
 import './styles.scss';
-
+import { getSession } from '@/helpers/session';
+import { User } from '@/interfaces/User';
 
 export default async function PaymentReportScreen(props: PaymentReportScreen) {
 	await redirectCustomerToLoginIfNotLogged();
+
+	const user = await getSession() as User;
+	const isADMIN = user.key === 'ADMIN';
 
 	const { id } = await props.params;
 	const searchParams = await props.searchParams;
@@ -30,6 +34,8 @@ export default async function PaymentReportScreen(props: PaymentReportScreen) {
 	const startDate = String(searchParams?.startDate) || '';
 	const endDate = String(searchParams?.endDate) || '';
 	const newEndDate = new Date(endDate);
+
+	const customerId = String(searchParams?.customerId) || '';
 
 	newEndDate.setUTCHours(23, 59, 0, 0);
 
@@ -44,17 +50,33 @@ export default async function PaymentReportScreen(props: PaymentReportScreen) {
 		maquinaId: id,
 	});
 
+	const resolveGoBackPath = (): string => {
+		if (isADMIN) {
+			return `/admin/customers/${customerId}/machine/${id}`
+		}
+
+		return `/customer/machine-panel/${id}`;
+	}
+
+	const resolveUpdatePath = (): string => {
+		if (isADMIN) {
+			return `/customer/payment-report/${id}?startDate=${startDate}&endDate=${endDate}&customerId=${customerId}`;
+		}
+
+		return `/customer/payment-report/${id}?startDate=${startDate}&endDate=${endDate}`
+	}
+
 	return (
 		<>
 			<Header iconLeft={
-				<GoBackIcon goTo={`/customer/machine-panel/${id}`} />
+				<GoBackIcon goTo={resolveGoBackPath()} />
 			}
 			/>
 
 			<main className='payment-report-screen'>
 				<Layout>
 					<PageTitleWithSync
-						updateTo={`/customer/payment-report/${id}?startDate=${startDate}&endDate=${endDate}`}
+						updateTo={resolveUpdatePath()}
 						title='Relatório de pagamento'
 					/>
 					<div className='payment-report-screen__dates'>

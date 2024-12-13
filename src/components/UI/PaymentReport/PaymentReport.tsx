@@ -60,6 +60,14 @@ export default function PaymentReport({ machineId, isAdmin, customerId }: Paymen
 		return `/customer/machine-panel/${machineId}`;
 	}
 
+	const resolvePathToReport = () => {
+		if (isAdmin) {
+			return `/customer/payment-report/${machineId}?startDate=${startDate}&endDate=${endDate}&customerId=${customerId}`;
+		}
+
+		return `/customer/payment-report/${machineId}?startDate=${startDate}&endDate=${endDate}`;
+	}
+
 	return (
 		<div className='payment-report'>
 			<DatePickerRange
@@ -79,7 +87,7 @@ export default function PaymentReport({ machineId, isAdmin, customerId }: Paymen
 			/>
 
 			<ActionButton updateTo={resolvePathToFilter()} disabled={!(startDate && endDate)}>Filtrar</ActionButton>
-			<ActionButton updateTo={`/customer/payment-report/${machineId}?startDate=${startDate}&endDate=${endDate}`} disabled={!(startDate && endDate)}>Relatório</ActionButton>
+			<ActionButton updateTo={resolvePathToReport()} disabled={!(startDate && endDate)}>Relatório</ActionButton>
 			<ActionButton callback={() => handleDownloadReport()}  disabled={!(startDate && endDate)}>PDF</ActionButton>
 			<ActionButton callback={() => {
 				setStartDate('');

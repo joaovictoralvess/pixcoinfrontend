@@ -6,9 +6,10 @@ import { AllReportRequest, AllReportResponse, DownloadReportRequest } from '@/in
 const ReportService = {
 	allReports: async (data: AllReportRequest): Promise<AllReportResponse> => {
 	const user = await getSession() as User;
+	const isADMIN = user.key === 'ADMIN';
 
 	const requests = [
-		fetch(`${process.env.REACT_APP_SERVIDOR}/relatorio-03-pagamentos`, {
+		fetch(`${process.env.REACT_APP_SERVIDOR}/relatorio-03-pagamentos${isADMIN ? '-adm' : ''}`, {
 			method: 'POST',
 			headers: {
 				"Content-Type": "application/json",
@@ -16,7 +17,7 @@ const ReportService = {
 			},
 			body: JSON.stringify(data)
 		}),
-		fetch(`${process.env.REACT_APP_SERVIDOR}/relatorio-04-estornos`, {
+		fetch(`${process.env.REACT_APP_SERVIDOR}/relatorio-04-estornos${isADMIN ? '-adm' : ''}`, {
 			method: 'POST',
 			headers: {
 				"Content-Type": "application/json",
@@ -24,7 +25,7 @@ const ReportService = {
 			},
 			body: JSON.stringify(data)
 		}),
-		fetch(`${process.env.REACT_APP_SERVIDOR}/relatorio-02-taxas`, {
+		fetch(`${process.env.REACT_APP_SERVIDOR}/relatorio-02-taxas${isADMIN ? '-adm' : ''}`, {
 			method: 'POST',
 			headers: {
 				"Content-Type": "application/json",
@@ -32,7 +33,7 @@ const ReportService = {
 			},
 			body: JSON.stringify(data)
 		}),
-		fetch(`${process.env.REACT_APP_SERVIDOR}/relatorio-01-cash`, {
+		fetch(`${process.env.REACT_APP_SERVIDOR}/relatorio-01-cash${isADMIN ? '-adm' : ''}`, {
 			method: 'POST',
 			headers: {
 				"Content-Type": "application/json",
