@@ -2,14 +2,14 @@ import { cookies } from 'next/headers';
 
 import jwt, { JwtPayload } from 'jsonwebtoken';
 
-const SESSION_NAME = 'user_session';
+const SESSION_NAME = 'current_user';
 const generateExpires = () => new Date(Date.now() + 60 * 60 * 1000);
 
 export const createSession = async (payload: string) => {
 	const cookieStore = await cookies();
 	cookieStore.set(SESSION_NAME, payload, {
 		expires: generateExpires(),
-		httpOnly: true
+		httpOnly: false
 	});
 };
 
@@ -35,7 +35,7 @@ export const updateSession = async () => {
 		name: SESSION_NAME,
 		value: JSON.stringify(session),
 		expires,
-		httpOnly: true,
+		httpOnly: false,
 	};
 };
 
