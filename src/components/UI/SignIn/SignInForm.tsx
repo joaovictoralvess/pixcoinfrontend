@@ -18,11 +18,13 @@ export default function SignInForm({ isAdmin = false }: SignInFormProps) {
 	const [state, formAction] = useActionState((handleSignInForm), initialState);
 
 	useLayoutEffect(() => {
-		console.log('OPA');
 		if (typeof document !== 'undefined') {
-			document.cookie = "current_user=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
+			do {
+				document.cookie = "current_user=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
+			} while (document.cookie !== '');
 		}
 	}, []);
+
 	return (
 		<form action={formAction}>
 			<div className='sign-in-container__left-section__wrapper-input'>
