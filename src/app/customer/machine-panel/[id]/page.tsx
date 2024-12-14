@@ -14,7 +14,7 @@ import Header from '@/components/UI/Header/Header';
 import Layout from '@/components/UI/Layout/Layout';
 
 import PaymentTable from '@/app/customer/machine-panel/components/PaymentTable/PaymentTable';
-import transformPaymentsData from '@/helpers/payment';
+import transformPaymentsData, { removeDuplicateMP } from '@/helpers/payment';
 
 import { redirectCustomerToLoginIfNotLogged } from '@/helpers/customer';
 
@@ -48,21 +48,6 @@ export default async function MachineDetail(props: MachineDetailProps) {
 
 		return await MachineService.payments(id);
 	}
-
-	const removeDuplicateMP = (data: IPayment[]) => {
-		const uniqueData: IPayment[] = [];
-		const seenItems = new Set();
-
-		data.forEach((item) => {
-			const key = `${item.mercadoPagoId}-${item.valor}`;
-			if (!seenItems.has(key)) {
-				uniqueData.push(item);
-				seenItems.add(key);
-			}
-		});
-
-		return uniqueData;
-	};
 
 	const data = await resolveFetchPayments();
 	const tableData = transformPaymentsData(removeDuplicateMP(data.pagamentos));

@@ -16,7 +16,7 @@ export const retrieveFormattedDate = (
 	const day = pad(getDatePart("Date"));
 	const month = pad(getDatePart("Month") + 1);
 	const year = getDatePart("FullYear");
-	const hours = pad(getDatePart("Hours"));
+	const hours = pad(getDatePart("Hours")  - 3);
 	const minutes = pad(getDatePart("Minutes"));
 	const seconds = pad(getDatePart("Seconds"));
 
@@ -77,3 +77,18 @@ export const retrieveDate = (isoDate: string): string => {
 
 	return  `${dia}/${mes}/${ano}`;
 }
+
+export const removeDuplicateMP = (data: IPayment[]) => {
+	const uniqueData: IPayment[] = [];
+	const seenItems = new Set();
+
+	data.forEach((item) => {
+		const key = `${item.mercadoPagoId}-${item.valor}`;
+		if (!seenItems.has(key)) {
+			uniqueData.push(item);
+			seenItems.add(key);
+		}
+	});
+
+	return uniqueData;
+};

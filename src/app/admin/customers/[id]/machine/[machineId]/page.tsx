@@ -18,7 +18,7 @@ export interface CustomerPaymentsProps {
 
 import { IPaymentResponse } from '@/interfaces/IPayment';
 
-import transformPaymentsData from '@/helpers/payment';
+import transformPaymentsData, { removeDuplicateMP } from '@/helpers/payment';
 import AdminService from '@/services/Admin';
 
 import './styles.scss';
@@ -48,7 +48,7 @@ export default async function CustomerPayments(props: CustomerPaymentsProps) {
 	}
 
 	const data = await resolveFetchPayments();
-	const tableData = transformPaymentsData(data.pagamentos);
+	const tableData = transformPaymentsData(removeDuplicateMP(data.pagamentos));
 
 	return (
 		<>
