@@ -1,0 +1,50 @@
+@use '@/app/variables' as variables;
+
+.machine-panel {
+  padding: 10px 10px;
+
+  &__tip {
+    margin: 10px 0;
+    font-size: 20px;
+  }
+
+  &__container {
+    &__disabled-machine {
+      background-color: #f8f9fa;
+      border: 1px solid #dee2e6;
+      border-radius: 8px;
+      padding: 16px;
+      margin: 20px 0;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+      p {
+        font-size: 16px;
+        color: #000;
+        margin: 0;
+        line-height: 1.5;
+      }
+
+      &:hover {
+        background-color: #e9ecef;
+        border-color: #ced4da;
+      }
+    }
+
+    &__wrapper-machines {
+      display: flex;
+      flex-flow: row wrap;
+      margin-top: 1rem;
+      gap: 20px;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .machine-panel {
+    &__container {
+      &__wrapper-machines {
+        justify-content: center;
+      }
+    }
+  }
+}

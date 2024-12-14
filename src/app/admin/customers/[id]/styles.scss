@@ -1,0 +1,16 @@
+.customer {
+  padding: 10px 10px;
+
+  &__container {
+    &__wrapper-button {
+      position: relative;
+    }
+
+    &__wrapper-machines {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+  }
+}

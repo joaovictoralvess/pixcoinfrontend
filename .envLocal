@@ -1,3 +1,0 @@
-REACT_APP_SERVIDOR = https://pixcoinbackend-028a547c7b67.herokuapp.com
-CI = false
-REACT_APP_PAYMENT_ACCESS_TOKEN = TEST-1125886907240747

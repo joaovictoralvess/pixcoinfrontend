@@ -1,0 +1,25 @@
+@use '@/app/variables' as variables;
+
+.remove-all-payments-form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+
+  button { width: 210px; }
+
+  button:first-child {
+    background-color: transparent;
+    border: 2px solid variables.$application-color;
+    color: #000;
+    transition: all 0.5s ease;
+
+    &:hover {
+      background-color: variables.$application-color;
+      color: #fff;
+    }
+  }
+
+  button:last-of-type {
+    background-color: #ff4c4c;
+  }
+}

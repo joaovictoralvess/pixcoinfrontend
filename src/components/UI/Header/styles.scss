@@ -1,0 +1,90 @@
+@use '@/app/variables' as variables;
+
+.header {
+  overflow: hidden;
+  background-color: variables.$application-color;
+  padding: 20px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__title-wrapper {
+    display: flex;
+    flex-direction: column;
+
+    &__logo {
+      font-size: 25px;
+      font-weight: bold;
+      color: #fff;
+      padding: 12px;
+      line-height: 25px;
+    }
+
+    &__customer {
+      padding: 0 12px;
+      font-size: 20px;
+      line-height: 25px;
+      font-weight: 500;
+      color: #fff;
+    }
+  }
+
+  &__right {
+    margin-right: 4rem;
+    &__list {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      list-style: none;
+
+      &__item {
+        svg {
+          color: #fff;
+          cursor: pointer;
+
+          &:hover {
+            opacity: 0.7;
+            animation: pulse 1s infinite, fadeInOut 1s infinite;
+          }
+        }
+
+        &__button {
+          border: none;
+          background: none;
+          font-size: 1.5rem;
+          color: #fff;
+          cursor: pointer;
+
+          &:hover {
+            opacity: 0.7;
+            animation: pulse 1s infinite, fadeInOut 1s infinite;
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}

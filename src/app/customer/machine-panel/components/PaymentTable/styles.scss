@@ -1,0 +1,70 @@
+@use '@/app/variables' as variables;
+
+.table-container {
+  overflow: auto;
+  margin: 1rem 0;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  height: 400px;
+
+  &::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f0f0f0;
+    border-radius: 6px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: variables.$application-color;
+    border-radius: 6px;
+  }
+
+  &__table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 600px;
+    font-family: Arial, sans-serif;
+
+    thead {
+      background-color: variables.$application-color;
+      color: #fff;
+
+      th {
+        padding: 0.75rem;
+        text-align: left;
+        font-weight: bold;
+        border-bottom: 2px solid #ddd;
+      }
+    }
+
+    tbody {
+      tr {
+        transition: all 0.3s;
+
+        &:hover {
+          box-shadow: 10px 10px 38px 5px rgba(0,0,0,0.75);
+          background-color: #f1f1f1;
+        }
+
+        td {
+          padding: 0.75rem;
+          border-bottom: 1px solid #ddd;
+
+          .receive {
+            color: green;
+            font-weight: bold;
+          }
+
+          .reversed {
+            color: gray;
+            cursor: pointer;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+}
