@@ -33,19 +33,25 @@ export default function DatePickerRange({
 	return (
 		<div className="date-picker-range">
 			<div className="date-picker-range__inputs">
-				<input
-					ref={startDateRef}
-					onChange={onSelectStartDate}
-					title="A partir"
-					type="date"
-				/>
-				&nbsp;
-				<input
-					ref={endDateRef}
-					onChange={onSelectEndDate}
-					title="Até"
-					type="date"
-				/>
+				<div className='date-picker-range__inputs__wrapper-input'>
+					<span>A partir de</span>
+					<input
+						ref={startDateRef}
+						onChange={onSelectStartDate}
+						title="A partir"
+						type="date"
+					/>
+				</div>
+
+				<div className="date-picker-range__inputs__wrapper-input">
+					<span>Até</span>
+					<input
+						ref={endDateRef}
+						onChange={onSelectEndDate}
+						title="Até"
+						type="date"
+					/>
+				</div>
 			</div>
 		</div>
 	);

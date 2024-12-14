@@ -4,7 +4,7 @@ import { SearchParams } from '@/@types/searchParams';
 import GoBackIcon from '@/components/Icons/GoBackIcon';
 
 import { IMachine } from '@/interfaces/IMachine';
-import { IPaymentResponse } from '@/interfaces/IPayment';
+import { IPayment, IPaymentResponse } from '@/interfaces/IPayment';
 
 import MachineActions from '@/app/customer/machine-panel/components/MachineActions/MachineActions';
 
@@ -49,8 +49,23 @@ export default async function MachineDetail(props: MachineDetailProps) {
 		return await MachineService.payments(id);
 	}
 
+	const removeDuplicateMP = (data: IPayment[]) => {
+		const uniqueData: IPayment[] = [];
+		const seenItems = new Set();
+
+		data.forEach((item) => {
+			const key = `${item.mercadoPagoId}-${item.valor}`;
+			if (!seenItems.has(key)) {
+				uniqueData.push(item);
+				seenItems.add(key);
+			}
+		});
+
+		return uniqueData;
+	};
+
 	const data = await resolveFetchPayments();
-	const tableData = transformPaymentsData(data.pagamentos);
+	const tableData = transformPaymentsData(removeDuplicateMP(data.pagamentos));
 
 	return (
 		<>

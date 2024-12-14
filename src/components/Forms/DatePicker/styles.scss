@@ -4,6 +4,19 @@
   &__inputs {
     display: flex;
     flex-wrap: wrap;
+    width: 18.75rem;
+    gap: 2rem;
+
+    &__wrapper-input {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 100%;
+
+      span {
+        font-size: 14px;
+      }
+    }
 
     input {
       outline: none;
