@@ -86,14 +86,16 @@ export default function PaymentReport({ machineId, isAdmin, customerId }: Paymen
 				shouldClear={clearInput}
 			/>
 
-			<ActionButton updateTo={resolvePathToFilter()} disabled={!(startDate && endDate)}>Filtrar</ActionButton>
-			<ActionButton updateTo={resolvePathToReport()} disabled={!(startDate && endDate)}>Relatório</ActionButton>
-			<ActionButton callback={() => handleDownloadReport()}  disabled={!(startDate && endDate)}>PDF</ActionButton>
-			<ActionButton callback={() => {
-				setStartDate('');
-				setEndDate('');
-				setClearInput(true)
-			}} updateTo={resolvePathToClearFilters()}  disabled={!(startDate && endDate)}>Limpar Filtros</ActionButton>
+			<div className='payment-report__buttons'>
+				<ActionButton updateTo={resolvePathToFilter()} disabled={!(startDate && endDate)}>Filtrar</ActionButton>
+				<ActionButton updateTo={resolvePathToReport()} disabled={!(startDate && endDate)}>Relatório</ActionButton>
+				<ActionButton callback={() => handleDownloadReport()}  disabled={!(startDate && endDate)}>PDF</ActionButton>
+				<ActionButton callback={() => {
+					setStartDate('');
+					setEndDate('');
+					setClearInput(true)
+				}} updateTo={resolvePathToClearFilters()}  disabled={!(startDate && endDate)}>Limpar Filtros</ActionButton>
+			</div>
 		</div>
 	);
 }

@@ -4,6 +4,13 @@
   gap: 15px;
   flex-wrap: wrap;
   margin-top: 1rem;
+
+  &__buttons {
+    display: flex;
+    margin-top: 1rem;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
 }
 
 input[type="date"] {
