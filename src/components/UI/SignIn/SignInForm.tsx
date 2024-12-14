@@ -1,7 +1,6 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
-import { useActionState, useState } from 'react';
+import { useActionState, useEffect, useState } from 'react';
 
 import TextInput from '@/components/Forms/TextInput/TextInput';
 import Button from '@/components/Forms/Button/Button';
@@ -18,6 +17,11 @@ export default function SignInForm({ isAdmin = false }: SignInFormProps) {
 
 	const [state, formAction] = useActionState((handleSignInForm), initialState);
 
+	useEffect(() => {
+		if (typeof document !== 'undefined') {
+			document.cookie = "current_user=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
+		}
+	}, []);
 	return (
 		<form action={formAction}>
 			<div className='sign-in-container__left-section__wrapper-input'>
