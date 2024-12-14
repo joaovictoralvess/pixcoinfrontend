@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@netlify/plugin-nextjs": "^5.9.0",
     "chart.js": "^4.4.7",
     "jsonwebtoken": "^9.0.2",
     "next": "15.0.3",
