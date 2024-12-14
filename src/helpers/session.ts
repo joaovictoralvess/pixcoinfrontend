@@ -41,7 +41,7 @@ export const updateSession = async () => {
 
 export const logout = async () => {
 	const cookieStore = await cookies();
-	cookieStore.set(SESSION_NAME, '', {expires: new Date(0)});
+	cookieStore.set(SESSION_NAME, '', { expires: new Date(0), path: '/' });
 }
 
 export function isTokenExpired(token: string): boolean {
