@@ -3,6 +3,7 @@
 .date-picker-range {
   &__inputs {
     display: flex;
+    flex-wrap: wrap;
 
     input {
       outline: none;
