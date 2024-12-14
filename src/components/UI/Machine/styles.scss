@@ -41,11 +41,11 @@
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 
       &--offline {
-        background-color: #ff4c4c;
+        background-color: #db0018;
       }
 
       &--recent {
-        background-color: variables.$application-color;
+        background-color: #294ae5;
       }
     }
 
@@ -55,11 +55,11 @@
       font-weight: bold;
 
       &--offline {
-        color: #ff4c4c;
+        color: #db0018;
       }
 
       &--recent {
-        color: variables.$application-color;
+        color: #294ae5;
       }
     }
   }
