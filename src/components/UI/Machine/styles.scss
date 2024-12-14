@@ -43,6 +43,10 @@
       &--offline {
         background-color: #ff4c4c;
       }
+
+      &--recent {
+        background-color: variables.$application-color;
+      }
     }
 
     &__text {
@@ -52,6 +56,10 @@
 
       &--offline {
         color: #ff4c4c;
+      }
+
+      &--recent {
+        color: variables.$application-color;
       }
     }
   }

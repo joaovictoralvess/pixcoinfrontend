@@ -45,6 +45,15 @@ export default async function Machine({
 			)
 		}
 
+		if (statusMap[status] === 'PAGAMENTO RECENTE') {
+			return (
+				<>
+					<span className="machine__header__icon machine__header__icon--recent">✔</span>
+					<span className="machine__header__text machine__header__text--recent">{statusMap[status]}</span>
+				</>
+			);
+		}
+
 		return (
 			<>
 				<span className="machine__header__icon">✔</span>
