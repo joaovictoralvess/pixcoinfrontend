@@ -6,6 +6,13 @@
   margin-top: 1rem;
 }
 
+input[type="date"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 5px;
+}
+
 @media screen and (max-width: 500px) {
   .payment-report {
     display: block;
