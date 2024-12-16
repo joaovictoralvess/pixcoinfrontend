@@ -66,6 +66,19 @@ export default async function PaymentReportScreen(props: PaymentReportScreen) {
 		return `/customer/payment-report/${id}?startDate=${startDate}&endDate=${endDate}`
 	}
 
+	const formatDateToDDMMYYYYHHMMSS = (date: Date) => {
+		const padZero = (num: number) => String(num).padStart(2, '0');
+
+		const day = padZero(date.getDate());
+		const month = padZero(date.getMonth() + 1);
+		const year = date.getFullYear();
+		const hours = padZero(date.getHours());
+		const minutes = padZero(date.getMinutes());
+		const seconds = padZero(date.getSeconds());
+
+		return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
+	}
+
 	return (
 		<>
 			<Header iconLeft={
@@ -85,9 +98,7 @@ export default async function PaymentReportScreen(props: PaymentReportScreen) {
 						</span>
 
 						<span className='payment-report-screen__dates__generate-in'>
-							Gerado em {retrieveFormattedDate(
-							formatToLocalISOString(new Date())
-						)}
+							Gerado em {formatDateToDDMMYYYYHHMMSS(new Date())}
 						</span>
 					</div>
 
