@@ -9,7 +9,7 @@ import GoBackIcon from '@/components/Icons/GoBackIcon';
 import PaymentCharts from '@/app/customer/payment-report/components/PaymentCharts/PaymentCharts';
 
 import { redirectCustomerToLoginIfNotLogged } from '@/helpers/customer';
-import { formatToBRL, formatToLocalISOString, retrieveDate, retrieveFormattedDate } from '@/helpers/payment';
+import { formatDateToDDMMYYYYHHMMSS, formatToBRL, retrieveDate } from '@/helpers/payment';
 
 import ReportService from '@/services/Report';
 
@@ -65,20 +65,6 @@ export default async function PaymentReportScreen(props: PaymentReportScreen) {
 
 		return `/customer/payment-report/${id}?startDate=${startDate}&endDate=${endDate}`
 	}
-
-	const formatDateToDDMMYYYYHHMMSS = (date: Date, timeZone: string = 'America/Sao_Paulo') => {
-		const formatter = new Intl.DateTimeFormat('pt-BR', {
-			timeZone,
-			year: 'numeric',
-			month: '2-digit',
-			day: '2-digit',
-			hour: '2-digit',
-			minute: '2-digit',
-			second: '2-digit',
-		});
-
-		return formatter.format(date).replace(',', '');
-	};
 
 	return (
 		<>

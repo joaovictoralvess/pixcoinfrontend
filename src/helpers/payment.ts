@@ -1,38 +1,18 @@
 import { IPayment } from '@/interfaces/IPayment';
 import { TableData } from '@/app/customer/machine-panel/components/PaymentTable/PaymentTable';
 
-export function formatToLocalISOString(date: Date) {
-	const offsetMs = date.getTimezoneOffset() * 60 * 1000;
-	const localDate = new Date(date.getTime() - offsetMs);
-	return localDate.toISOString().slice(0, -1);
-}
+export const formatDateToDDMMYYYYHHMMSS = (date: Date, timeZone: string = 'America/Sao_Paulo') => {
+	const formatter = new Intl.DateTimeFormat('pt-BR', {
+		timeZone,
+		year: 'numeric',
+		month: '2-digit',
+		day: '2-digit',
+		hour: '2-digit',
+		minute: '2-digit',
+		second: '2-digit',
+	});
 
-export const retrieveFormattedDate = (
-	isoDate: string,
-	useUTC = false,
-	format = "DD/MM/YYYY HH:mm:ss"
-): string => {
-	const date = new Date(isoDate);
-
-	const pad = (num: number) => String(num).padStart(2, "0");
-
-	const getDatePart = (method: string) =>
-		useUTC ? (date as any)[`getUTC${method}`]() : (date as any)[`get${method}`]();
-
-	const day = pad(getDatePart("Date"));
-	const month = pad(getDatePart("Month") + 1);
-	const year = getDatePart("FullYear");
-	const hours = pad(getDatePart("Hours"));
-	const minutes = pad(getDatePart("Minutes"));
-	const seconds = pad(getDatePart("Seconds"));
-
-	return format
-		.replace("DD", day)
-		.replace("MM", month)
-		.replace("YYYY", String(year))
-		.replace("HH", hours)
-		.replace("mm", minutes)
-		.replace("ss", seconds);
+	return formatter.format(date).replace(',', '');
 };
 
 export const retrievePaymentForm = (currentPaymentForm: string): string => {
@@ -65,7 +45,7 @@ export const retrieveReversedText = (reversed: boolean): 'Recebido' | 'Estornado
 
 export default function transformPaymentsData(payments: IPayment[]): TableData[] {
 	return payments.map(payment => ({
-		date: retrieveFormattedDate(payment.data, false),
+		date: formatDateToDDMMYYYYHHMMSS(new Date(payment.data)),
 		paymentForm: retrievePaymentForm(payment.tipo),
 		value: formatToBRL(payment.valor),
 		identifierMP: payment.mercadoPagoId,
