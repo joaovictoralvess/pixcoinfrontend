@@ -69,7 +69,7 @@ export const removeDuplicateMP = (data: IPayment[]) => {
 	const seenItems = new Set();
 
 	data.forEach((item) => {
-		const key = `${item.mercadoPagoId}-${item.valor}`;
+		const key = `${item.mercadoPagoId}-${item.valor}-${item.id}`;
 		if (!seenItems.has(key)) {
 			uniqueData.push(item);
 			seenItems.add(key);
