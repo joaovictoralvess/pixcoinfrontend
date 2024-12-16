@@ -1,9 +1,15 @@
 import { IPayment } from '@/interfaces/IPayment';
 import { TableData } from '@/app/customer/machine-panel/components/PaymentTable/PaymentTable';
 
+export function formatToLocalISOString(date: Date) {
+	const offsetMs = date.getTimezoneOffset() * 60 * 1000;
+	const localDate = new Date(date.getTime() - offsetMs);
+	return localDate.toISOString().slice(0, -1);
+}
+
 export const retrieveFormattedDate = (
 	isoDate: string,
-	useUTC = true,
+	useUTC = false,
 	format = "DD/MM/YYYY HH:mm:ss"
 ): string => {
 	const date = new Date(isoDate);

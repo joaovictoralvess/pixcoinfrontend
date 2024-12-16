@@ -9,7 +9,7 @@ import GoBackIcon from '@/components/Icons/GoBackIcon';
 import PaymentCharts from '@/app/customer/payment-report/components/PaymentCharts/PaymentCharts';
 
 import { redirectCustomerToLoginIfNotLogged } from '@/helpers/customer';
-import { formatToBRL, retrieveDate, retrieveFormattedDate } from '@/helpers/payment';
+import { formatToBRL, formatToLocalISOString, retrieveDate, retrieveFormattedDate } from '@/helpers/payment';
 
 import ReportService from '@/services/Report';
 
@@ -85,7 +85,9 @@ export default async function PaymentReportScreen(props: PaymentReportScreen) {
 						</span>
 
 						<span className='payment-report-screen__dates__generate-in'>
-							Gerado em {retrieveFormattedDate(new Date().toISOString(), false)}
+							Gerado em {retrieveFormattedDate(
+							formatToLocalISOString(new Date())
+						)}
 						</span>
 					</div>
 
