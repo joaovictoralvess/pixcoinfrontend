@@ -66,18 +66,19 @@ export default async function PaymentReportScreen(props: PaymentReportScreen) {
 		return `/customer/payment-report/${id}?startDate=${startDate}&endDate=${endDate}`
 	}
 
-	const formatDateToDDMMYYYYHHMMSS = (date: Date) => {
-		const padZero = (num: number) => String(num).padStart(2, '0');
+	const formatDateToDDMMYYYYHHMMSS = (date: Date, timeZone: string = 'America/Sao_Paulo') => {
+		const formatter = new Intl.DateTimeFormat('pt-BR', {
+			timeZone,
+			year: 'numeric',
+			month: '2-digit',
+			day: '2-digit',
+			hour: '2-digit',
+			minute: '2-digit',
+			second: '2-digit',
+		});
 
-		const day = padZero(date.getDate());
-		const month = padZero(date.getMonth() + 1);
-		const year = date.getFullYear();
-		const hours = padZero(date.getHours());
-		const minutes = padZero(date.getMinutes());
-		const seconds = padZero(date.getSeconds());
-
-		return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
-	}
+		return formatter.format(date).replace(',', '');
+	};
 
 	return (
 		<>
