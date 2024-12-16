@@ -35,6 +35,7 @@ export default async function MachineDetail(props: MachineDetailProps) {
 
 	const startDate = searchParams?.startDate || '';
 	const endDate = searchParams?.endDate || '';
+	const machineName = String(searchParams?.machineName) || '';
 
 	const resolveFetchPayments = async (): Promise<IPaymentResponse> => {
 		if (startDate !== '' && endDate !== '') {
@@ -61,9 +62,10 @@ export default async function MachineDetail(props: MachineDetailProps) {
 
 			<main className='payments-panel'>
 				<Layout className="payments-panel__container">
-					<div className='payments-panel__container__wrapper-buttons'>
-						<PageTitleWithSync updateTo={`/customer/machine-panel/${id}`} title='Painel de pagamentos' />
-						<MachineActions machine={{ id } as IMachine} shouldRender='delete-only' />
+					<h4 className='payments-panel__container__selected-machine'>Máquina selecionada: {machineName}</h4>
+					<div className="payments-panel__container__wrapper-buttons">
+						<PageTitleWithSync updateTo={`/customer/machine-panel/${id}?machineName=${machineName}`} title="Painel de pagamentos" />
+						<MachineActions machine={{ id } as IMachine} shouldRender="delete-only" />
 						<PaymentReport machineId={id} />
 					</div>
 

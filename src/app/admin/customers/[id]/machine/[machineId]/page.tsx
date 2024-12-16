@@ -32,6 +32,7 @@ export default async function CustomerPayments(props: CustomerPaymentsProps) {
 
 	const startDate = searchParams?.startDate || '';
 	const endDate = searchParams?.endDate || '';
+	const machineName = String(searchParams?.machineName) || '';
 
 	const resolveFetchPayments = async (): Promise<IPaymentResponse> => {
 		if (startDate !== '' && endDate !== '') {
@@ -59,8 +60,9 @@ export default async function CustomerPayments(props: CustomerPaymentsProps) {
 
 			<main className='customer-payments-panel'>
 				<Layout className="customer-payments-panel__container">
+					<h4 className='customer-payments-panel__container__selected-machine'>Máquina selecionada: {machineName}</h4>
 					<div className='customer-payments-panel__container__wrapper-buttons'>
-						<PageTitleWithSync updateTo={`/admin/customers/${id}/machine/${machineId}`} title='Painel de pagamentos' />
+						<PageTitleWithSync updateTo={`/admin/customers/${id}/machine/${machineId}?machineName=${machineName}`} title='Painel de pagamentos' />
 						<MachineActions isAdmin={true} machine={{ id: machineId } as IMachine} shouldRender='delete-only' />
 						<PaymentReport isAdmin={true} customerId={id} machineId={machineId} />
 					</div>

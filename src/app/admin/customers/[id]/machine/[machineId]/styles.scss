@@ -4,6 +4,17 @@
   padding: 10px 10px;
 
   &__container {
+    &__selected-machine {
+      margin: 10px 0;
+      font-weight: 500;
+      padding: 8px 12px;
+      border: 1px solid variables.$application-color;
+      border-radius: 8px;
+      background-color: #f9fafb;
+      color: #1f2937;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
     &__wrapper-buttons {
       position: relative;
       max-width: 300px;

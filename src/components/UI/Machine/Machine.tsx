@@ -64,7 +64,7 @@ export default async function Machine({
 
 	return (
 		<div className='machine'>
-			<Link href={isAdmin ? `/admin/customers/${customerId}/machine/${id}` : `/customer/machine-panel/${id}`}>
+			<Link href={isAdmin ? `/admin/customers/${customerId}/machine/${id}?machineName=${machine.nome}` : `/customer/machine-panel/${id}?machineName=${machine.nome}`}>
 				<div className='machine__header'>
 					{resolveMachineStatus()}
 				</div>
