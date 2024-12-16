@@ -16,7 +16,7 @@ export const retrieveFormattedDate = (
 	const day = pad(getDatePart("Date"));
 	const month = pad(getDatePart("Month") + 1);
 	const year = getDatePart("FullYear");
-	const hours = pad(getDatePart("Hours")  - 3);
+	const hours = pad(getDatePart("Hours"));
 	const minutes = pad(getDatePart("Minutes"));
 	const seconds = pad(getDatePart("Seconds"));
 
