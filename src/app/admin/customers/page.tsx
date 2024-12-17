@@ -2,9 +2,9 @@ import Header from '@/components/UI/Header/Header';
 import Layout from '@/components/UI/Layout/Layout';
 import PageTitleWithSync from '@/components/UI/PageTitleWithSync/PageTitleWithSync';
 
-import CustomerCard from '@/app/admin/customers/components/CustomerCard/CustomerCard';
-
 import AdminService from '@/services/Admin';
+
+import CustomersWithSearch from '@/app/admin/customers/components/CustomersWithSearch/CustomersWithSearch';
 
 import CustomerActions from '@/app/admin/customers/components/CustomerActions/CustomerActions';
 
@@ -28,11 +28,7 @@ export default async function AdminCustomers() {
 					</div>
 				</Layout>
 
-				<div className='customers__container__wrapper-customers'>
-					{customers.map((customer) => (
-						<CustomerCard key={customer.id} customer={customer}  />
-					))}
-				</div>
+				<CustomersWithSearch customers={customers} />
 			</main>
 		</>
 	)
