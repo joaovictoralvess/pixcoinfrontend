@@ -95,7 +95,19 @@ export default function PaymentReport({ machineId, isAdmin, customerId, machineN
 					setStartDate('');
 					setEndDate('');
 					setClearInput(true)
-				}} updateTo={resolvePathToClearFilters()}  disabled={!(startDate && endDate)}>Limpar Filtros</ActionButton>
+				}}
+				updateTo={resolvePathToClearFilters()}
+				disabled={!(startDate && endDate)}
+				>
+					Limpar Filtros
+				</ActionButton>
+
+				<ActionButton
+					className='payment-report__buttons__delete'
+					disabled={!(startDate && endDate)}
+				>
+					Excluir selecionados
+				</ActionButton>
 			</div>
 		</div>
 	);

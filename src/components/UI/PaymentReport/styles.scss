@@ -10,6 +10,10 @@
     margin-top: 1rem;
     gap: 1rem;
     flex-wrap: wrap;
+
+    &__delete {
+      border: 1px solid #ff4c4c;
+    }
   }
 }
 
