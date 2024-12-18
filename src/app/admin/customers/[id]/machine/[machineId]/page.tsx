@@ -64,7 +64,7 @@ export default async function CustomerPayments(props: CustomerPaymentsProps) {
 					<div className='customer-payments-panel__container__wrapper-buttons'>
 						<PageTitleWithSync updateTo={`/admin/customers/${id}/machine/${machineId}?machineName=${machineName}`} title='Painel de pagamentos' />
 						<MachineActions isAdmin={true} machine={{ id: machineId } as IMachine} shouldRender='delete-only' />
-						<PaymentReport isAdmin={true} customerId={id} machineId={machineId} />
+						<PaymentReport machineName={machineName} isAdmin={true} customerId={id} machineId={machineId} />
 					</div>
 
 					<PaymentTable tableData={tableData} />

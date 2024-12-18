@@ -10,13 +10,14 @@ import { downloadReport } from '@/components/UI/PaymentReport/download';
 
 export interface PaymentReportProps {
 	machineId: string;
+	machineName: string;
 	isAdmin?: boolean;
 	customerId?: string;
 }
 
 import './styles.scss';
 
-export default function PaymentReport({ machineId, isAdmin, customerId }: PaymentReportProps) {
+export default function PaymentReport({ machineId, isAdmin, customerId, machineName }: PaymentReportProps) {
 	const [startDate, setStartDate] = useState<string>('');
 	const [endDate, setEndDate] = useState<string>('');
 	const [clearInput, setClearInput] = useState<boolean>(false);
@@ -46,26 +47,26 @@ export default function PaymentReport({ machineId, isAdmin, customerId }: Paymen
 
 	const resolvePathToFilter = (): string => {
 		if (isAdmin) {
-			return `/admin/customers/${customerId}/machine/${machineId}?startDate=${startDate}&endDate=${endDate}`;
+			return `/admin/customers/${customerId}/machine/${machineId}?machineName=${machineName}&startDate=${startDate}&endDate=${endDate}`;
 		}
 
-		return `/customer/machine-panel/${machineId}?startDate=${startDate}&endDate=${endDate}`;
+		return `/customer/machine-panel/${machineId}?machineName=${machineName}&startDate=${startDate}&endDate=${endDate}`;
 	}
 
 	const resolvePathToClearFilters = (): string => {
 		if (isAdmin) {
-			return `/admin/customers/${customerId}/machine/${machineId}`;
+			return `/admin/customers/${customerId}/machine/${machineId}?machineName=${machineName}`;
 		}
 
-		return `/customer/machine-panel/${machineId}`;
+		return `/customer/machine-panel/${machineId}?machineName=${machineName}`;
 	}
 
 	const resolvePathToReport = () => {
 		if (isAdmin) {
-			return `/customer/payment-report/${machineId}?startDate=${startDate}&endDate=${endDate}&customerId=${customerId}`;
+			return `/customer/payment-report/${machineId}?machineName=${machineName}&startDate=${startDate}&endDate=${endDate}&customerId=${customerId}`;
 		}
 
-		return `/customer/payment-report/${machineId}?startDate=${startDate}&endDate=${endDate}`;
+		return `/customer/payment-report/${machineId}?machineName=${machineName}&startDate=${startDate}&endDate=${endDate}`;
 	}
 
 	return (

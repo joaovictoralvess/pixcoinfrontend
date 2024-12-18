@@ -35,6 +35,8 @@ export default async function PaymentReportScreen(props: PaymentReportScreen) {
 	const endDate = String(searchParams?.endDate) || '';
 	const newEndDate = new Date(endDate);
 
+	const machineName = String(searchParams?.machineName) || '';
+
 	const customerId = String(searchParams?.customerId) || '';
 
 	newEndDate.setUTCHours(23, 59, 0, 0);
@@ -52,10 +54,10 @@ export default async function PaymentReportScreen(props: PaymentReportScreen) {
 
 	const resolveGoBackPath = (): string => {
 		if (isADMIN) {
-			return `/admin/customers/${customerId}/machine/${id}`
+			return `/admin/customers/${customerId}/machine/${id}?machineName=${machineName}`;
 		}
 
-		return `/customer/machine-panel/${id}`;
+		return `/customer/machine-panel/${id}?machineName=${machineName}`;
 	}
 
 	const resolveUpdatePath = (): string => {
