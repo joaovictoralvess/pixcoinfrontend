@@ -8,6 +8,8 @@ export interface PaymentChartsProps {
 	values: number[];
 }
 
+import './styles.scss';
+
 export default function PaymentCharts({ labels, values }: PaymentChartsProps) {
 	Chart.register(...registerables);
 	const paymentsRef = useRef<HTMLCanvasElement | null>(null);
@@ -54,17 +56,16 @@ export default function PaymentCharts({ labels, values }: PaymentChartsProps) {
 			});
 		}
 
-		// Cleanup na desmontagem do componente
 		return () => {
 			if (chartInstance.current) {
 				chartInstance.current.destroy();
 				chartInstance.current = null;
 			}
 		};
-	}, [labels, values]); // Atualizar o gráfico sempre que labels ou values mudarem
+	}, [labels, values]);
 
 	return (
-		<div>
+		<div className='graph'>
 			<canvas style={{ marginRight: 'auto' }} width={500} height={500} ref={paymentsRef}></canvas>
 		</div>
 	);

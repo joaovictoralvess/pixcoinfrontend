@@ -20,12 +20,11 @@
 
   &__graph {
     display: flex;
-    flex-flow: wrap row;
+    flex-direction: column;
     margin-top: 1rem;
 
     &__data {
       display: flex;
-      gap: 10px;
 
       &__tax {
         span {
