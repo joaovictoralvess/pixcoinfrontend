@@ -15,6 +15,26 @@ export const formatDateToDDMMYYYYHHMMSS = (date: Date, timeZone: string = 'Ameri
 	return formatter.format(date).replace(',', '');
 };
 
+export const parseDDMMYYYYHHMMSS = (formattedDate: string, timeZone: string = 'America/Sao_Paulo'): string => {
+	const [datePart, timePart] = formattedDate.split(' ');
+	const [day, month, year] = datePart.split('/').map(Number);
+	const [hours, minutes, seconds] = timePart.split(':').map(Number);
+
+	const formatter = new Intl.DateTimeFormat('en-US', {
+		timeZone,
+		year: 'numeric',
+		month: '2-digit',
+		day: '2-digit',
+		hour: '2-digit',
+		minute: '2-digit',
+		second: '2-digit',
+		hour12: false,
+	});
+
+	const utcDate = new Date(Date.UTC(year, month - 1, day, hours, minutes, seconds));
+	return utcDate.toISOString();
+};
+
 export const retrievePaymentForm = (currentPaymentForm: string): string => {
 	const paymentFormMap: Record<string, string> = {
 		bank_transfer: 'PIX',
