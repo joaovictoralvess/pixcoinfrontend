@@ -17,6 +17,8 @@ export interface PaymentReportProps {
 	customerId?: string;
 }
 
+import RemoveSelectedPaymentsForm from '@/app/customer/payment-report/components/RemoveSelectedPaymentsForm/RemoveSelectedPaymentsForm';
+
 import './styles.scss';
 
 export default function PaymentReport({ machineId, isAdmin, customerId, machineName }: PaymentReportProps) {
@@ -108,7 +110,7 @@ export default function PaymentReport({ machineId, isAdmin, customerId, machineN
 
 				<ActionButton
 					onClick={() => setDeletePaymentsModal(true)}
-					className='payment-report__buttons__delete'
+					className='payment-report__buttons__delete-selected'
 					disabled={!(startDate && endDate)}
 				>
 					Excluir selecionados
@@ -117,7 +119,12 @@ export default function PaymentReport({ machineId, isAdmin, customerId, machineN
 
 			{deletePaymentsModal && (
 				<Modal onClose={() => setDeletePaymentsModal(!deletePaymentsModal)} title={'Excluir pagamentos'}>
-
+					<RemoveSelectedPaymentsForm
+						cancelAction={() => setDeletePaymentsModal(false)}
+						machineId={machineId}
+						startDate={startDate}
+						endDate={endDate}
+					/>
 				</Modal>
 			)}
 		</div>

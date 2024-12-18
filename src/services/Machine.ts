@@ -119,7 +119,27 @@ const MachineService = {
 		});
 
 		return await response.json();
-	}
+	},
+	removeSelectedPayments: async (machineId: string, startDate: string, endDate: string): Promise<{message: string}> => {
+		const user = await getSession() as User;
+		const data = {
+			machineId,
+			startDate,
+			endDate,
+		}
+		const payload = JSON.stringify(data);
+
+		const response = await fetch(`${process.env.REACT_APP_SERVIDOR}/delete-selected-payments`, {
+			method: 'POST',
+			headers: {
+				"Content-Type": "application/json",
+				"x-access-token": user.token
+			},
+			body: payload
+		});
+
+		return await response.json()
+	},
 }
 
 export default MachineService;
