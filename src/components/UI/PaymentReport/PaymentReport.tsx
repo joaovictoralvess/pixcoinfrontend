@@ -5,6 +5,8 @@ import { useState } from 'react';
 import DatePickerRange from '@/components/Forms/DatePicker/DatePicker';
 import ActionButton from '@/app/customer/machine-panel/components/ActionButton/ActionButton';
 
+import Modal from '@/components/UI/Modal/Modal';
+
 import { DownloadReportRequest } from '@/interfaces/Report';
 import { downloadReport } from '@/components/UI/PaymentReport/download';
 
@@ -21,6 +23,8 @@ export default function PaymentReport({ machineId, isAdmin, customerId, machineN
 	const [startDate, setStartDate] = useState<string>('');
 	const [endDate, setEndDate] = useState<string>('');
 	const [clearInput, setClearInput] = useState<boolean>(false);
+
+	const [deletePaymentsModal, setDeletePaymentsModal] = useState<boolean>(false);
 
 	const handleDownloadReport = async () => {
 		const newEndDate = new Date(endDate);
@@ -103,12 +107,19 @@ export default function PaymentReport({ machineId, isAdmin, customerId, machineN
 				</ActionButton>
 
 				<ActionButton
+					onClick={() => setDeletePaymentsModal(true)}
 					className='payment-report__buttons__delete'
 					disabled={!(startDate && endDate)}
 				>
 					Excluir selecionados
 				</ActionButton>
 			</div>
+
+			{deletePaymentsModal && (
+				<Modal onClose={() => setDeletePaymentsModal(!deletePaymentsModal)} title={'Excluir pagamentos'}>
+
+				</Modal>
+			)}
 		</div>
 	);
 }
