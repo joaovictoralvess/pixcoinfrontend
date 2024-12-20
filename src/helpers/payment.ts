@@ -84,14 +84,15 @@ export const retrieveDate = (isoDate: string): string => {
 	return  `${dia}/${mes}/${ano}`;
 }
 
-export const removeDuplicateMP = (data: IPayment[]): IPayment[] => {
+export const removeDuplicateMP = (data: IPayment[]) => {
 	const uniqueData: IPayment[] = [];
-	const seenIds = new Set<string>();
+	const seenItems = new Set();
 
 	data.forEach((item) => {
-		if (!seenIds.has(item.mercadoPagoId)) {
+		const key = `${item.mercadoPagoId}-${item.valor}-${item.id}`;
+		if (!seenItems.has(key)) {
 			uniqueData.push(item);
-			seenIds.add(item.mercadoPagoId);
+			seenItems.add(key);
 		}
 	});
 
