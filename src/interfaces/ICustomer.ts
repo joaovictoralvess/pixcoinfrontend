@@ -10,7 +10,7 @@ export interface CreateCustomerRequest {
 
 export interface ICustomer {
 	ativo: boolean;
-	dataInclusao: string;
+	data_inclusao: string;
 	dataVencimento: string;
 	email: string;
 	id: string;
@@ -22,7 +22,7 @@ export interface ICustomer {
 	senha: string;
 	ultimoAcesso: string | null;
 	error?: string;
-	Maquina: IMachine[]
+	maquinas: IMachine[]
 }
 
 export interface EditCustomerRequest {

@@ -38,7 +38,7 @@ export default async function AdminCustomer(props: AdminCustomerProps) {
 					</div>
 
 					<div className='customer__container__wrapper-machines'>
-						{customer.Maquina && customer.Maquina.length && customer.Maquina.map((machine) => (
+						{customer.maquinas && customer.maquinas.length && customer.maquinas.map((machine) => (
 							<Machine customerId={customer.id} key={`${machine.id}`} machine={machine} />
 						))}
 					</div>

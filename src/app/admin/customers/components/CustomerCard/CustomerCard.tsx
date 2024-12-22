@@ -30,7 +30,7 @@ export default function CustomerCard({ customer }: CustomerCardProps) {
 				<div className='customer-card__customer__data'>
 					<h1>{customer.nome}</h1>
 					<h3>{customer.email}</h3>
-					<h3>Total de máquinas: {customer.Maquina.length}</h3>
+					<h3>Total de máquinas: {customer.maquinas.length}</h3>
 				</div>
 
 				<div className='customer-card__customer__situation'>
@@ -44,7 +44,7 @@ export default function CustomerCard({ customer }: CustomerCardProps) {
 			</div>
 
 			<div className='customer-card__dates'>
-				<span>Data de inclusão: {retrieveDate(customer.dataInclusao)}</span>
+				<span>Data de inclusão: {retrieveDate(customer.data_inclusao)}</span>
 				{customer.ultimoAcesso && (<span>Ultimo acesso: {retrieveDate(customer.ultimoAcesso)}</span>)}
 			</div>
 		</Link>
