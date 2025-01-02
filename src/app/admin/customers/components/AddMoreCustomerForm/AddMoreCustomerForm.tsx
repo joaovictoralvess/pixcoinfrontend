@@ -43,7 +43,13 @@ export default function AddMoreCustomerForm() {
 				label='Token'
 				placeholder='Token'
 				title='Token do cliente'
-				error={state.errors.token}
+			/>
+
+			<TextInput
+				name='pagbank_token'
+				label='Pagbank Token'
+				placeholder='Pagbank Token'
+				title='Token do pagbank'
 			/>
 
 			<TextInput

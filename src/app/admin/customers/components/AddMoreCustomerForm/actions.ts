@@ -27,7 +27,6 @@ const validateEditMachineForm = (formData: FormData): AddMoreCustomerState => {
 				name: z.string().min(3, '"Nome" deve conter no mínimo 3 dígitos.'),
 				email: z.string().email('E-mail inválido.'),
 				password: z.string().min(6, 'Senha deve conter no mínimo 6 dígitos.'),
-				token: z.string().min(1, 'Token deve ser preenchido.'),
 				maturity: z.string().min(1, 'Vencimento deve ser preenchido.'),
 			});
 
@@ -55,6 +54,7 @@ export const handeCreateMoreCustomer = async (prevState: any, formData: FormData
 		nome: `${formData.get('name')}`,
 		email: `${formData.get('email')}`,
 		mercadoPagoToken: `${formData.get('token')}`,
+		pagbankToken: `${formData.get('pagbank_token')}`,
 		senha: `${formData.get('password')}`,
 		dataVencimento: new Date(`${formData.get('maturity')}`).toISOString(),
 	};
