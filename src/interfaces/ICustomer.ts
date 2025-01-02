@@ -29,4 +29,6 @@ export interface ICustomer {
 export interface EditCustomerRequest {
 	dataVencimento: string
 	nome: string
+	pagbankToken: string
+	mercadoPagoToken: string
 }
