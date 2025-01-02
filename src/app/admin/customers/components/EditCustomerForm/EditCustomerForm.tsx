@@ -35,7 +35,14 @@ export default function EditCustomerForm({ customer }: EditCustomerFormProps) {
 				placeholder='Token'
 				title='Token do cliente'
 				defaultValue={customer.mercadoPagoToken}
-				error={state.errors.token}
+			/>
+
+			<TextInput
+				name='pagbank_token'
+				label='Pagbank Token'
+				placeholder='Pagbank Token'
+				title='Token do pagbank'
+				defaultValue={customer.pagbankToken ?? ''}
 			/>
 
 			<TextInput

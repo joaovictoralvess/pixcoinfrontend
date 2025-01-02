@@ -24,7 +24,6 @@ const validateEditCustomer = (formData: FormData): EditCustomerState => {
 		z
 			.object({
 				name: z.string().min(3, '"Nome" deve conter no mínimo 3 dígitos.'),
-				token: z.string().min(1, 'Token deve ser preenchido.'),
 				maturity: z.string().min(1, 'Vencimento deve ser preenchido.'),
 			});
 

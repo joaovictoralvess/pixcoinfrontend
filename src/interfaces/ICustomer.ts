@@ -4,6 +4,7 @@ export interface CreateCustomerRequest {
 	dataVencimento: string
 	email: string;
 	mercadoPagoToken: string;
+	pagbankToken: string;
 	nome: string
 	senha: string;
 }
