@@ -50,6 +50,13 @@ export default function AddMoreMachineForm({ clientId }: AddMoreMachineFormProps
 			/>
 
 			<TextInput
+				name='serial'
+				label='Serial da máquina'
+				placeholder='Serial da máquina'
+				title='Serial da máquina'
+			/>
+
+			<TextInput
 				name='clienteId'
 				defaultValue={clientId}
 				type='hidden'

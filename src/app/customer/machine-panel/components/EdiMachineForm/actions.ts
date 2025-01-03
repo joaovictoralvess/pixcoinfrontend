@@ -57,6 +57,7 @@ export const handleEditMachine = async (prevState: any, formData: FormData) => {
 		descricao: `${formData.get('description')}`,
 		estoque: Number(formData.get('stock')),
 		valorDoPulso: `${formData.get('value')}`,
+		maquininha_serial: `${formData.get('serial')}`,
 		store_id: `${formData.get('storeId')}`,
 		id: `${formData.get('id')}`,
 	};

@@ -55,6 +55,7 @@ export const handeCreateMoreCustomer = async (prevState: any, formData: FormData
 		email: `${formData.get('email')}`,
 		mercadoPagoToken: `${formData.get('token')}`,
 		pagbankToken: `${formData.get('pagbank_token')}`,
+		pagbankEmail: `${formData.get('pagbank_email')}`,
 		senha: `${formData.get('password')}`,
 		dataVencimento: new Date(`${formData.get('maturity')}`).toISOString(),
 	};
