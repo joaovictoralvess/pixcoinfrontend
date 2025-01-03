@@ -26,6 +26,7 @@ export interface UpdateMachineRequest {
 	nome: string;
 	store_id: string;
 	valorDoPulso: string;
+	maquininha_serial: string;
 }
 
 export interface UpdateMachineResponse {
@@ -56,6 +57,7 @@ export interface CreateMachineRequest {
 	store_id: string;
 	valorDoPulso: string;
 	valorDoPix: string;
+	maquininha_serial: string;
 }
 
 export interface CreateMachineResponse {

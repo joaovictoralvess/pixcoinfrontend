@@ -54,6 +54,7 @@ export const handleCreateMachine = async (prevState: any, formData: FormData) =>
 		store_id: `${formData.get('store_id')}`,
 		valorDoPulso: `${formData.get('pulse_value')}`,
 		clienteId: String(formData.get('clienteId')),
+		maquininha_serial: String(formData.get('serial')),
 		valorDoPix: ''
 	};
 

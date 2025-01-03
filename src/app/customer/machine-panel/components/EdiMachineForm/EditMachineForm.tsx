@@ -47,6 +47,14 @@ export default function EditMachineForm({ machine }: EditMachineFormProps) {
 			/>
 
 			<TextInput
+				name='serial'
+				label='Serial da máquina'
+				placeholder='Serial da máquina'
+				title='Serial da máquina'
+				defaultValue={machine.maquininha_serial || ''}
+			/>
+
+			<TextInput
 				name='stock'
 				label='Estoque'
 				placeholder='Estoque'
