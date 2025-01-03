@@ -53,6 +53,13 @@ export default function AddMoreCustomerForm() {
 			/>
 
 			<TextInput
+				name='pagbank_email'
+				label='Pagbank E-mail'
+				placeholder='Pagbank E-mail'
+				title='E-mail do pagbank'
+			/>
+
+			<TextInput
 				name='maturity'
 				label='Vencimento'
 				placeholder='Vencimento'

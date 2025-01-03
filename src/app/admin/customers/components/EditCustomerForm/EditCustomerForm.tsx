@@ -14,7 +14,6 @@ export interface EditCustomerFormProps {
 
 import './styles.scss';
 
-
 export default function EditCustomerForm({ customer }: EditCustomerFormProps) {
 	const [state, formAction] = useActionState(handleEditCustomer, initialState);
 	return (
@@ -43,6 +42,14 @@ export default function EditCustomerForm({ customer }: EditCustomerFormProps) {
 				placeholder='Pagbank Token'
 				title='Token do pagbank'
 				defaultValue={customer.pagbankToken ?? ''}
+			/>
+
+			<TextInput
+				name='pagbank_email'
+				label='Pagbank E-mail'
+				placeholder='Pagbank E-mail'
+				title='E-mail do pagbank'
+				defaultValue={customer.pagbankEmail ?? ''}
 			/>
 
 			<TextInput
