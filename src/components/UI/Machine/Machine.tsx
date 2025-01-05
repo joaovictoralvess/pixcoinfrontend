@@ -32,8 +32,10 @@ export default async function Machine({
 		pulso,
 		totalComEstorno,
 		totalEspecie,
-		totalSemEstorno
+		totalSemEstorno,
+		tempoDoPulso
 	} = machine;
+	console.log(machine);
 
 	const resolveMachineStatus = (): ReactNode => {
 		if (statusMap[status] === 'OFFLINE') {
@@ -75,6 +77,7 @@ export default async function Machine({
 					<p className="machine__body__description">Estornos: {formatToBRL(`${totalComEstorno}`)}</p>
 					<p className="machine__body__description">Espécie: {formatToBRL(`${totalEspecie}`)}</p>
 					<p className="machine__body__description">Pulso: {formatToBRL(pulso)}</p>
+					<p className="machine__body__description">Tempo delay do pulso: {tempoDoPulso}s</p>
 					<p className="machine__body__description">StoreId: {store_id}</p>
 				</div>
 			</Link>
