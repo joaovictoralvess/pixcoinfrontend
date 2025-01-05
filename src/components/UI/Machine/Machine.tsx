@@ -35,7 +35,6 @@ export default async function Machine({
 		totalSemEstorno,
 		tempoDoPulso
 	} = machine;
-	console.log(machine);
 
 	const resolveMachineStatus = (): ReactNode => {
 		if (statusMap[status] === 'OFFLINE') {
