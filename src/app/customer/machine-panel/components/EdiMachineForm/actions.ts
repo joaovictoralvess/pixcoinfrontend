@@ -60,6 +60,7 @@ export const handleEditMachine = async (prevState: any, formData: FormData) => {
 		maquininha_serial: `${formData.get('serial')}`,
 		store_id: `${formData.get('storeId')}`,
 		id: `${formData.get('id')}`,
+		tempoDoPulso: Number(`${formData.get('pulseTime')}`),
 	};
 
 	const resp = await MachineService.update(data);

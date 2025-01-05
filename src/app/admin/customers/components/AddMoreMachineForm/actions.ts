@@ -55,11 +55,13 @@ export const handleCreateMachine = async (prevState: any, formData: FormData) =>
 		valorDoPulso: `${formData.get('pulse_value')}`,
 		clienteId: String(formData.get('clienteId')),
 		maquininha_serial: String(formData.get('serial')),
-		valorDoPix: ''
+		valorDoPix: '',
+		tempoDoPulso: Number(`${formData.get('pulseTime')}`),
 	};
 
 	const resp = await AdminService.createMachine(data);
-	if (!resp.id) {
+	console.log(resp);
+	if (resp.message && resp.message !== 'Máquina criada com sucesso!') {
 		return {
 			isValid: false,
 			errors: {

@@ -8,6 +8,7 @@ export interface IMachine {
 	nome: string;
 	pessoaId: string;
 	pulso: string;
+	tempoDoPulso: number;
 	status: 'ONLINE' | 'OFFLINE' | 'PAGAMENTO_RECENTE';
 	store_id: string;
 	ultimaRequisicao: string;
@@ -27,6 +28,7 @@ export interface UpdateMachineRequest {
 	store_id: string;
 	valorDoPulso: string;
 	maquininha_serial: string;
+	tempoDoPulso: number
 }
 
 export interface UpdateMachineResponse {
@@ -58,6 +60,7 @@ export interface CreateMachineRequest {
 	valorDoPulso: string;
 	valorDoPix: string;
 	maquininha_serial: string;
+	tempoDoPulso: number;
 }
 
 export interface CreateMachineResponse {
@@ -70,4 +73,5 @@ export interface CreateMachineResponse {
 	pessoaId: string;
 	store_id: string;
 	valorDoPulso: string;
+	message?: string;
 }
