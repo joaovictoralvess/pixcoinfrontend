@@ -44,6 +44,7 @@ export default function EditMachineForm({ machine }: EditMachineFormProps) {
 				title='Valor do pulso'
 				error={state.errors.value}
 				defaultValue={machine.pulso}
+				info="Valor do pulso em reais. Ex: se o valor do pulso for R$ 4, o cliente deve pagar R$ 4 para a entrada de 1 coin."
 			/>
 
 			<TextInput
@@ -53,6 +54,7 @@ export default function EditMachineForm({ machine }: EditMachineFormProps) {
 				title='Tempo low'
 				defaultValue={machine.tempoLow || 0}
 				type='number'
+				info="Tempo do noteiro baixo."
 			/>
 
 			<TextInput
@@ -62,6 +64,7 @@ export default function EditMachineForm({ machine }: EditMachineFormProps) {
 				title='Tempo high'
 				defaultValue={machine.tempoHigh || 0}
 				type='number'
+				info="Tempo do noteiro alto."
 			/>
 
 			<TextInput

@@ -47,6 +47,7 @@ export default function AddMoreMachineForm({ clientId }: AddMoreMachineFormProps
 				placeholder='Valor do pulso'
 				title='Valor do pulso'
 				error={state.errors.pulse_value}
+				info="Valor do pulso em reais. Ex: se o valor do pulso for R$ 4, o cliente deve pagar R$ 4 para a entrada de 1 coin."
 			/>
 
 			<TextInput
@@ -56,6 +57,7 @@ export default function AddMoreMachineForm({ clientId }: AddMoreMachineFormProps
 				title='Tempo low'
 				defaultValue={0}
 				type='number'
+				info="Tempo do noteiro baixo."
 			/>
 
 			<TextInput
@@ -65,6 +67,7 @@ export default function AddMoreMachineForm({ clientId }: AddMoreMachineFormProps
 				title='Tempo high'
 				defaultValue={0}
 				type='number'
+				info="Tempo do noteiro alto."
 			/>
 
 			<TextInput

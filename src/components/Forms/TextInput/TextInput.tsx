@@ -9,6 +9,7 @@ export interface TextInputProps extends InputHTMLAttributes<HTMLInputElement> {
 	icon?: ReactNode;
 	error?: string;
 	className?: string;
+	info?: string;
 }
 
 export default function TextInput({
@@ -18,6 +19,7 @@ export default function TextInput({
 	error,
 	type,
 	className,
+	info,
 	...rest
 }: TextInputProps) {
 	return (
@@ -27,6 +29,7 @@ export default function TextInput({
 			<span className="bar"></span>
 			{icon && (<span className='icon'>{icon}</span>)}
 			{error && <span className='error'>{error}</span>}
+			{info && <span className='info'>{info}</span>}
 		</div>
 	)
 }
