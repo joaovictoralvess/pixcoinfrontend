@@ -47,11 +47,20 @@ export default function EditMachineForm({ machine }: EditMachineFormProps) {
 			/>
 
 			<TextInput
-				name='pulseTime'
-				label='Tempo do pulso'
-				placeholder='Tempo do pulso'
-				title='Tempo do pulso'
-				defaultValue={machine.tempoDoPulso || 0}
+				name='timeLow'
+				label='Tempo low'
+				placeholder='Tempo low'
+				title='Tempo low'
+				defaultValue={machine.tempoLow || 0}
+				type='number'
+			/>
+
+			<TextInput
+				name='timeHigh'
+				label='Tempo high'
+				placeholder='Tempo high'
+				title='Tempo high'
+				defaultValue={machine.tempoHigh || 0}
 				type='number'
 			/>
 

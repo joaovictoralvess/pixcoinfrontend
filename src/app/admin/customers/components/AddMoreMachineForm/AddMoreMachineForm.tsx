@@ -50,10 +50,19 @@ export default function AddMoreMachineForm({ clientId }: AddMoreMachineFormProps
 			/>
 
 			<TextInput
-				name='pulseTime'
-				label='Tempo do pulso'
-				placeholder='Tempo do pulso'
-				title='Tempo do pulso'
+				name='timeLow'
+				label='Tempo low'
+				placeholder='Tempo low'
+				title='Tempo low'
+				defaultValue={0}
+				type='number'
+			/>
+
+			<TextInput
+				name='timeHigh'
+				label='Tempo high'
+				placeholder='Tempo high'
+				title='Tempo high'
 				defaultValue={0}
 				type='number'
 			/>

@@ -56,7 +56,8 @@ export const handleCreateMachine = async (prevState: any, formData: FormData) =>
 		clienteId: String(formData.get('clienteId')),
 		maquininha_serial: String(formData.get('serial')),
 		valorDoPix: '',
-		tempoDoPulso: Number(`${formData.get('pulseTime')}`),
+		tempoLow: Number(`${formData.get('timeLow')}`),
+		tempoHigh: Number(`${formData.get('timeHigh')}`),
 	};
 
 	const resp = await AdminService.createMachine(data);

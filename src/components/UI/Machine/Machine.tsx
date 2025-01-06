@@ -33,7 +33,8 @@ export default async function Machine({
 		totalComEstorno,
 		totalEspecie,
 		totalSemEstorno,
-		tempoDoPulso
+		tempoLow,
+		tempoHigh
 	} = machine;
 
 	const resolveMachineStatus = (): ReactNode => {
@@ -76,7 +77,8 @@ export default async function Machine({
 					<p className="machine__body__description">Estornos: {formatToBRL(`${totalComEstorno}`)}</p>
 					<p className="machine__body__description">Espécie: {formatToBRL(`${totalEspecie}`)}</p>
 					<p className="machine__body__description">Pulso: {formatToBRL(pulso)}</p>
-					<p className="machine__body__description">Tempo delay do pulso: {tempoDoPulso}s</p>
+					<p className="machine__body__description">Tempo Low: {tempoLow}s</p>
+					<p className="machine__body__description">Tempo High: {tempoHigh}s</p>
 					<p className="machine__body__description">StoreId: {store_id}</p>
 				</div>
 			</Link>
