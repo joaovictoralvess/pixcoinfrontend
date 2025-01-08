@@ -1,0 +1,31 @@
+.payment-report {
+  display: flex;
+  align-items: end;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+
+  &__buttons {
+    display: flex;
+    margin-top: 1rem;
+    gap: 1rem;
+    flex-wrap: wrap;
+
+    &__delete-selected {
+      border: 1px solid #ff4c4c;
+    }
+  }
+}
+
+input[type="date"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 5px;
+}
+
+@media screen and (max-width: 500px) {
+  .payment-report {
+    display: block;
+  }
+}

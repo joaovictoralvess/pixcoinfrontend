@@ -1,0 +1,40 @@
+@use '@/app/variables' as variables;
+
+.customer-card {
+  border: 1px solid variables.$application-color;
+  border-radius: 1rem;
+  padding: 3rem;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: currentColor;
+  transition: all 0.3s;
+
+  &:hover {
+    transform: scale(0.9);
+    background-color: #f1f1f1;
+  }
+
+  &__customer {
+    display: flex;
+    justify-content: space-between;
+
+    &__data {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    @media screen and (max-width: 730px) {
+      flex-direction: column;
+      gap: 2rem;
+    }
+  }
+
+  &__dates {
+    margin-top: 1rem;
+    display: flex;
+    gap: 20px;
+  }
+}

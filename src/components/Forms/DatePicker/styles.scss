@@ -1,0 +1,35 @@
+@use '@/app/variables' as variables;
+
+.date-picker-range {
+  &__inputs {
+    display: flex;
+    flex-wrap: wrap;
+    width: 18.75rem;
+    gap: 2rem;
+
+    &__wrapper-input {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 100%;
+
+      span {
+        font-size: 14px;
+      }
+    }
+
+    input {
+      outline: none;
+      font-weight: 500;
+      color: #1d1d1d;
+      width: 100%;
+      box-sizing: border-box;
+      letter-spacing: 1px;
+      border: 0;
+      padding: 4px 0;
+      border-bottom: 1px solid variables.$application-color;
+      background-color: transparent;
+      font-size: 16px;
+    }
+  }
+}

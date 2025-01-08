@@ -1,0 +1,16 @@
+.edit-machine-form {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    margin-top: 3rem;
+
+    button {
+        margin-top: initial;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .edit-machine-form {
+        min-width: 300px;
+    }
+}

@@ -1,0 +1,22 @@
+.machine-action-buttons {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+
+  &--delete {
+    border: 1px solid #ff4c4c !important;
+
+    svg {
+      color: #ff4c4c !important;
+    }
+  }
+
+  button {
+    width: 170px !important;
+    justify-content: center !important;
+
+    svg {
+      animation: none !important;
+    }
+  }
+}
