@@ -13,7 +13,7 @@ export interface IPayment {
 	id: string;
 	maquinaId: string;
 	mercadoPagoId: string;
-	motivoEstorno?: string;
+	motivo_estorno?: string;
 	operadora: string;
 	removido: boolean;
 	taxas?: string;

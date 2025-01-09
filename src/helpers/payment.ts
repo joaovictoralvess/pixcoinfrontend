@@ -70,7 +70,7 @@ export default function transformPaymentsData(payments: IPayment[]): TableData[]
 		value: formatToBRL(payment.valor),
 		identifierMP: payment.mercadoPagoId,
 		reversed: retrieveReversedText(payment.estornado),
-		reason: payment.motivoEstorno,
+		reason: payment.motivo_estorno,
 	}));
 }
 

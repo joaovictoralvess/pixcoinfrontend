@@ -61,7 +61,7 @@ export const handleCreateMachine = async (prevState: any, formData: FormData) =>
 	};
 
 	const resp = await AdminService.createMachine(data);
-	console.log(resp);
+
 	if (resp.message && resp.message !== 'Máquina criada com sucesso!') {
 		return {
 			isValid: false,
