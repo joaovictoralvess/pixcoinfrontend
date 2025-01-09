@@ -22,7 +22,7 @@ export const formatDateToDDMMYYYYHHMMSS = (
 export const retrievePaymentForm = (currentPaymentForm: string): string => {
 	const paymentFormMap: Record<string, string> = {
 		bank_transfer: 'PIX',
-		CASH: 'Especie',
+		CASH: 'Espécie',
 		debit_card: 'Débito',
 		credit_card: 'Crédito',
 		account_money: '',
