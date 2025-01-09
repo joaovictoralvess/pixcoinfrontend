@@ -88,7 +88,17 @@ export const removeDuplicateMP = (data: IPayment[]) => {
 };
 
 export const adjustDateToBR = (date: string): string => {
-	return new Date(date).toLocaleString('pt-BR', {
-		timeZone: 'America/Sao_Paulo',
-	}).replace(',', '');
+	const localDate = new Date(date);
+
+	return new Intl.DateTimeFormat("pt-BR", {
+		timeZone: "America/Sao_Paulo",
+		year: "numeric",
+		month: "2-digit",
+		day: "2-digit",
+		hour: "2-digit",
+		minute: "2-digit",
+		second: "2-digit",
+	})
+		.format(localDate)
+		.replace(",", "");
 };
