@@ -53,7 +53,7 @@ export default function transformPaymentsData(
 	payments: IPayment[]
 ): TableData[] {
 	return payments.map((payment) => ({
-		date: payment.data,
+		date: adjustDateToBR(payment.data),
 		paymentForm: retrievePaymentForm(payment.tipo),
 		value: formatToBRL(payment.valor),
 		identifierMP: payment.mercadoPagoId,
@@ -88,17 +88,6 @@ export const removeDuplicateMP = (data: IPayment[]) => {
 };
 
 export const adjustDateToBR = (date: string): string => {
-	const localDate = new Date(date);
-
-	return new Intl.DateTimeFormat("pt-BR", {
-		timeZone: "America/Sao_Paulo",
-		year: "numeric",
-		month: "2-digit",
-		day: "2-digit",
-		hour: "2-digit",
-		minute: "2-digit",
-		second: "2-digit",
-	})
-		.format(localDate)
-		.replace(",", "");
+	const [year, month, day, hour, minute, second] = date.match(/\d+/g);
+	return `${day}/${month}/${year} ${hour}:${minute}:${second}`;
 };
