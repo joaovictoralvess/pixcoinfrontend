@@ -88,6 +88,11 @@ export const removeDuplicateMP = (data: IPayment[]) => {
 };
 
 export const adjustDateToBR = (date: string): string => {
-	const [year, month, day, hour, minute, second] = date.match(/\d+/g);
+	const match = date.match(/\d+/g);
+	if (!match || match.length < 6) {
+		return "Ocorreu um erro ao formatar a data."
+	}
+
+	const [year, month, day, hour, minute, second] = match;
 	return `${day}/${month}/${year} ${hour}:${minute}:${second}`;
 };
