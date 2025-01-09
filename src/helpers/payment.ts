@@ -88,6 +88,11 @@ export const removeDuplicateMP = (data: IPayment[]) => {
 };
 
 export const adjustDateToBR = (date: string): string => {
+	console.log("DA API -> ", date);
+	console.log('----');
+	console.log('FORMATADO -> ', new Date(date).toLocaleString('pt-BR', {
+		timeZone: 'America/Sao_Paulo',
+	}).replace(',', ''));
 	return new Date(date).toLocaleString('pt-BR', {
 		timeZone: 'America/Sao_Paulo',
 	}).replace(',', '');
