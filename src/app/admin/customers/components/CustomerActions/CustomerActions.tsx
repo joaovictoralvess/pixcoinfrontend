@@ -19,9 +19,10 @@ export interface CustomerActionsProps {
 }
 
 import './styles.scss';
+import RemoveCustomerForm from '@/app/admin/customers/components/RemoveCustomerForm/RemoveCustomerForm';
 
 export default function CustomerActions({ customer, shouldRender = 'all', clientId = '' }: CustomerActionsProps) {
-	const [selectedModal, setSelectedModal] = useState<'new-customer' | 'new-machine' | 'edit-customer' | 'desative-machine' | ''>('');
+	const [selectedModal, setSelectedModal] = useState<'new-customer' | 'new-machine' | 'edit-customer' | 'desative-machine' | 'remove-customer' | ''>('');
 
 	const handleCloseModal = () => setSelectedModal('');
 
@@ -35,6 +36,8 @@ export default function CustomerActions({ customer, shouldRender = 'all', client
 				return <EditCustomerForm customer={customer!} />
 			case 'desative-machine':
 				return <DisableMachinesForm cancelAction={() => setSelectedModal('')} customerId={clientId} />
+			case 'remove-customer':
+				return <RemoveCustomerForm cancelAction={() => setSelectedModal('')} customerId={clientId} />
 			default:
 				return null;
 		}
@@ -50,6 +53,8 @@ export default function CustomerActions({ customer, shouldRender = 'all', client
 				return 'Editar cliente'
 			case 'desative-machine':
 				return 'Ativar/Desativar máquinas'
+			case 'remove-customer':
+				return 'Excluir cliente'
 			default:
 				return '';
 		}
@@ -64,6 +69,8 @@ export default function CustomerActions({ customer, shouldRender = 'all', client
 					<ActionButton callback={() => setSelectedModal('new-machine')}>Adicionar máquina</ActionButton>
 
 					<ActionButton callback={() => setSelectedModal('edit-customer')}>Editar cliente</ActionButton>
+
+					<ActionButton callback={() => setSelectedModal('edit-customer')}>Remover cliente</ActionButton>
 
 					<ActionButton callback={() => setSelectedModal('desative-machine')}>Desativar máquinas</ActionButton>
 
@@ -126,6 +133,8 @@ export default function CustomerActions({ customer, shouldRender = 'all', client
 					<ActionButton callback={() => setSelectedModal('new-machine')}>Adicionar máquina</ActionButton>
 
 					<ActionButton callback={() => setSelectedModal('edit-customer')}>Editar cliente</ActionButton>
+
+					<ActionButton className="remove-customer" callback={() => setSelectedModal('remove-customer')}>Excluir cliente</ActionButton>
 
 					<ActionButton callback={() => setSelectedModal('desative-machine')}>Ativar/Desativar máquinas</ActionButton>
 

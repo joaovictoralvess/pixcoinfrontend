@@ -5,4 +5,14 @@
 
   display: flex;
   gap: 20px;
+
+  @media screen and (max-width: 700px) {
+    flex-wrap: wrap;
+    position: relative;
+    left: 0;
+  }
+
+  .remove-customer {
+    border: 1px solid #ff4c4c !important;
+  }
 }
