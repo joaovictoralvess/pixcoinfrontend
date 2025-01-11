@@ -58,6 +58,7 @@ export default function AddMoreMachineForm({ clientId }: AddMoreMachineFormProps
 				defaultValue={0}
 				type='number'
 				info="Tempo do noteiro baixo."
+				min={0}
 			/>
 
 			<TextInput
@@ -68,6 +69,7 @@ export default function AddMoreMachineForm({ clientId }: AddMoreMachineFormProps
 				defaultValue={0}
 				type='number'
 				info="Tempo do noteiro alto."
+				min={0}
 			/>
 
 			<TextInput

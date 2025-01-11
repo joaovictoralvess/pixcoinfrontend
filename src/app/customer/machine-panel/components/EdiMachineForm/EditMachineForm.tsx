@@ -55,6 +55,7 @@ export default function EditMachineForm({ machine }: EditMachineFormProps) {
 				defaultValue={machine.tempoLow || 0}
 				type='number'
 				info="Tempo do noteiro baixo."
+				min={0}
 			/>
 
 			<TextInput
@@ -65,6 +66,7 @@ export default function EditMachineForm({ machine }: EditMachineFormProps) {
 				defaultValue={machine.tempoHigh || 0}
 				type='number'
 				info="Tempo do noteiro alto."
+				min={0}
 			/>
 
 			<TextInput
