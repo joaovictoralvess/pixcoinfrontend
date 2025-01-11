@@ -98,7 +98,7 @@ export default function EditMachineForm({ machine }: EditMachineFormProps) {
 				type='hidden'
 			/>
 
-			<Button type="submit" title='Editar máquina'>Editar máquina</Button>
+			<Button type="submit" title='Editar máquina'>Salvar</Button>
 		</form>
 	)
 }
