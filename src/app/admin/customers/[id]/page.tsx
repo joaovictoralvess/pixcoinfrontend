@@ -37,11 +37,15 @@ export default async function AdminCustomer(props: AdminCustomerProps) {
 						<CustomerActions customer={customer} shouldRender="edit-customer-and-add-machine-and-disabled-all-machines" clientId={id} />
 					</div>
 
-					<div className='customer__container__wrapper-machines'>
-						{customer.maquinas && customer.maquinas.length && customer.maquinas.map((machine) => (
-							<Machine customerId={customer.id} key={`${machine.id}`} machine={machine} />
-						))}
-					</div>
+					{customer.maquinas.length > 0 ? (
+						<div className='customer__container__wrapper-machines'>
+							{customer.maquinas && customer.maquinas.length && customer.maquinas.map((machine) => (
+								<Machine customerId={customer.id} key={`${machine.id}`} machine={machine} />
+							))}
+						</div>
+					) : (
+						<h2 style={{marginTop: 20}}>Cliente ainda não possui máquinas</h2>
+					)}
 				</Layout>
 			</main>
 		</>
