@@ -16,9 +16,9 @@ export default function RemoveCustomerForm({ customerId, cancelAction }: RemoveM
 	const [response, formActions] = useActionState(RemoveCustomer, {} as any);
 
 	return (
-		<form className='disable-machines' action={formActions}>
+		<form className='remove-customer' action={formActions}>
 			{response && response.message && (<p>{response.message}</p>)}
-			<div className='disable-machines__buttons'>
+			<div className='remove-customer__buttons'>
 				<Button onClick={cancelAction} type='button' title='Cancelar ação'>Cancelar ação</Button>
 				<Button type="submit" title='Excluir todos os pagamentos'>Excluir Cliente</Button>
 

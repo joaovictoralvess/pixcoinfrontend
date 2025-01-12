@@ -44,7 +44,7 @@ export default async function AdminCustomer(props: AdminCustomerProps) {
 							))}
 						</div>
 					) : (
-						<h2 style={{marginTop: 20}}>Cliente ainda não possui máquinas</h2>
+						<h2 style={{marginTop: 40}}>Cliente ainda não possui máquinas</h2>
 					)}
 				</Layout>
 			</main>
