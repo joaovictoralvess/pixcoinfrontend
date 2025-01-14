@@ -76,10 +76,9 @@ export const handleEditMachine = async (prevState: any, formData: FormData) => {
 
 	const user = await getSession() as User;
 	if (user.key === 'ADMIN') {
-		return {
-			isValid: true,
-			errors: {}
-		}
+		const customerId = String(formData.get('customerId'));
+		revalidatePath(`/admin/customers/${customerId}`);
+		redirect(`/admin/customers/${customerId}`)
 	}
 
 	revalidatePath('/customer/machine-panel');

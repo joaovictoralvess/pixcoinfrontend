@@ -19,11 +19,12 @@ export interface MachineActionsProps {
 	machine: IMachine;
 	shouldRender?: 'all' | 'edit-only' | 'credit-only' | 'delete-only' | 'delete-machine';
 	isAdmin?: boolean;
+	customerId: string;
 }
 
 import './styles.scss';
 
-export default function MachineActions({ machine, isAdmin, shouldRender = 'all' }: MachineActionsProps) {
+export default function MachineActions({ machine, isAdmin, customerId, shouldRender = 'all' }: MachineActionsProps) {
 	const [selectedModal, setSelectedModal] = useState<'edit' | 'credit' | 'destroy-payments' | 'delete-machine' | ''>('');
 
 	const handleCloseModal = () => setSelectedModal('');
@@ -31,7 +32,7 @@ export default function MachineActions({ machine, isAdmin, shouldRender = 'all' 
 	const renderModalContent = () => {
 		switch (selectedModal) {
 			case 'edit':
-				return <EditMachineForm machine={machine} />;
+				return <EditMachineForm customerId={customerId} machine={machine} />;
 			case 'credit':
 				return <AddRemoteCreditForm machineId={machine.id} />;
 			case 'destroy-payments':

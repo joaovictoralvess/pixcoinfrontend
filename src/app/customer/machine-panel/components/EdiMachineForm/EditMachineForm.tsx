@@ -10,11 +10,12 @@ import { IMachine } from '@/interfaces/IMachine';
 
 export interface EditMachineFormProps {
 	machine: IMachine;
+	customerId: string
 }
 
 import './styles.scss';
 
-export default function EditMachineForm({ machine }: EditMachineFormProps) {
+export default function EditMachineForm({ machine, customerId }: EditMachineFormProps) {
 	const [state, formAction] = useActionState(handleEditMachine, initialState);
 	return (
 		<form className='edit-machine-form' action={formAction}>
@@ -95,6 +96,12 @@ export default function EditMachineForm({ machine }: EditMachineFormProps) {
 			<TextInput
 				name='id'
 				defaultValue={machine.id || '0'}
+				type='hidden'
+			/>
+
+			<TextInput
+				name='customerId'
+				defaultValue={customerId|| '0'}
 				type='hidden'
 			/>
 
