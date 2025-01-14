@@ -10,7 +10,7 @@ import { IMachine } from '@/interfaces/IMachine';
 
 export interface EditMachineFormProps {
 	machine: IMachine;
-	customerId: string
+	customerId?: string
 }
 
 import './styles.scss';

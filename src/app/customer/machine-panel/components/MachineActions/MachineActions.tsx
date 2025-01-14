@@ -19,7 +19,7 @@ export interface MachineActionsProps {
 	machine: IMachine;
 	shouldRender?: 'all' | 'edit-only' | 'credit-only' | 'delete-only' | 'delete-machine';
 	isAdmin?: boolean;
-	customerId: string;
+	customerId?: string;
 }
 
 import './styles.scss';
