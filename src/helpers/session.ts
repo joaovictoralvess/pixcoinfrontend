@@ -3,7 +3,7 @@ import { cookies } from 'next/headers';
 import jwt, { JwtPayload } from 'jsonwebtoken';
 
 const SESSION_NAME = 'current_user';
-const generateExpires = () => new Date(Date.now() + 60 * 60 * 1000);
+const generateExpires = () => new Date(Date.now() + 24 * 60 * 60 * 1000);
 
 export const createSession = async (payload: string) => {
 	const cookieStore = await cookies();
