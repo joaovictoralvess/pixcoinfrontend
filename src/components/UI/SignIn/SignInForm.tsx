@@ -20,7 +20,7 @@ export default function SignInForm({ isAdmin = false }: SignInFormProps) {
 	useLayoutEffect(() => {
 		if (typeof document !== 'undefined') {
 			do {
-				document.cookie = "current_user=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
+				document.cookie = "current_logged_user=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
 			} while (document.cookie !== '');
 		}
 	}, []);
