@@ -1,7 +1,5 @@
 import { cookies } from 'next/headers';
 
-import jwt, { JwtPayload } from 'jsonwebtoken';
-
 const SESSION_NAME = 'current_logged_user';
 const generateExpires = () => new Date(Date.now() + 24 * 60 * 60 * 1000 - 3 * 60 * 60 * 1000);
 
@@ -28,15 +26,4 @@ export const getSession = async (): Promise<any | undefined> => {
 export const logout = async () => {
 	const cookieStore = await cookies();
 	cookieStore.delete(SESSION_NAME);
-}
-
-export function isTokenExpired(token: string): boolean {
-	const decoded = jwt.decode(token) as JwtPayload | null;
-
-	if (!decoded || !decoded.exp) {
-		throw new Error('Token inválido ou sem campo "exp".');
-	}
-
-	const currentTime = Math.floor(Date.now() / 1000);
-	return decoded.exp < currentTime;
 }
