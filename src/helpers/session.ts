@@ -25,20 +25,6 @@ export const getSession = async (): Promise<any | undefined> => {
 	}
 };
 
-export const updateSession = async () => {
-	const session = await getSession();
-	if (!session) return null;
-
-	const expires = generateExpires();
-
-	return {
-		name: SESSION_NAME,
-		value: JSON.stringify(session),
-		expires,
-		httpOnly: false,
-	};
-};
-
 export const logout = async () => {
 	const cookieStore = await cookies();
 	cookieStore.delete(SESSION_NAME);
