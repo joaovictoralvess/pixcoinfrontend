@@ -34,6 +34,23 @@ export default async function MachinePanel() {
 		return (
 			<>
 				<p className='machine-panel__tip'>Selecione uma máquina para ver mais detalhes</p>
+
+				<div className="warning">
+					<div className="warning__header">Prezado(a) Cliente</div>
+					<div className="warning__content">
+						Informamos que foi enviado para cada cliente um link de cobrança referente à taxa de manutenção do
+						servidor <span className="highlight">PIXcoin</span>. Esse link foi enviado pelo aplicativo InfinitePay,
+						através do número de WhatsApp cadastrado por você.<br /><br />
+						Caso o pagamento não seja efetuado até a data de vencimento, o serviço será automaticamente
+						interrompido.<br /><br />
+						Se o pagamento já foi realizado, por favor, desconsidere este aviso.
+					</div>
+					<div className="warning__footer">
+						Atenciosamente,<br />
+						Equipe PIXcoin
+					</div>
+				</div>
+
 				{machines && machines.length && machines.map((machine) => (
 					<div key={`${machine.id}`} className="machine-panel__container__wrapper-machines">
 						<Machine machine={machine} />
