@@ -57,10 +57,17 @@ export default function transformPaymentsData(
 		date: adjustDateToBR(payment.data),
 		paymentForm: retrievePaymentForm(payment.tipo),
 		value: formatToBRL(payment.valor),
-		identifierMP: payment.mercadoPagoId,
+		identifierMP: handleIdentifierMP(payment.mercadoPagoId),
 		reversed: retrieveReversedText(payment.estornado),
 		reason: payment.motivo_estorno,
 	}));
+}
+
+export const handleIdentifierMP = (identifier: string) => {
+	if (identifier.length >= 36) {
+		return `PagSeguro-${identifier.slice(0, 8)}`;
+	}
+	return identifier;
 }
 
 export const retrieveDate = (isoDate: string): string => {
