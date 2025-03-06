@@ -41,7 +41,7 @@ export const retrievePaymentForm = (currentPaymentForm: string): string => {
 		CASH: 'Especie',
 		debit_card: 'Débito',
 		credit_card: 'Crédito',
-		account_money: '',
+		account_money: 'PIX - QR Code',
 	};
 
 	return paymentFormMap[currentPaymentForm] || '';
