@@ -95,8 +95,8 @@ export default function PaymentReport({ machineId, isAdmin, customerId, machineN
 
 			<div className='payment-report__buttons'>
 				<ActionButton updateTo={resolvePathToFilter()} disabled={!(startDate && endDate)}>Filtrar</ActionButton>
-				<ActionButton updateTo={resolvePathToReport()} disabled={!(startDate && endDate)}>Relatório</ActionButton>
-				<ActionButton callback={() => handleDownloadReport()}  disabled={!(startDate && endDate)}>Imprimir</ActionButton>
+				<ActionButton updateTo={resolvePathToReport()} disabled={!(startDate && endDate)}>Gráfico</ActionButton>
+				<ActionButton callback={() => handleDownloadReport()}  disabled={!(startDate && endDate)}>Imprimir Relatório</ActionButton>
 				<ActionButton callback={() => {
 					setStartDate('');
 					setEndDate('');
