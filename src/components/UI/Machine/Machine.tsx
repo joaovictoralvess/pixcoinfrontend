@@ -77,11 +77,11 @@ export default async function Machine({
 					<p className="machine__body__description">Total: {formatToBRL(`${totalSemEstorno}`)}</p>
 					<p className="machine__body__description">Estornos: {formatToBRL(`${totalComEstorno}`)}</p>
 					<p className="machine__body__description">Espécie: {formatToBRL(`${totalEspecie}`)}</p>
+					<p className="machine__body__description">Estoque: {estoque}</p>
 					<p className="machine__body__description">Pulso: {pulso}</p>
 					<p className="machine__body__description">Tempo Low: {tempoLow}s</p>
 					<p className="machine__body__description">Tempo High: {tempoHigh}s</p>
 					<p className="machine__body__description">StoreId: {store_id}</p>
-					<p className="machine__body__description">Estoque: {estoque}</p>
 				</div>
 			</Link>
 
