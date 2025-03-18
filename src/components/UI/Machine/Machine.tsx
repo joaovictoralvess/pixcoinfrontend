@@ -34,7 +34,8 @@ export default async function Machine({
 		totalEspecie,
 		totalSemEstorno,
 		tempoLow,
-		tempoHigh
+		tempoHigh,
+		estoque
 	} = machine;
 
 	const resolveMachineStatus = (): ReactNode => {
@@ -80,6 +81,7 @@ export default async function Machine({
 					<p className="machine__body__description">Tempo Low: {tempoLow}s</p>
 					<p className="machine__body__description">Tempo High: {tempoHigh}s</p>
 					<p className="machine__body__description">StoreId: {store_id}</p>
+					<p className="machine__body__description">Estoque: {estoque}</p>
 				</div>
 			</Link>
 
