@@ -83,6 +83,16 @@
       font-size: 0.85rem;
     }
   }
+
+  &__wrapper-title {
+    display: flex;
+    align-items: center;
+    gap: .25rem;
+
+    svg {
+      width: 1rem;
+    }
+  }
 }
 
 @keyframes pulse {
