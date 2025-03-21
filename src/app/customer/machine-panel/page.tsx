@@ -8,12 +8,20 @@ import { redirectCustomerToLoginIfNotLogged } from '@/helpers/customer';
 import MachineService from '@/services/Machine';
 
 import './styles.scss';
+import { getSession } from '@/helpers/session';
+import { User } from '@/interfaces/User';
+import CustomersService from '@/services/Customers';
+import WarningMessage from '@/app/customer/machine-panel/components/WarningMessage/WarningMessage';
 
 export default async function MachinePanel() {
-	await redirectCustomerToLoginIfNotLogged()
+	await redirectCustomerToLoginIfNotLogged();
+
+	const user = await getSession() as User;
 
 	const machines = await MachineService.all();
 	const machinesDisabled = machines.every(machine => machine.disabled);
+
+	const { message } = await CustomersService.getWarning(user.id);
 
 	const renderContent = () => {
 		if (machinesDisabled) {
@@ -33,6 +41,9 @@ export default async function MachinePanel() {
 
 		return (
 			<>
+				{message && (
+					<WarningMessage message={message} />
+				)}
 				<p className='machine-panel__tip'>Selecione uma máquina para ver mais detalhes</p>
 				{machines && machines.length && machines.map((machine) => (
 					<div key={`${machine.id}`} className="machine-panel__container__wrapper-machines">

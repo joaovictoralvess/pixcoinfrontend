@@ -11,6 +11,17 @@ const CustomersService = {
 		});
 
 		return await response.json();
+	},
+
+	getWarning: async (id: string): Promise<{message: string}> => {
+		const response = await fetch(`${process.env.REACT_APP_SERVIDOR}/warning/${id}`, {
+			method: 'GET',
+			headers: {
+				"Content-Type": "application/json",
+			},
+		});
+
+		return await response.json();
 	}
 };
 
