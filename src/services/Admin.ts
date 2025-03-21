@@ -141,7 +141,21 @@ const AdminService = {
 		});
 
 		return await response.json();
-	}
+	},
+	addWarningToCustomer: async (customerId: string, message: string): Promise<{message: string}> => {
+		const user = await getSession() as User;
+
+		const response = await fetch(`${process.env.REACT_APP_SERVIDOR}/cliente/${customerId}/add-warning`, {
+			method: 'POST',
+			headers: {
+				"Content-Type": "application/json",
+				"x-access-token": user.token
+			},
+			body: JSON.stringify({ message })
+		});
+
+		return await response.json();
+	},
 };
 
 export default AdminService;

@@ -13,16 +13,17 @@ import EditCustomerForm from '@/app/admin/customers/components/EditCustomerForm/
 import DisableMachinesForm from '@/app/admin/customers/components/DisableMachinesForm/DisableMachinesForm';
 
 export interface CustomerActionsProps {
-	shouldRender?: 'all' | 'new-customer' | 'new-machine' | 'edit-customer-and-add-machine' | 'edit-customer-and-add-machine-and-disabled-all-machines',
+	shouldRender?: 'all' | 'new-customer' | 'new-machine' | 'edit-customer-and-add-machine' | 'edit-customer-and-add-machine-and-disabled-all-machines-add-warning',
 	clientId?: string;
 	customer?: ICustomer;
 }
 
 import './styles.scss';
 import RemoveCustomerForm from '@/app/admin/customers/components/RemoveCustomerForm/RemoveCustomerForm';
+import AddWarningForm from '@/app/admin/customers/components/AddWarningForm/AddWarningForm';
 
 export default function CustomerActions({ customer, shouldRender = 'all', clientId = '' }: CustomerActionsProps) {
-	const [selectedModal, setSelectedModal] = useState<'new-customer' | 'new-machine' | 'edit-customer' | 'desative-machine' | 'remove-customer' | ''>('');
+	const [selectedModal, setSelectedModal] = useState<'new-customer' | 'new-machine' | 'edit-customer' | 'desative-machine' | 'remove-customer' | 'add-warning' | ''>('');
 
 	const handleCloseModal = () => setSelectedModal('');
 
@@ -38,6 +39,8 @@ export default function CustomerActions({ customer, shouldRender = 'all', client
 				return <DisableMachinesForm cancelAction={() => setSelectedModal('')} customerId={clientId} />
 			case 'remove-customer':
 				return <RemoveCustomerForm cancelAction={() => setSelectedModal('')} customerId={clientId} />
+			case 'add-warning':
+				return <AddWarningForm cancelAction={() => setSelectedModal('')} customerId={clientId} savedWarning={customer!.aviso} />
 			default:
 				return null;
 		}
@@ -55,6 +58,8 @@ export default function CustomerActions({ customer, shouldRender = 'all', client
 				return 'Ativar/Desativar máquinas'
 			case 'remove-customer':
 				return 'Excluir cliente'
+			case 'add-warning':
+				return 'Adicionar/Remover aviso'
 			default:
 				return '';
 		}
@@ -127,7 +132,7 @@ export default function CustomerActions({ customer, shouldRender = 'all', client
 			)
 		}
 
-		if (shouldRender === 'edit-customer-and-add-machine-and-disabled-all-machines') {
+		if (shouldRender === 'edit-customer-and-add-machine-and-disabled-all-machines-add-warning') {
 			return (
 				<div className='customer-action-button-container'>
 					<ActionButton callback={() => setSelectedModal('new-machine')}>Adicionar máquina</ActionButton>
@@ -137,6 +142,8 @@ export default function CustomerActions({ customer, shouldRender = 'all', client
 					<ActionButton className="remove-customer" callback={() => setSelectedModal('remove-customer')}>Excluir cliente</ActionButton>
 
 					<ActionButton callback={() => setSelectedModal('desative-machine')}>Ativar/Desativar máquinas</ActionButton>
+
+					<ActionButton callback={() => setSelectedModal('add-warning')}>Adicionar/Remover aviso</ActionButton>
 
 					{selectedModal && (
 						<Modal onClose={handleCloseModal} title={resolveModalTitle()}>

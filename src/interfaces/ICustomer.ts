@@ -24,7 +24,8 @@ export interface ICustomer {
 	senha: string;
 	ultimoAcesso: string | null;
 	error?: string;
-	maquinas: IMachine[]
+	maquinas: IMachine[];
+	aviso?: string;
 }
 
 export interface EditCustomerRequest {
