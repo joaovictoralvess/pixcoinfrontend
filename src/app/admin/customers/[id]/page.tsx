@@ -34,7 +34,7 @@ export default async function AdminCustomer(props: AdminCustomerProps) {
 				<Layout className='customer__container'>
 					<div className='customer__container__wrapper-button'>
 						<PageTitleWithSync updateTo={`/admin/customers/${id}`} title={customer.nome} />
-						<CustomerActions customer={customer} shouldRender="edit-customer-and-add-machine-and-disabled-all-machines" clientId={id} />
+						<CustomerActions customer={customer} shouldRender="edit-customer-and-add-machine-and-disabled-all-machines-add-warning" clientId={id} />
 					</div>
 
 					<div className='customer__container__wrapper-machines'>
