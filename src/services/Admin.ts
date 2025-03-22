@@ -142,7 +142,7 @@ const AdminService = {
 
 		return await response.json();
 	},
-	addWarningToCustomer: async (customerId: string, message: string): Promise<{message: string}> => {
+	addWarningToCustomer: async (customerId: string, message: string, showForAll?: string): Promise<{message: string}> => {
 		const user = await getSession() as User;
 
 		const response = await fetch(`${process.env.REACT_APP_SERVIDOR}/cliente/${customerId}/add-warning`, {
@@ -151,7 +151,7 @@ const AdminService = {
 				"Content-Type": "application/json",
 				"x-access-token": user.token
 			},
-			body: JSON.stringify({ message })
+			body: JSON.stringify({ message, showForAll })
 		});
 
 		return await response.json();

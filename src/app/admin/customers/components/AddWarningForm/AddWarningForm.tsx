@@ -31,6 +31,15 @@ export default function AddWarningForm({
 				 placeholder="Digite o tapume para o cliente..."
 			 ></textarea>
 
+			<div className="add-warning__checkbox">
+				<input
+					type="checkbox"
+					id="showForAll"
+					name="showForAll"
+				/>
+				<label htmlFor="showForAll">Deseja exibir para todos os usuários?</label>
+			</div>
+
 			<div className="add-warning__buttons">
 				<Button onClick={cancelAction} type="button" title="Cancelar ação">
 					Cancelar ação
