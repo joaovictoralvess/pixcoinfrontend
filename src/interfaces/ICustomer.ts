@@ -35,3 +35,13 @@ export interface EditCustomerRequest {
 	pagbankEmail: string
 	mercadoPagoToken: string
 }
+
+export interface CreateEmployeeRequest {
+	nome: string;
+	email: string;
+	senha: string;
+	id: string;
+	canDelete: string;
+	canAddCredit: string;
+	canEditMachine: string;
+}

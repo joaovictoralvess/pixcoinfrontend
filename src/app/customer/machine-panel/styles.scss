@@ -36,6 +36,12 @@
       margin-top: 1rem;
       gap: 20px;
     }
+
+    &__wrapper-buttons {
+      .customer-action-button-container {
+        position: initial;
+      }
+    }
   }
 }
 

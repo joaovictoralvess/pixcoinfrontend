@@ -12,6 +12,7 @@ import { getSession } from '@/helpers/session';
 import { User } from '@/interfaces/User';
 import CustomersService from '@/services/Customers';
 import WarningMessage from '@/app/customer/machine-panel/components/WarningMessage/WarningMessage';
+import CustomerActions from '@/app/admin/customers/components/CustomerActions/CustomerActions';
 
 export default async function MachinePanel() {
 	await redirectCustomerToLoginIfNotLogged();
@@ -59,7 +60,10 @@ export default async function MachinePanel() {
 			<Header />
 			<main className="machine-panel">
 				<Layout className="machine-panel__container">
-					<PageTitleWithSync updateTo="/customer/machine-panel" title="Painel de máquinas" />
+					<div className="machine-panel__container__wrapper-buttons">
+						<PageTitleWithSync updateTo="/customer/machine-panel" title="Painel de máquinas" />
+						<CustomerActions clientId={user.id} shouldRender='new-employee' />
+					</div>
 					{renderContent()}
 				</Layout>
 			</main>
