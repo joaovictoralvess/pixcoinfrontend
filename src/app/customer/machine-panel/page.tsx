@@ -63,7 +63,9 @@ export default async function MachinePanel() {
 					<div className="machine-panel__container__wrapper-buttons">
 						<PageTitleWithSync updateTo="/customer/machine-panel" title="Painel de máquinas" />
 						{!user.employee && (
-							<CustomerActions clientId={user.id} shouldRender='new-employee' />
+							<>
+								<CustomerActions clientId={user.id} shouldRender='new-employee' />
+							</>
 						)}
 					</div>
 					{renderContent()}
