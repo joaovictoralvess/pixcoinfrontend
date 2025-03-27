@@ -85,7 +85,7 @@ export default async function Machine({
 				</div>
 			</Link>
 
-			<MachineActions customerId={customerId} isAdmin={isAdmin} machine={machine} />
+			<MachineActions user={user} customerId={customerId} isAdmin={isAdmin} machine={machine} />
 		</div>
 	);
 }

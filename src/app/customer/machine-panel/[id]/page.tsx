@@ -4,7 +4,7 @@ import { SearchParams } from '@/@types/searchParams';
 import GoBackIcon from '@/components/Icons/GoBackIcon';
 
 import { IMachine } from '@/interfaces/IMachine';
-import { IPayment, IPaymentResponse } from '@/interfaces/IPayment';
+import { IPaymentResponse } from '@/interfaces/IPayment';
 
 import MachineActions from '@/app/customer/machine-panel/components/MachineActions/MachineActions';
 
@@ -20,6 +20,9 @@ import { redirectCustomerToLoginIfNotLogged } from '@/helpers/customer';
 
 import MachineService from '@/services/Machine';
 
+import { getSession } from '@/helpers/session';
+import { User } from '@/interfaces/User';
+
 import './styles.scss';
 
 export interface MachineDetailProps {
@@ -29,6 +32,8 @@ export interface MachineDetailProps {
 
 export default async function MachineDetail(props: MachineDetailProps) {
 	await redirectCustomerToLoginIfNotLogged();
+
+	const user = await getSession() as User;
 
 	const { id } = await props.params;
 	const searchParams = await props.searchParams;
@@ -65,8 +70,8 @@ export default async function MachineDetail(props: MachineDetailProps) {
 					<h4 className='payments-panel__container__selected-machine'>Máquina selecionada: {machineName}</h4>
 					<div className="payments-panel__container__wrapper-buttons">
 						<PageTitleWithSync updateTo={`/customer/machine-panel/${id}?machineName=${machineName}`} title="Painel de pagamentos" />
-						<MachineActions machine={{ id } as IMachine} shouldRender="delete-only" />
-						<PaymentReport machineName={machineName} machineId={id} />
+						<MachineActions user={user} machine={{ id } as IMachine} shouldRender="delete-only" />
+						<PaymentReport canDelete={user.canDeletePayments} machineName={machineName} machineId={id} />
 					</div>
 
 					<PaymentTable tableData={tableData} />

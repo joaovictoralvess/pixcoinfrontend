@@ -14,17 +14,19 @@ import RemoveAllPaymentsForm from '@/app/customer/machine-panel/components/Remov
 import RemoveMachineForm from '@/app/customer/machine-panel/components/RemoveMachineForm/RemoveMachineForm';
 
 import { IMachine } from '@/interfaces/IMachine';
+import { User } from '@/interfaces/User';
 
 export interface MachineActionsProps {
 	machine: IMachine;
 	shouldRender?: 'all' | 'edit-only' | 'credit-only' | 'delete-only' | 'delete-machine';
 	isAdmin?: boolean;
 	customerId?: string;
+	user: User,
 }
 
 import './styles.scss';
 
-export default function MachineActions({ machine, isAdmin, customerId, shouldRender = 'all' }: MachineActionsProps) {
+export default function MachineActions({ machine, isAdmin, customerId, user, shouldRender = 'all' }: MachineActionsProps) {
 	const [selectedModal, setSelectedModal] = useState<'edit' | 'credit' | 'destroy-payments' | 'delete-machine' | ''>('');
 
 	const handleCloseModal = () => setSelectedModal('');
@@ -32,7 +34,7 @@ export default function MachineActions({ machine, isAdmin, customerId, shouldRen
 	const renderModalContent = () => {
 		switch (selectedModal) {
 			case 'edit':
-				return <EditMachineForm customerId={customerId} machine={machine} />;
+				return <EditMachineForm customerId={!user.employee ? customerId : user.parent_id} machine={machine} />;
 			case 'credit':
 				return <AddRemoteCreditForm machineId={machine.id} />;
 			case 'destroy-payments':
@@ -61,6 +63,40 @@ export default function MachineActions({ machine, isAdmin, customerId, shouldRen
 
 	const render = () => {
 		if (shouldRender === 'all') {
+
+			if (user.employee) {
+				return (
+					<div className='machine-action-buttons'>
+						{user.canEditMachine && (
+							<ActionButton
+								callback={() => setSelectedModal('edit')}
+								icon={<EditIcon width={10} height={10} />}
+							>
+								Editar máquina
+							</ActionButton>
+						)}
+
+						{user.canAddRemoteCredit && (
+							<ActionButton
+								callback={() => setSelectedModal('credit')}
+								icon={<DollarIcon width={10} height={10} />}
+							>
+								Crédito remoto
+							</ActionButton>
+						)}
+
+						{user.canDeletePayments && (
+							<ActionButton
+								className='machine-action-buttons--delete'
+								callback={() => setSelectedModal('destroy-payments')}
+								icon={<TrashIcon width={10} height={10} />}
+							>
+								Excluir pagamentos
+							</ActionButton>
+						)}
+					</div>
+				);
+			}
 			return (
 				<div className='machine-action-buttons'>
 					<ActionButton
@@ -105,6 +141,29 @@ export default function MachineActions({ machine, isAdmin, customerId, shouldRen
 		}
 
 		if (shouldRender === 'delete-only') {
+			if (user.employee) {
+				return (
+					<div className='machine-action-buttons'>
+						{user.canDeletePayments && (
+							<div className='machine-action-buttons'>
+								<ActionButton
+									className='machine-action-buttons--delete'
+									callback={() => setSelectedModal('destroy-payments')}
+									icon={<TrashIcon width={10} height={10} />}
+								>
+									Excluir pagamentos
+								</ActionButton>
+
+								{selectedModal && (
+									<Modal onClose={handleCloseModal} title={resolveModalTitle()}>
+										{renderModalContent()}
+									</Modal>
+								)}
+							</div>
+						)}
+					</div>
+				)
+			}
 			return (
 				<div className='machine-action-buttons'>
 					<ActionButton

@@ -10,6 +10,11 @@ export interface User {
 	vencimento: string;
 	warningMsg?: string;
 	error?: string;
+	employee?: boolean;
+	canDeletePayments?: boolean;
+	canAddRemoteCredit?: boolean;
+	canEditMachine?: boolean;
+	parent_id?: string
 }
 
 export interface SignInUser {

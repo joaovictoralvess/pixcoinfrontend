@@ -15,13 +15,14 @@ export interface PaymentReportProps {
 	machineName: string;
 	isAdmin?: boolean;
 	customerId?: string;
+	canDelete: boolean;
 }
 
 import RemoveSelectedPaymentsForm from '@/app/customer/payment-report/components/RemoveSelectedPaymentsForm/RemoveSelectedPaymentsForm';
 
 import './styles.scss';
 
-export default function PaymentReport({ machineId, isAdmin, customerId, machineName }: PaymentReportProps) {
+export default function PaymentReport({ machineId, isAdmin, customerId, machineName, canDelete }: PaymentReportProps) {
 	const [startDate, setStartDate] = useState<string>('');
 	const [endDate, setEndDate] = useState<string>('');
 	const [clearInput, setClearInput] = useState<boolean>(false);
@@ -108,13 +109,15 @@ export default function PaymentReport({ machineId, isAdmin, customerId, machineN
 					Limpar Filtros
 				</ActionButton>
 
-				<ActionButton
-					onClick={() => setDeletePaymentsModal(true)}
-					className='payment-report__buttons__delete-selected'
-					disabled={!(startDate && endDate)}
-				>
-					Excluir selecionados
-				</ActionButton>
+				{canDelete && (
+					<ActionButton
+						onClick={() => setDeletePaymentsModal(true)}
+						className='payment-report__buttons__delete-selected'
+						disabled={!(startDate && endDate)}
+					>
+						Excluir selecionados
+					</ActionButton>
+				)}
 			</div>
 
 			{deletePaymentsModal && (

@@ -21,10 +21,16 @@ import { IPaymentResponse } from '@/interfaces/IPayment';
 import transformPaymentsData, { removeDuplicateMP } from '@/helpers/payment';
 import AdminService from '@/services/Admin';
 
+import { getSession } from '@/helpers/session';
+import { User } from '@/interfaces/User';
+
 import './styles.scss';
+
 
 export default async function CustomerPayments(props: CustomerPaymentsProps) {
 	await redirectAdminToLoginIfNotLogged();
+
+	const user = await getSession() as User;
 
 	const { machineId } = await props.params;
 	const { id } = await props.params;
@@ -63,8 +69,8 @@ export default async function CustomerPayments(props: CustomerPaymentsProps) {
 					<h4 className='customer-payments-panel__container__selected-machine'>Máquina selecionada: {machineName}</h4>
 					<div className='customer-payments-panel__container__wrapper-buttons'>
 						<PageTitleWithSync updateTo={`/admin/customers/${id}/machine/${machineId}?machineName=${machineName}`} title='Painel de pagamentos' />
-						<MachineActions isAdmin={true} machine={{ id: machineId } as IMachine} shouldRender='delete-only' />
-						<PaymentReport machineName={machineName} isAdmin={true} customerId={id} machineId={machineId} />
+						<MachineActions user={user} isAdmin={true} machine={{ id: machineId } as IMachine} shouldRender='delete-only' />
+						<PaymentReport canDelete={user.canDeletePayments && user.employee} machineName={machineName} isAdmin={true} customerId={id} machineId={machineId} />
 					</div>
 
 					<PaymentTable tableData={tableData} />
