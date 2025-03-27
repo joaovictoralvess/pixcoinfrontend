@@ -70,6 +70,9 @@ export interface CreateMachineRequest {
 	maquininha_serial: string;
 	tempoLow: number;
 	tempoHigh: number;
+	moves: number;
+	bonus: number;
+	bonusPlay: boolean;
 }
 
 export interface CreateMachineResponse {

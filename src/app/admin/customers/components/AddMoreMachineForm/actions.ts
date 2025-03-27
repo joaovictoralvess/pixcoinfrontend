@@ -5,6 +5,8 @@ import { z, ZodError } from 'zod';
 import { dealWithZodErrors } from '@/helpers/zodError';
 import { CreateMachineRequest } from '@/interfaces/IMachine';
 import AdminService from '@/services/Admin';
+import { revalidatePath } from 'next/cache';
+import { redirect } from 'next/navigation';
 
 export interface AddMoreMachineFormErros {
 	name?: string,
@@ -48,16 +50,22 @@ export const handleCreateMachine = async (prevState: any, formData: FormData) =>
 		return {...prevState, ...validation};
 	}
 
+	const clienteId = String(formData.get('clienteId'));
+	const bonusPlay = `${formData.get('bonusPlay')}` === 'on';
+
 	const data: CreateMachineRequest = {
 		nome: `${formData.get('name')}`,
 		descricao: `${formData.get('description')}`,
 		store_id: `${formData.get('store_id')}`,
 		valorDoPulso: `${formData.get('pulse_value')}`,
-		clienteId: String(formData.get('clienteId')),
+		clienteId,
 		maquininha_serial: String(formData.get('serial')),
 		valorDoPix: '',
 		tempoLow: Number(`${formData.get('timeLow')}`),
 		tempoHigh: Number(`${formData.get('timeHigh')}`),
+		moves: bonusPlay ? Number(`${formData.get('moves')}`) : 0,
+		bonus: bonusPlay ? Number(`${formData.get('bonus')}`) : 0,
+		bonusPlay,
 	};
 
 	const resp = await AdminService.createMachine(data);
@@ -71,8 +79,6 @@ export const handleCreateMachine = async (prevState: any, formData: FormData) =>
 		}
 	}
 
-	return {
-		isValid: true,
-		errors: {}
-	}
+	revalidatePath(`/admin/customers/${clienteId}`);
+	redirect(`/admin/customers/${clienteId}`);
 };

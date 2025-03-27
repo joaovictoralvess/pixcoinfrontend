@@ -1,7 +1,7 @@
 import TextInput from '@/components/Forms/TextInput/TextInput';
 import Button from '@/components/Forms/Button/Button';
 
-import { useActionState } from 'react';
+import { useActionState, useState } from 'react';
 import { handleCreateMachine } from '@/app/admin/customers/components/AddMoreMachineForm/actions';
 import { initialState } from '@/app/admin/customers/components/AddMoreMachineForm/helpers';
 
@@ -13,6 +13,7 @@ import './styles.scss';
 
 export default function AddMoreMachineForm({ clientId }: AddMoreMachineFormProps) {
 	const [state, formAction] = useActionState(handleCreateMachine, initialState);
+	const [enableBonusPlay, setEnableBonusPlay] = useState(false);
 
 	return (
 		<form className='add-more-machine-form' action={formAction}>
@@ -78,6 +79,41 @@ export default function AddMoreMachineForm({ clientId }: AddMoreMachineFormProps
 				placeholder='Serial da máquina'
 				title='Serial da máquina'
 			/>
+
+			<div className="add-more-machine-form__wrapper-checkbox">
+				<input
+					type="checkbox"
+					id="bonusPlay"
+					name="bonusPlay"
+					checked={enableBonusPlay}
+					onChange={() => setEnableBonusPlay(!enableBonusPlay)}
+				/>
+				<label htmlFor="bonusPlay">Habilitar jogada bônus</label>
+			</div>
+
+			{enableBonusPlay && (
+				<>
+					<TextInput
+						name='moves'
+						label='Jogadas'
+						placeholder='Jogadas'
+						title='Jogadas'
+						info="Defina quantas jogadas precisa ser feita para entrada do bônus"
+						min={0}
+						type="number"
+					/>
+
+					<TextInput
+						name='bonus'
+						label='Bônus'
+						placeholder='Bônus'
+						title='Bônus'
+						info="Defina o valor do bônus (Quanto de coin entra de bônus após X jogadas)"
+						min={0}
+						type="number"
+					/>
+				</>
+			)}
 
 			<TextInput
 				name='clienteId'
