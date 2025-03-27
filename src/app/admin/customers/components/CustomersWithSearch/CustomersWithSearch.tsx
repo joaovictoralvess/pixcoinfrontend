@@ -7,6 +7,7 @@ import { ICustomer } from '@/interfaces/ICustomer';
 
 export interface CustomersWithSearchProps {
 	customers: ICustomer[];
+	isAdmin?: boolean
 }
 
 import TextInput from '@/components/Forms/TextInput/TextInput';
@@ -14,7 +15,8 @@ import TextInput from '@/components/Forms/TextInput/TextInput';
 import './styles.scss';
 
 export default function CustomersWithSearch({
-	customers
+	customers,
+	isAdmin
 }: CustomersWithSearchProps) {
 	const [searchTerm, setSearchTerm] = useState('');
 
@@ -34,7 +36,7 @@ export default function CustomersWithSearch({
 			/>
 			<div className='filter-customers__wrapper-customers'>
 				{filteredCustomers.map((customer) => (
-					<CustomerCard key={customer.id} customer={customer} />
+					<CustomerCard isAdmin={isAdmin} key={customer.id} customer={customer} />
 				))}
 			</div>
 		</div>

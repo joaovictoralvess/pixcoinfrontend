@@ -8,6 +8,9 @@ import PageTitleWithSync from '@/components/UI/PageTitleWithSync/PageTitleWithSy
 
 import { Params } from '@/@types/params';
 
+import { getSession } from '@/helpers/session';
+import { User } from '@/interfaces/User';
+
 import AdminService from '@/services/Admin';
 
 export interface AdminCustomerProps {
@@ -18,8 +21,12 @@ import { redirectAdminToLoginIfNotLogged } from '@/helpers/admin';
 
 import './styles.scss';
 
+
 export default async function AdminCustomer(props: AdminCustomerProps) {
 	await redirectAdminToLoginIfNotLogged();
+
+	const user = await getSession() as User;
+	const isADMIN = user.key === 'ADMIN';
 
 	const { id } = await props.params;
 	const customer = await AdminService.customer(id);
@@ -34,7 +41,7 @@ export default async function AdminCustomer(props: AdminCustomerProps) {
 				<Layout className='customer__container'>
 					<div className='customer__container__wrapper-button'>
 						<PageTitleWithSync updateTo={`/admin/customers/${id}`} title={customer.nome} />
-						<CustomerActions customer={customer} shouldRender="edit-customer-and-add-machine-and-disabled-all-machines-add-warning" clientId={id} />
+						<CustomerActions isAdmin={isADMIN} customer={customer} shouldRender="edit-customer-and-add-machine-and-disabled-all-machines-add-warning" clientId={id} />
 					</div>
 
 					{customer.maquinas.length > 0 ? (

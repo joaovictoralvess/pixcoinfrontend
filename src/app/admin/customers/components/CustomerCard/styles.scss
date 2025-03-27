@@ -11,6 +11,28 @@
   color: currentColor;
   transition: all 0.3s;
 
+  .customer-action-button-container {
+    position: initial;
+  }
+
+  button {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 10px;
+    background: #fff;
+    border: 2px solid variables.$application-color;
+    border-radius: 6px;
+    color: #000;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    height: 32px;
+    padding: 4px 15px;
+    transition: all .3s cubic-bezier(.645, .045, .355, 1);
+    font-style: italic;
+  }
+
   &:hover {
     transform: scale(0.9);
     background-color: #f1f1f1;

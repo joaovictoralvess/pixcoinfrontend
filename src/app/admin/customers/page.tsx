@@ -9,11 +9,17 @@ import CustomersWithSearch from '@/app/admin/customers/components/CustomersWithS
 import CustomerActions from '@/app/admin/customers/components/CustomerActions/CustomerActions';
 
 import { redirectAdminToLoginIfNotLogged } from '@/helpers/admin';
+import { getSession } from '@/helpers/session';
+
+import { User } from '@/interfaces/User';
 
 import './styles.scss';
 
 export default async function AdminCustomers() {
 	await redirectAdminToLoginIfNotLogged();
+
+	const user = await getSession() as User;
+	const isADMIN = user.key === 'ADMIN';
 
 	const customers = await AdminService.allCustomers();
 
@@ -28,7 +34,7 @@ export default async function AdminCustomers() {
 					</div>
 				</Layout>
 
-				<CustomersWithSearch customers={customers} />
+				<CustomersWithSearch isAdmin={isADMIN} customers={customers} />
 			</main>
 		</>
 	)

@@ -50,6 +50,19 @@ const CustomersService = {
 
 		return await response.json();
 	},
+	deleteEmployee: async (id: string): Promise<ICustomer[]> => {
+		const user = await getSession() as User;
+
+		const response = await fetch(`${process.env.REACT_APP_SERVIDOR}/customer/${id}/employees`, {
+			method: 'DELETE',
+			headers: {
+				"Content-Type": "application/json",
+				"x-access-token": user.token
+			},
+		});
+
+		return await response.json();
+	},
 };
 
 export default CustomersService;

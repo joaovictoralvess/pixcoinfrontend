@@ -2,13 +2,16 @@ import { ICustomer } from '@/interfaces/ICustomer';
 import { retrieveDate } from '@/helpers/payment';
 
 export interface CustomerCardProps {
-	customer: ICustomer
+	customer: ICustomer,
+	isAdmin?: boolean,
 }
 
-import './styles.scss';
 import Link from 'next/link';
 
-export default function CustomerCard({ customer }: CustomerCardProps) {
+import './styles.scss';
+import CustomerActions from '@/app/admin/customers/components/CustomerActions/CustomerActions';
+
+export default function CustomerCard({ customer, isAdmin }: CustomerCardProps) {
 	function verificarStatusPagamento(diaVencimento: string): string {
 		const dataVencimento = new Date(diaVencimento);
 
@@ -23,7 +26,7 @@ export default function CustomerCard({ customer }: CustomerCardProps) {
 		return diferencaEmDias > 10 ? 'INADIMPLENTE' : 'REGULAR';
 	}
 
-	if (customer.is_employee) {
+	if (customer.is_employee && !isAdmin) {
 		return (
 			<div className='customer-card'>
 				<div className='customer-card__customer'>
@@ -33,7 +36,7 @@ export default function CustomerCard({ customer }: CustomerCardProps) {
 					</div>
 
 					<div className='customer-card__customer__situation'>
-						<button type="button">Excluir</button>
+						<CustomerActions customer={customer} shouldRender="delete-employee" />
 					</div>
 				</div>
 
@@ -52,16 +55,23 @@ export default function CustomerCard({ customer }: CustomerCardProps) {
 				<div className='customer-card__customer__data'>
 					<h1>{customer.nome}</h1>
 					<h3>{customer.email}</h3>
-					<h3>Total de máquinas: {customer.maquinas.length}</h3>
+					{customer.is_employee ? (<h1></h1>) : (<h3>Total de máquinas: {customer.maquinas.length}</h3>)}
 				</div>
 
 				<div className='customer-card__customer__situation'>
-					<h3>
-						Situação: {verificarStatusPagamento(customer.dataVencimento)}
-					</h3>
-					<h3>
-						Vencimento: {retrieveDate(customer.dataVencimento)}
-					</h3>
+					{customer.is_employee ? (
+						<h1>Funcionário de cliente</h1>
+						) : (
+							<>
+								<h3>
+									Situação: {verificarStatusPagamento(customer.dataVencimento)}
+								</h3>
+								<h3>
+									Vencimento: {retrieveDate(customer.dataVencimento)}
+								</h3>
+							</>
+					)}
+
 				</div>
 			</div>
 
