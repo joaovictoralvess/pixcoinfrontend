@@ -5,7 +5,6 @@ export const formatDateToDDMMYYYYHHMMSS = (
 	date: Date,
 	timeZone: string = 'America/Sao_Paulo'
 ) => {
-	console.log(date);
 	const formatter = new Intl.DateTimeFormat('pt-BR', {
 		timeZone,
 		year: 'numeric',
