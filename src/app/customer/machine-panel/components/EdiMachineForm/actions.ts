@@ -52,6 +52,8 @@ export const handleEditMachine = async (prevState: any, formData: FormData) => {
 		return {...prevState, ...validation};
 	}
 
+	const bonusPlay = `${formData.get('bonusPlay')}` === 'on';
+
 	const data: UpdateMachineRequest = {
 		nome: `${formData.get('name')}`,
 		descricao: `${formData.get('description')}`,
@@ -62,6 +64,9 @@ export const handleEditMachine = async (prevState: any, formData: FormData) => {
 		id: `${formData.get('id')}`,
 		tempoLow: Number(`${formData.get('timeLow')}`),
 		tempoHigh: Number(`${formData.get('timeHigh')}`),
+		moves: bonusPlay ? Number(`${formData.get('moves')}`) : 0,
+		bonus: bonusPlay ? Number(`${formData.get('bonus')}`) : 0,
+		bonusPlay,
 	};
 
 	const resp = await MachineService.update(data);

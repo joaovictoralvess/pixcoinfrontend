@@ -18,7 +18,10 @@ export interface IMachine {
 	totalSemEstorno: number;
 	totalEspecie: number;
 	totalComEstorno: number;
-	disabled: boolean
+	disabled: boolean;
+	bonusPlay: boolean;
+	moves: number;
+	bonus: number;
 }
 
 export interface UpdateMachineRequest {
@@ -31,6 +34,9 @@ export interface UpdateMachineRequest {
 	maquininha_serial: string;
 	tempoLow: number;
 	tempoHigh: number;
+	moves: number;
+	bonus: number;
+	bonusPlay: boolean;
 }
 
 export interface UpdateMachineResponse {

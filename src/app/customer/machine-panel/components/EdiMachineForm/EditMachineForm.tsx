@@ -1,4 +1,4 @@
-import { useActionState } from 'react';
+import { useActionState, useState } from 'react';
 
 import TextInput from '@/components/Forms/TextInput/TextInput';
 import Button from '@/components/Forms/Button/Button';
@@ -17,6 +17,8 @@ import './styles.scss';
 
 export default function EditMachineForm({ machine, customerId }: EditMachineFormProps) {
 	const [state, formAction] = useActionState(handleEditMachine, initialState);
+	const [enableBonusPlay, setEnableBonusPlay] = useState(machine.bonusPlay || false);
+
 	return (
 		<form className='edit-machine-form' action={formAction}>
 			<TextInput
@@ -86,6 +88,43 @@ export default function EditMachineForm({ machine, customerId }: EditMachineForm
 				error={state.errors.stock}
 				defaultValue={machine.estoque || '0'}
 			/>
+
+			<div className="edit-machine-form__wrapper-checkbox">
+				<input
+					type="checkbox"
+					id="bonusPlay"
+					name="bonusPlay"
+					checked={enableBonusPlay}
+					onChange={() => setEnableBonusPlay(!enableBonusPlay)}
+				/>
+				<label htmlFor="bonusPlay">Habilitar jogada bônus</label>
+			</div>
+
+			{enableBonusPlay && (
+				<>
+					<TextInput
+						name='moves'
+						label='Jogadas'
+						placeholder='Jogadas'
+						title='Jogadas'
+						defaultValue={machine.moves || '0'}
+						info="Defina quantas jogadas precisa ser feita para entrada do bônus"
+						min={0}
+						type="number"
+					/>
+
+					<TextInput
+						name='bonus'
+						label='Bônus'
+						placeholder='Bônus'
+						title='Bônus'
+						defaultValue={machine.bonus || '0'}
+						info="Defina o valor do bônus (Quanto de coin entra de bônus após X jogadas)"
+						min={0}
+						type="number"
+					/>
+				</>
+			)}
 
 			<TextInput
 				name='storeId'
