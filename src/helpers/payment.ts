@@ -25,7 +25,8 @@ export const retrievePaymentForm = (currentPaymentForm: string): string => {
 		debit_card: 'Débito',
 		credit_card: 'Crédito',
 		account_money: 'PIX - QR Code',
-		remote_credit: 'Crédito Remoto'
+		remote_credit: 'Crédito Remoto',
+		bonus: 'Jogada Bônus'
 	};
 
 	return paymentFormMap[currentPaymentForm] || '';
