@@ -1,5 +1,6 @@
 import { User, SignInUser } from '@/interfaces/User';
 import { getSession } from '@/helpers/session';
+import { ICustomer } from '@/interfaces/ICustomer';
 
 const CustomersService = {
 	signIn: async (data: SignInUser): Promise<User> => {
@@ -37,7 +38,18 @@ const CustomersService = {
 		});
 
 		return await response.json();
-	}
+	},
+	getEmployees: async (id: string, token: string): Promise<ICustomer[]> => {
+		const response = await fetch(`${process.env.REACT_APP_SERVIDOR}/customer/${id}/employees`, {
+			method: 'GET',
+			headers: {
+				"Content-Type": "application/json",
+				"x-access-token": token
+			},
+		});
+
+		return await response.json();
+	},
 };
 
 export default CustomersService;

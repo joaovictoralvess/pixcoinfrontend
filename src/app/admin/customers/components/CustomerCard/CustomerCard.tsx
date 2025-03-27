@@ -23,6 +23,28 @@ export default function CustomerCard({ customer }: CustomerCardProps) {
 		return diferencaEmDias > 10 ? 'INADIMPLENTE' : 'REGULAR';
 	}
 
+	if (customer.is_employee) {
+		return (
+			<div className='customer-card'>
+				<div className='customer-card__customer'>
+					<div className='customer-card__customer__data'>
+						<h1>{customer.nome}</h1>
+						<h3>{customer.email}</h3>
+					</div>
+
+					<div className='customer-card__customer__situation'>
+						<button type="button">Excluir</button>
+					</div>
+				</div>
+
+				<div className='customer-card__dates'>
+					<span>Data de inclusão: {retrieveDate(customer.data_inclusao)}</span>
+					{customer.ultimoAcesso && (<span>Ultimo acesso: {retrieveDate(customer.ultimoAcesso)}</span>)}
+				</div>
+			</div>
+		)
+	}
+
 
 	return (
 		<Link href={`/admin/customers/${customer.id}`} className='customer-card'>

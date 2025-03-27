@@ -26,6 +26,10 @@ export interface ICustomer {
 	error?: string;
 	maquinas: IMachine[];
 	aviso?: string;
+	is_employee: boolean;
+	can_add_edit_machine: boolean;
+	can_add_remote_credit: boolean;
+	can_delete_payments: boolean;
 }
 
 export interface EditCustomerRequest {

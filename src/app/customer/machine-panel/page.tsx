@@ -65,6 +65,7 @@ export default async function MachinePanel() {
 						{!user.employee && (
 							<>
 								<CustomerActions clientId={user.id} shouldRender='new-employee' />
+								<CustomerActions shouldRender='my-employees' />
 							</>
 						)}
 					</div>

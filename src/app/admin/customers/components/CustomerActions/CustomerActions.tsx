@@ -13,7 +13,7 @@ import EditCustomerForm from '@/app/admin/customers/components/EditCustomerForm/
 import DisableMachinesForm from '@/app/admin/customers/components/DisableMachinesForm/DisableMachinesForm';
 
 export interface CustomerActionsProps {
-	shouldRender?: 'all' | 'new-customer' | 'new-machine' | 'edit-customer-and-add-machine' | 'edit-customer-and-add-machine-and-disabled-all-machines-add-warning' | 'new-employee',
+	shouldRender?: 'all' | 'new-customer' | 'new-machine' | 'edit-customer-and-add-machine' | 'edit-customer-and-add-machine-and-disabled-all-machines-add-warning' | 'new-employee' | 'my-employees',
 	clientId?: string;
 	customer?: ICustomer;
 }
@@ -24,7 +24,7 @@ import AddWarningForm from '@/app/admin/customers/components/AddWarningForm/AddW
 import AddEmployeeForm from '@/app/admin/customers/components/AddEmployeeForm/AddEmployeeForm';
 
 export default function CustomerActions({ customer, shouldRender = 'all', clientId = '' }: CustomerActionsProps) {
-	const [selectedModal, setSelectedModal] = useState<'new-customer' | 'new-machine' | 'edit-customer' | 'desative-machine' | 'remove-customer' | 'add-warning' | 'new-employee' | ''>('');
+	const [selectedModal, setSelectedModal] = useState<'new-customer' | 'new-machine' | 'edit-customer' | 'desative-machine' | 'remove-customer' | 'add-warning' | 'new-employee' | 'my-employees' | ''>('');
 
 	const handleCloseModal = () => setSelectedModal('');
 
@@ -163,6 +163,20 @@ export default function CustomerActions({ customer, shouldRender = 'all', client
 			return (
 				<div className='customer-action-button-container'>
 					<ActionButton callback={() => setSelectedModal('new-employee')}>Criar novo Funcionário</ActionButton>
+
+					{selectedModal && (
+						<Modal onClose={handleCloseModal} title={resolveModalTitle()}>
+							{renderModalContent()}
+						</Modal>
+					)}
+				</div>
+			)
+		}
+
+		if (shouldRender === 'my-employees') {
+			return (
+				<div className='customer-action-button-container'>
+					<ActionButton updateTo="/customer/employees">Meus Funcionários</ActionButton>
 
 					{selectedModal && (
 						<Modal onClose={handleCloseModal} title={resolveModalTitle()}>
