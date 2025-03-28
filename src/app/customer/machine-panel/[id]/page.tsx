@@ -71,7 +71,7 @@ export default async function MachineDetail(props: MachineDetailProps) {
 					<div className="payments-panel__container__wrapper-buttons">
 						<PageTitleWithSync updateTo={`/customer/machine-panel/${id}?machineName=${machineName}`} title="Painel de pagamentos" />
 						<MachineActions user={user} machine={{ id } as IMachine} shouldRender="delete-only" />
-						<PaymentReport canDelete={user.canDeletePayments} machineName={machineName} machineId={id} />
+						<PaymentReport canDelete={!!user.canDeletePayments} machineName={machineName} machineId={id} />
 					</div>
 
 					<PaymentTable tableData={tableData} />
