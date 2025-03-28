@@ -30,13 +30,13 @@ export default async function Employees() {
 			<main className='customers'>
 				<Layout className='customers__container'>
 					<div className='customers__container__wrapper-button'>
-						<PageTitleWithSync updateTo='/admin/customers' title='Listagem de Funcionários' />
+						<PageTitleWithSync updateTo='/admin/customers' title='Listagem de Usuários' />
 					</div>
 				</Layout>
 
 				{customers.length > 0 ? (
 					<CustomersWithSearch customers={customers} />
-				) : (<h1>Nenhum Funcionário cadastrado</h1>)}
+				) : (<h1>Nenhum Usuário cadastrado</h1>)}
 			</main>
 		</>
 	)

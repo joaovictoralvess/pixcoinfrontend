@@ -67,12 +67,14 @@ export default function MachineActions({ machine, isAdmin, customerId, user, sho
 			if (user.employee) {
 				return (
 					<div className='machine-action-buttons'>
-						<ActionButton
-							callback={() => setSelectedModal('edit')}
-							icon={<EditIcon width={10} height={10} />}
-						>
-							Editar máquina
-						</ActionButton>
+						{user.canEditMachine && (
+							<ActionButton
+								callback={() => setSelectedModal('edit')}
+								icon={<EditIcon width={10} height={10} />}
+							>
+								Editar máquina
+							</ActionButton>
+						)}
 
 						{user.canAddRemoteCredit && (
 							<ActionButton

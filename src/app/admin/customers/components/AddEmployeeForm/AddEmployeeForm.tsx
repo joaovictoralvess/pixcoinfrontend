@@ -72,7 +72,7 @@ export default function AddEmployeeForm({ id }: { id: string }) {
 				type='hidden'
 			/>
 
-			<Button type="submit" title='Cadastrar cliente'>Criar Funcionário</Button>
+			<Button type="submit" title='Cadastrar cliente'>Criar Usuário</Button>
 		</form>
 	)
 }

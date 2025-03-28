@@ -62,11 +62,11 @@ export default function CustomerActions({ customer, isAdmin, shouldRender = 'all
 			case 'desative-machine':
 				return 'Ativar/Desativar máquinas'
 			case 'remove-customer':
-				return customer?.is_employee ? 'Excluir Funcionário' : 'Excluir cliente'
+				return customer?.is_employee ? 'Excluir Usuário' : 'Excluir cliente'
 			case 'add-warning':
 				return 'Adicionar/Remover aviso'
 			case 'new-employee':
-				return 'Novo Funcionário'
+				return 'Novo Usuário'
 			default:
 				return '';
 		}
@@ -164,7 +164,7 @@ export default function CustomerActions({ customer, isAdmin, shouldRender = 'all
 		if (shouldRender === 'new-employee') {
 			return (
 				<div className='customer-action-button-container'>
-					<ActionButton callback={() => setSelectedModal('new-employee')}>Criar novo Funcionário</ActionButton>
+					<ActionButton callback={() => setSelectedModal('new-employee')}>Adicionar usuário</ActionButton>
 
 					{selectedModal && (
 						<Modal onClose={handleCloseModal} title={resolveModalTitle()}>
@@ -178,7 +178,7 @@ export default function CustomerActions({ customer, isAdmin, shouldRender = 'all
 		if (shouldRender === 'my-employees') {
 			return (
 				<div className='customer-action-button-container'>
-					<ActionButton updateTo="/customer/employees">Meus Funcionários</ActionButton>
+					<ActionButton updateTo="/customer/employees">Meus usuários</ActionButton>
 				</div>
 			)
 		}
