@@ -10,6 +10,7 @@ const CustomersService = {
 			headers: {
 				"Content-Type": "application/json",
 			},
+			keepalive: true
 		});
 
 		return await response.json();
