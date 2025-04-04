@@ -7,7 +7,7 @@ import { ICustomer } from '@/interfaces/ICustomer';
 
 export interface CustomersWithSearchProps {
 	customers: ICustomer[];
-	isAdmin?: boolean
+	isAdmin?: boolean;
 }
 
 import TextInput from '@/components/Forms/TextInput/TextInput';
@@ -16,27 +16,34 @@ import './styles.scss';
 
 export default function CustomersWithSearch({
 	customers,
-	isAdmin
+	isAdmin,
 }: CustomersWithSearchProps) {
 	const [searchTerm, setSearchTerm] = useState('');
 
-	const filteredCustomers = customers.filter((customer) => customer.nome.toLowerCase().includes(searchTerm.toLowerCase()));
+	const filteredCustomers = customers.filter((customer) =>
+		customer.nome.toLowerCase().includes(searchTerm.toLowerCase())
+	);
 
-	const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => setSearchTerm(e.target.value);
+	const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) =>
+		setSearchTerm(e.target.value);
 
 	return (
-		<div className='filter-customers'>
+		<div className="filter-customers">
 			<TextInput
 				onChange={handleSearchChange}
-				className='filter-customers__filter-input'
-				name='filter'
-				placeholder='Pesquisar Cliente'
-				label='Pesquisar Cliente'
-				type='search'
+				className="filter-customers__filter-input"
+				name="filter"
+				placeholder="Pesquisar Cliente"
+				label="Pesquisar Cliente"
+				type="search"
 			/>
-			<div className='filter-customers__wrapper-customers'>
+			<div className="filter-customers__wrapper-customers">
 				{filteredCustomers.map((customer) => (
-					<CustomerCard isAdmin={isAdmin} key={customer.id} customer={customer} />
+					<CustomerCard
+						isAdmin={isAdmin}
+						key={customer.id}
+						customer={customer}
+					/>
 				))}
 			</div>
 		</div>

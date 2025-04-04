@@ -8,9 +8,6 @@ import PageTitleWithSync from '@/components/UI/PageTitleWithSync/PageTitleWithSy
 
 import { Params } from '@/@types/params';
 
-import { getSession } from '@/helpers/session';
-import { User } from '@/interfaces/User';
-
 import AdminService from '@/services/Admin';
 
 export interface AdminCustomerProps {
