@@ -4,16 +4,22 @@ import { ICustomer } from '@/interfaces/ICustomer';
 
 const CustomersService = {
 	signIn: async (data: SignInUser): Promise<User> => {
-		const response = await fetch(`${process.env.REACT_APP_SERVIDOR}/login-cliente`, {
-			method: 'POST',
-			body: JSON.stringify(data),
-			headers: {
-				"Content-Type": "application/json",
-			},
-			keepalive: true
-		});
+		try {
+			const response = await fetch(`${process.env.REACT_APP_SERVIDOR}/login-cliente`, {
+				method: 'POST',
+				body: JSON.stringify(data),
+				headers: {
+					"Content-Type": "application/json",
+				},
+				keepalive: true
+			});
 
-		return await response.json();
+			return await response.json();
+		} catch (error) {
+			return {
+				error: "Falha"
+			} as User
+		}
 	},
 
 	getWarning: async (id: string): Promise<{message: string}> => {

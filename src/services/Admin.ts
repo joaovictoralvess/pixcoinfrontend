@@ -6,15 +6,22 @@ import { IPaymentResponse } from '@/interfaces/IPayment';
 
 const AdminService = {
 	signIn: async (data: SignInUser): Promise<User> => {
-		const response = await fetch(`${process.env.REACT_APP_SERVIDOR}/login-pessoa`, {
-			method: 'POST',
-			body: JSON.stringify(data),
-			headers: {
-				"Content-Type": "application/json",
-			},
-		});
+		try {
+			const response = await fetch(`${process.env.REACT_APP_SERVIDOR}/login-pessoa`, {
+				method: 'POST',
+				body: JSON.stringify(data),
+				headers: {
+					"Content-Type": "application/json",
+				},
+				keepalive: true
+			});
 
-		return await response.json();
+			return await response.json();
+		} catch (error) {
+			return {
+				error: "Falha"
+			} as User
+		}
 	},
 	createCustomer: async (data: CreateCustomerRequest): Promise<ICustomer> => {
 		const user = await getSession() as User;
