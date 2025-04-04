@@ -23,9 +23,7 @@ import './styles.scss';
 
 
 export default async function AdminCustomer(props: AdminCustomerProps) {
-	await redirectAdminToLoginIfNotLogged();
-
-	const user = await getSession() as User;
+	const user = await redirectAdminToLoginIfNotLogged();
 	const isADMIN = user.key === 'ADMIN';
 
 	const { id } = await props.params;
@@ -47,7 +45,7 @@ export default async function AdminCustomer(props: AdminCustomerProps) {
 					{customer.maquinas.length > 0 ? (
 						<div className='customer__container__wrapper-machines'>
 							{customer.maquinas && customer.maquinas.length && customer.maquinas.map((machine) => (
-								<Machine customerId={customer.id} key={`${machine.id}`} machine={machine} />
+								<Machine user={user} customerId={customer.id} key={`${machine.id}`} machine={machine} />
 							))}
 						</div>
 					) : (

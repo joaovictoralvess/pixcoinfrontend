@@ -5,7 +5,6 @@ import { IMachine } from '@/interfaces/IMachine';
 import { User } from '@/interfaces/User';
 
 import { formatToBRL } from '@/helpers/payment';
-import { getSession } from '@/helpers/session';
 import { statusMap } from '@/helpers/machine';
 
 import MachineActions from '@/app/customer/machine-panel/components/MachineActions/MachineActions';
@@ -13,15 +12,16 @@ import MachineActions from '@/app/customer/machine-panel/components/MachineActio
 export interface IMachineProps {
 	machine: IMachine;
 	customerId?: string;
+	user: User
 }
 
 import './styles.scss';
 
 export default async function Machine({
 	machine,
-	customerId
+	customerId,
+	user,
 }: IMachineProps) {
-	const user = await getSession() as User;
 	const isAdmin = user.key === 'ADMIN';
 
 	const  {

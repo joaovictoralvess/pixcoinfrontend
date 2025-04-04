@@ -5,19 +5,14 @@ import GoBackIcon from '@/components/Icons/GoBackIcon';
 
 import CustomersWithSearch from '@/app/admin/customers/components/CustomersWithSearch/CustomersWithSearch';
 
-import { getSession } from '@/helpers/session';
 import { redirectCustomerToLoginIfNotLogged } from '@/helpers/customer';
-
-import { User } from '@/interfaces/User';
 
 import CustomersService from '@/services/Customers';
 
 import './styles.scss';
 
 export default async function Employees() {
-	await redirectCustomerToLoginIfNotLogged();
-
-	const user = await getSession() as User;
+	const user = await redirectCustomerToLoginIfNotLogged();
 
 	const customers = await CustomersService.getEmployees(user.id, user.token);
 
