@@ -16,26 +16,27 @@ import { User } from '@/interfaces/User';
 import './styles.scss';
 
 export default async function AdminCustomers() {
-	await redirectAdminToLoginIfNotLogged();
-
-	const user = await getSession() as User;
+	const user = await redirectAdminToLoginIfNotLogged();
 	const isADMIN = user.key === 'ADMIN';
 
-	const customers = await AdminService.allCustomers();
+	const customers = await AdminService.allCustomers(user);
 
 	return (
 		<>
 			<Header />
-			<main className='customers'>
-				<Layout className='customers__container'>
-					<div className='customers__container__wrapper-button'>
-						<PageTitleWithSync updateTo='/admin/customers' title='Painel de clientes' />
-						<CustomerActions shouldRender='new-customer' />
+			<main className="customers">
+				<Layout className="customers__container">
+					<div className="customers__container__wrapper-button">
+						<PageTitleWithSync
+							updateTo="/admin/customers"
+							title="Painel de clientes"
+						/>
+						<CustomerActions shouldRender="new-customer" />
 					</div>
 				</Layout>
 
 				<CustomersWithSearch isAdmin={isADMIN} customers={customers} />
 			</main>
 		</>
-	)
+	);
 }
