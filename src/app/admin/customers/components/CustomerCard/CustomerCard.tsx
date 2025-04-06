@@ -1,5 +1,7 @@
 'use client';
 
+import { useTransition } from 'react';
+
 import { ICustomer } from '@/interfaces/ICustomer';
 import { retrieveDate } from '@/helpers/payment';
 import { verificarStatusPagamento } from '@/helpers/status';
@@ -7,17 +9,23 @@ import { useRouter } from 'next/navigation';
 
 import CustomerActions from '@/app/admin/customers/components/CustomerActions/CustomerActions';
 
-import './styles.scss';
-
 export interface CustomerCardProps {
 	customer: ICustomer;
 	isAdmin?: boolean;
 }
 
-export default function CustomerCard({ customer, isAdmin }: CustomerCardProps) {
+import './styles.scss';
+import Loading from '@/components/UI/Loading/Loading';
+
+export default function CustomerCard({ customer, isAdmin }: Readonly<CustomerCardProps>) {
+	const [isPending, startTransition] = useTransition();
 	const router = useRouter();
 
-	const handleCardClick = () => router.push(`/admin/customers/${customer.id}`);
+	const handleCardClick = () => {
+		startTransition(() => {
+			router.push(`/admin/customers/${customer.id}`)
+		});
+	};
 
 	if (customer.is_employee && !isAdmin) {
 		return (
@@ -35,6 +43,10 @@ export default function CustomerCard({ customer, isAdmin }: CustomerCardProps) {
 					</div>
 				</div>
 				<CustomerDates customer={customer} />
+
+				{isPending && (
+					<Loading useInRoot />
+				)}
 			</div>
 		);
 	}
@@ -71,11 +83,14 @@ export default function CustomerCard({ customer, isAdmin }: CustomerCardProps) {
 			</div>
 
 			<CustomerDates customer={customer} />
+			{isPending && (
+				<Loading useInRoot />
+			)}
 		</div>
 	);
 }
 
-function CustomerDates({ customer }: { customer: ICustomer }) {
+function CustomerDates({ customer }: Readonly<{ customer: ICustomer }>) {
 	return (
 		<div className="customer-card__dates">
 			<span>Data de inclusão: {retrieveDate(customer.data_inclusao)}</span>

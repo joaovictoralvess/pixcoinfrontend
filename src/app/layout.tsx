@@ -24,6 +24,7 @@ export default function RootLayout({
 		<body className={inter.className}>
 		{children}
 		<div id='modal-root'></div>
+		<div id='loading-root'></div>
 		</body>
 		</html>
 	);

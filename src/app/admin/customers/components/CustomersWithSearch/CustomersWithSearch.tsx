@@ -17,7 +17,7 @@ import './styles.scss';
 export default function CustomersWithSearch({
 	customers,
 	isAdmin,
-}: CustomersWithSearchProps) {
+}: Readonly<CustomersWithSearchProps>) {
 	const [searchTerm, setSearchTerm] = useState('');
 
 	const filteredCustomers = customers.filter((customer) =>
