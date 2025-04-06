@@ -70,14 +70,14 @@ const AdminService = {
 						'Content-Type': 'application/json',
 						'x-access-token': user.token,
 					},
-					keepalive: true
+					keepalive: true,
 				}
 			);
 
 			return await response.json();
 		} catch (error) {
 			console.error(error);
-			return {} as ICustomer
+			return {} as ICustomer;
 		}
 	},
 	createMachine: async (
@@ -214,7 +214,13 @@ const AdminService = {
 
 		return await response.json();
 	},
-	restorePassword: async (customerId: string) => {
+	restorePassword: async ({
+		customerId,
+		password,
+	}: {
+		customerId: string;
+		password: string;
+	}) => {
 		try {
 			const user = (await getSession()) as User;
 
@@ -226,6 +232,7 @@ const AdminService = {
 						'Content-Type': 'application/json',
 						'x-access-token': user.token,
 					},
+					body: JSON.stringify({ password }),
 				}
 			);
 
@@ -233,7 +240,7 @@ const AdminService = {
 		} catch (error) {
 			console.log(error);
 		}
-	}
+	},
 };
 
 export default AdminService;

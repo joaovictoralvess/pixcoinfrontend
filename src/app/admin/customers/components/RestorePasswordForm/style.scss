@@ -1,9 +1,10 @@
 @use '@/app/variables' as variables;
 
-.remove-customer {
+.restore-password {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
+  flex-direction: column;
+  gap: 2.5rem;
+  margin-top: 3rem;
 
   p {
     font-size: 20px;

@@ -19,9 +19,16 @@ export default function RestorePasswordForm({
 	const [response, formActions] = useActionState(RestorePassword, {} as any);
 
 	return (
-		<form className="remove-customer" action={formActions}>
+		<form className="restore-password" action={formActions}>
 			{response && response.message && <p>{response.message}</p>}
-			<div className="remove-customer__buttons">
+			<TextInput
+				name='password'
+				label='Senha'
+				placeholder='Senha'
+				title='Senha do cliente'
+			/>
+
+			<div className="restore-password__buttons">
 				<Button onClick={cancelAction} type="button" title="Cancelar ação">
 					Cancelar ação
 				</Button>
