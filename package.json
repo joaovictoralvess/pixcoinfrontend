@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "deploy": "npm run build && pm2 reload pixcoin-frontend --update-env && pm2 save"
+    "deploy": "npm run build && pm2 reload pixcoin-frontend --update-env && pm2 save",
+    "logs": "pm2 logs pixcoin-frontend --lines 100"
   },
   "dependencies": {
     "@netlify/plugin-nextjs": "^5.10.3",
