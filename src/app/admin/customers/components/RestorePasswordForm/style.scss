@@ -1,0 +1,40 @@
+@use '@/app/variables' as variables;
+
+.remove-customer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+
+  p {
+    font-size: 20px;
+  }
+
+  &__buttons {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+
+    button {
+      width: 210px;
+      line-height: 100%;
+    }
+
+    button:first-child {
+      background-color: transparent;
+      border: 2px solid variables.$application-color;
+      color: #000;
+      transition: all 0.5s ease;
+
+      &:hover {
+        background-color: variables.$application-color;
+        color: #fff;
+      }
+    }
+
+    button:last-of-type {
+      background-color: #ff4c4c;
+    }
+  }
+}

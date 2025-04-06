@@ -214,6 +214,26 @@ const AdminService = {
 
 		return await response.json();
 	},
+	restorePassword: async (customerId: string) => {
+		try {
+			const user = (await getSession()) as User;
+
+			const response = await fetch(
+				`${process.env.REACT_APP_SERVIDOR}/cliente/restore-password/${customerId}`,
+				{
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+						'x-access-token': user.token,
+					},
+				}
+			);
+
+			return await response.json();
+		} catch (error) {
+			console.log(error);
+		}
+	}
 };
 
 export default AdminService;

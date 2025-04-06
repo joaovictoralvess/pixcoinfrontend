@@ -22,11 +22,12 @@ export interface CustomerActionsProps {
 import RemoveCustomerForm from '@/app/admin/customers/components/RemoveCustomerForm/RemoveCustomerForm';
 import AddWarningForm from '@/app/admin/customers/components/AddWarningForm/AddWarningForm';
 import AddEmployeeForm from '@/app/admin/customers/components/AddEmployeeForm/AddEmployeeForm';
+import RestorePasswordForm from '@/app/admin/customers/components/RestorePasswordForm/RestorePasswordForm';
 
 import './styles.scss';
 
 export default function CustomerActions({ customer, isAdmin, shouldRender = 'all', clientId = '' }: CustomerActionsProps) {
-	const [selectedModal, setSelectedModal] = useState<'new-customer' | 'new-machine' | 'edit-customer' | 'desative-machine' | 'remove-customer' | 'add-warning' | 'new-employee' | 'my-employees' | 'delete-employee' | ''>('');
+	const [selectedModal, setSelectedModal] = useState<'new-customer' | 'new-machine' | 'edit-customer' | 'desative-machine' | 'remove-customer' | 'add-warning' | 'new-employee' | 'my-employees' | 'delete-employee' | 'restore-password' | ''>('');
 
 	const handleCloseModal = () => setSelectedModal('');
 
@@ -46,6 +47,8 @@ export default function CustomerActions({ customer, isAdmin, shouldRender = 'all
 				return <AddWarningForm cancelAction={() => setSelectedModal('')} customerId={clientId} savedWarning={customer!.aviso} />
 			case 'new-employee':
 				return <AddEmployeeForm id={clientId} />
+			case 'restore-password':
+				return <RestorePasswordForm cancelAction={() => setSelectedModal('')} customerId={clientId} />
 			default:
 				return null;
 		}
@@ -67,6 +70,8 @@ export default function CustomerActions({ customer, isAdmin, shouldRender = 'all
 				return 'Adicionar/Remover aviso'
 			case 'new-employee':
 				return 'Novo Usuário'
+			case 'restore-password':
+				return 'Restaurar senha'
 			default:
 				return '';
 		}
@@ -147,6 +152,7 @@ export default function CustomerActions({ customer, isAdmin, shouldRender = 'all
 					<ActionButton callback={() => setSelectedModal('edit-customer')}>Editar cliente</ActionButton>
 
 					<ActionButton className="remove-customer" callback={() => setSelectedModal('remove-customer')}>Excluir cliente</ActionButton>
+					<ActionButton className="remove-customer" callback={() => setSelectedModal('restore-password')}>Restaurar senha</ActionButton>
 
 					<ActionButton callback={() => setSelectedModal('desative-machine')}>Ativar/Desativar máquinas</ActionButton>
 
