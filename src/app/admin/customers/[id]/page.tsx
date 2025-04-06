@@ -18,8 +18,9 @@ import { redirectAdminToLoginIfNotLogged } from '@/helpers/admin';
 
 import './styles.scss';
 
-
-export default async function AdminCustomer(props: AdminCustomerProps) {
+export default async function AdminCustomer(
+	props: Readonly<AdminCustomerProps>
+) {
 	const user = await redirectAdminToLoginIfNotLogged();
 	const isADMIN = user.key === 'ADMIN';
 
@@ -28,28 +29,37 @@ export default async function AdminCustomer(props: AdminCustomerProps) {
 
 	return (
 		<>
-			<Header iconLeft={
-				<GoBackIcon goTo={`/admin/customers`} />
-			}
-			/>
-			<main className='customer'>
-				<Layout className='customer__container'>
-					<div className='customer__container__wrapper-button'>
-						<PageTitleWithSync updateTo={`/admin/customers/${id}`} title={customer.nome} />
-						<CustomerActions isAdmin={isADMIN} customer={customer} shouldRender="edit-customer-and-add-machine-and-disabled-all-machines-add-warning" clientId={id} />
+			<Header iconLeft={<GoBackIcon goTo={`/admin/customers`} />} />
+			<main className="customer">
+				<Layout className="customer__container">
+					<div className="customer__container__wrapper-button">
+						<PageTitleWithSync title={customer.nome} />
+						<CustomerActions
+							isAdmin={isADMIN}
+							customer={customer}
+							shouldRender="edit-customer-and-add-machine-and-disabled-all-machines-add-warning"
+							clientId={id}
+						/>
 					</div>
 
 					{customer.maquinas.length > 0 ? (
-						<div className='customer__container__wrapper-machines'>
-							{customer.maquinas && customer.maquinas.length && customer.maquinas.map((machine) => (
-								<Machine user={user} customerId={customer.id} key={`${machine.id}`} machine={machine} />
-							))}
+						<div className="customer__container__wrapper-machines">
+							{customer.maquinas &&
+								customer.maquinas.length &&
+								customer.maquinas.map((machine) => (
+									<Machine
+										user={user}
+										customerId={customer.id}
+										key={`${machine.id}`}
+										machine={machine}
+									/>
+								))}
 						</div>
 					) : (
-						<h2 style={{marginTop: 40}}>Cliente ainda não possui máquinas</h2>
+						<h2 style={{ marginTop: 40 }}>Cliente ainda não possui máquinas</h2>
 					)}
 				</Layout>
 			</main>
 		</>
-	)
+	);
 }

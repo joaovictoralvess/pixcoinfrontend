@@ -67,7 +67,6 @@ export default async function MachinePanel() {
 				<Layout className="machine-panel__container">
 					<div className="machine-panel__container__wrapper-buttons">
 						<PageTitleWithSync
-							updateTo="/customer/machine-panel"
 							title="Painel de máquinas"
 						/>
 						{!user.employee && (

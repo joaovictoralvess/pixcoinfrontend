@@ -9,9 +9,6 @@ import CustomersWithSearch from '@/app/admin/customers/components/CustomersWithS
 import CustomerActions from '@/app/admin/customers/components/CustomerActions/CustomerActions';
 
 import { redirectAdminToLoginIfNotLogged } from '@/helpers/admin';
-import { getSession } from '@/helpers/session';
-
-import { User } from '@/interfaces/User';
 
 import './styles.scss';
 
@@ -28,7 +25,6 @@ export default async function AdminCustomers() {
 				<Layout className="customers__container">
 					<div className="customers__container__wrapper-button">
 						<PageTitleWithSync
-							updateTo="/admin/customers"
 							title="Painel de clientes"
 						/>
 						<CustomerActions shouldRender="new-customer" />

@@ -25,7 +25,7 @@ export default async function Employees() {
 			<main className='customers'>
 				<Layout className='customers__container'>
 					<div className='customers__container__wrapper-button'>
-						<PageTitleWithSync updateTo='/admin/customers' title='Listagem de Usuários' />
+						<PageTitleWithSync title='Listagem de Usuários' />
 					</div>
 				</Layout>
 

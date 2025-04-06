@@ -30,10 +30,10 @@ export interface MachineDetailProps {
 	searchParams: SearchParams;
 }
 
-export default async function MachineDetail(props: MachineDetailProps) {
+export default async function MachineDetail(props: Readonly<MachineDetailProps>) {
 	await redirectCustomerToLoginIfNotLogged();
 
-	const user = await getSession() as User;
+	const user = (await getSession()) as User;
 
 	const { id } = await props.params;
 	const searchParams = await props.searchParams;
@@ -53,30 +53,37 @@ export default async function MachineDetail(props: MachineDetailProps) {
 		}
 
 		return await MachineService.payments(id);
-	}
+	};
 
 	const data = await resolveFetchPayments();
 	const tableData = transformPaymentsData(removeDuplicateMP(data.pagamentos));
 
 	return (
 		<>
-			<Header iconLeft={
-				<GoBackIcon goTo="/customer/machine-panel" />
-				}
-			/>
+			<Header iconLeft={<GoBackIcon goTo="/customer/machine-panel" />} />
 
-			<main className='payments-panel'>
+			<main className="payments-panel">
 				<Layout className="payments-panel__container">
-					<h4 className='payments-panel__container__selected-machine'>Máquina selecionada: {machineName}</h4>
+					<h4 className="payments-panel__container__selected-machine">
+						Máquina selecionada: {machineName}
+					</h4>
 					<div className="payments-panel__container__wrapper-buttons">
-						<PageTitleWithSync updateTo={`/customer/machine-panel/${id}?machineName=${machineName}`} title="Painel de pagamentos" />
-						<MachineActions user={user} machine={{ id } as IMachine} shouldRender="delete-only" />
-						<PaymentReport canDelete={!!user.canDeletePayments} machineName={machineName} machineId={id} />
+						<PageTitleWithSync title="Painel de pagamentos" />
+						<MachineActions
+							user={user}
+							machine={{ id } as IMachine}
+							shouldRender="delete-only"
+						/>
+						<PaymentReport
+							canDelete={!!user.canDeletePayments}
+							machineName={machineName}
+							machineId={id}
+						/>
 					</div>
 
 					<PaymentTable tableData={tableData} />
 				</Layout>
 			</main>
 		</>
-	)
+	);
 }
