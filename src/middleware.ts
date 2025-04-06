@@ -3,6 +3,10 @@ import { getSession } from '@/helpers/session';
 import { User } from '@/interfaces/User';
 
 export default async function middleware(req: NextRequest) {
+	if (process.env.SHOULD_REDIRECT_TO_HOSTGATOR_APP === 'true') {
+		return NextResponse.redirect(new URL('https://app.pixcoinapi.com', req.url));
+	}
+
 	const pathname = req.nextUrl.pathname;
 
 	if (pathname === "/") {
