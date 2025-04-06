@@ -4,7 +4,9 @@ import { User } from '@/interfaces/User';
 
 export default async function Home() {
 	const user = await getSession() as User;
+	console.log('HOME');
 	if (!user) {
+		console.log('INDO PRO LOGIN');
 		redirect('/auth/customer/sign-in');
 	}
 
