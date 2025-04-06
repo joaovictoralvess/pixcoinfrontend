@@ -18,14 +18,15 @@ export interface PaymentReportScreen {
 	params: Params
 }
 
-import './styles.scss';
 import { getSession } from '@/helpers/session';
 import { User } from '@/interfaces/User';
 
-export default async function PaymentReportScreen(props: PaymentReportScreen) {
+import './styles.scss';
+
+export default async function PaymentReportScreen(props: Readonly<PaymentReportScreen>) {
 	await redirectCustomerToLoginIfNotLogged();
 
-	const user = await getSession() as User;
+	const user = (await getSession()) as User;
 	const isADMIN = user.key === 'ADMIN';
 
 	const { id } = await props.params;
@@ -41,12 +42,7 @@ export default async function PaymentReportScreen(props: PaymentReportScreen) {
 
 	newEndDate.setUTCHours(23, 59, 0, 0);
 
-	const {
-		payments,
-		tax,
-		reverses,
-		money
-	}  = await ReportService.allReports({
+	const { payments, tax, reverses, money } = await ReportService.allReports({
 		dataInicio: startDate,
 		dataFim: newEndDate.toISOString(),
 		maquinaId: id,
@@ -58,40 +54,26 @@ export default async function PaymentReportScreen(props: PaymentReportScreen) {
 		}
 
 		return `/customer/machine-panel/${id}?machineName=${machineName}`;
-	}
-
-	const resolveUpdatePath = (): string => {
-		if (isADMIN) {
-			return `/customer/payment-report/${id}?startDate=${startDate}&endDate=${endDate}&customerId=${customerId}`;
-		}
-
-		return `/customer/payment-report/${id}?startDate=${startDate}&endDate=${endDate}`
-	}
+	};
 
 	return (
 		<>
-			<Header iconLeft={
-				<GoBackIcon goTo={resolveGoBackPath()} />
-			}
-			/>
+			<Header iconLeft={<GoBackIcon goTo={resolveGoBackPath()} />} />
 
-			<main className='payment-report-screen'>
+			<main className="payment-report-screen">
 				<Layout>
-					<PageTitleWithSync
-						updateTo={resolveUpdatePath()}
-						title='Relatório de pagamento'
-					/>
-					<div className='payment-report-screen__dates'>
-						<span className='payment-report-screen__dates__range'>
+					<PageTitleWithSync title="Relatório de pagamento" />
+					<div className="payment-report-screen__dates">
+						<span className="payment-report-screen__dates__range">
 							{retrieveDate(startDate)} - {retrieveDate(endDate)}
 						</span>
 
-						<span className='payment-report-screen__dates__generate-in'>
+						<span className="payment-report-screen__dates__generate-in">
 							Gerado em {formatDateToDDMMYYYYHHMMSS(new Date())}
 						</span>
 					</div>
 
-					<div className='payment-report-screen__graph'>
+					<div className="payment-report-screen__graph">
 						<div className="payment-report-screen__graph__data">
 							<div className="payment-report-screen__graph__data__tax">
 								<h2>TAXAS</h2>
@@ -104,12 +86,16 @@ export default async function PaymentReportScreen(props: PaymentReportScreen) {
 
 						<PaymentCharts
 							labels={['PIX', 'ESPÉCIE', 'CRÉDITO', 'DÉBITO']}
-							values={[payments.pix, money.valor, payments.credito, payments.debito]}
+							values={[
+								payments.pix,
+								money.valor,
+								payments.credito,
+								payments.debito,
+							]}
 						/>
 					</div>
-
 				</Layout>
 			</main>
 		</>
-	)
+	);
 };
