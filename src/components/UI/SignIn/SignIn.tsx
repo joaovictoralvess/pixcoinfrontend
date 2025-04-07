@@ -11,19 +11,22 @@ export interface SignInProps {
 
 import './styles.scss';
 
-export default function SignIn({ isAdmin = false, title = 'Login', subtitle = 'Bem-vindo de volta! 😊' }: SignInProps) {
+export default function SignIn({
+	isAdmin = false,
+	title = 'Login',
+	subtitle = 'Bem-vindo de volta! 😊',
+}: Readonly<SignInProps>) {
 	return (
-		<div className='sign-in-container'>
-			<div className='sign-in-container__left-section'>
-				<div className='sign-in-container__left-section__wrapper'>
+		<div className="sign-in-container">
+			<div className="sign-in-container__left-section">
+				<div className="sign-in-container__left-section__wrapper">
 					<div className="sign-in-container__left-section__wrapper__title">
-						<LoginIcon
-							width={24}
-							height={24}
-						/>
+						<LoginIcon width={24} height={24} />
 						<h1>{title}</h1>
 					</div>
-					<span className="sign-in-container__left-section__wrapper__subtitle">{subtitle}</span>
+					<span className="sign-in-container__left-section__wrapper__subtitle">
+						{subtitle}
+					</span>
 				</div>
 
 				<SignInForm isAdmin={isAdmin} />
@@ -41,5 +44,5 @@ export default function SignIn({ isAdmin = false, title = 'Login', subtitle = 'B
 				/>
 			</div>
 		</div>
-	)
+	);
 }

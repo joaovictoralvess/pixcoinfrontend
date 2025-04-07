@@ -21,7 +21,9 @@ export interface SignInFormProps {
 	isAdmin?: boolean;
 }
 
-export default function SignInForm({ isAdmin = false }: SignInFormProps) {
+export default function SignInForm({
+	isAdmin = false,
+}: Readonly<SignInFormProps>) {
 	const [inputType, setInputType] = useState<'password' | 'text'>('password');
 	const [isPending, startTransition] = useTransition();
 	const [state, formAction] = useActionState(handleSignInForm, initialState);
@@ -91,15 +93,20 @@ export default function SignInForm({ isAdmin = false }: SignInFormProps) {
 						Login como administrador
 					</a>
 				)}
+
+				<a
+					className="sign-in-container__left-section__wrapper-input__link"
+					href="/auth/forgot-password"
+				>
+					Esqueci minha senha
+				</a>
 			</div>
 
 			<Button type="submit" title="Entrar na sua conta">
 				{isPending ? 'Entrando...' : 'Entrar'}
 			</Button>
 
-			{isPending && (
-				<Loading />
-			)}
+			{isPending && <Loading />}
 		</form>
 	);
 }

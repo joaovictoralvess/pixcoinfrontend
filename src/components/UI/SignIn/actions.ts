@@ -12,22 +12,20 @@ import CustomersService from '@/services/Customers';
 import AdminService from '@/services/Admin';
 
 export interface SignInError {
-	email?: string,
-	password?: string,
+	email?: string;
+	password?: string;
 }
 
 export interface SignInState {
-	isValid?: boolean,
+	isValid?: boolean;
 	errors: SignInError;
 }
 
 const validateSignUpForm = (formData: FormData): SignInState => {
-	const userSchema =
-		z
-			.object({
-				email: z.string().email('E-mail inválido.'),
-				password: z.string().min(6, 'Senha deve conter no mínimo 6 dígitos.'),
-			});
+	const userSchema = z.object({
+		email: z.string().email('E-mail inválido.'),
+		password: z.string().min(6, 'Senha deve conter no mínimo 6 dígitos.'),
+	});
 
 	try {
 		userSchema.parse(Object.fromEntries(formData));
@@ -39,8 +37,8 @@ const validateSignUpForm = (formData: FormData): SignInState => {
 
 	return {
 		isValid: true,
-		errors: {}
-	}
+		errors: {},
+	};
 };
 
 const adminLogin = async (data: SignInUser) => {
@@ -51,19 +49,19 @@ const adminLogin = async (data: SignInUser) => {
 			errors: {
 				email: 'E-mail ou senha inválido.',
 				password: 'E-mail ou senha inválido.',
-			}
-		}
+			},
+		};
 	}
 
 	await createSession(JSON.stringify(user));
 	revalidatePath('/admin/customers');
 	redirect('/admin/customers');
-}
+};
 
 export const handleSignInForm = async (prevState: any, formData: FormData) => {
 	const validation = validateSignUpForm(formData);
 	if (!validation.isValid) {
-		return {...prevState, ...validation};
+		return { ...prevState, ...validation };
 	}
 
 	const data = {
@@ -82,12 +80,12 @@ export const handleSignInForm = async (prevState: any, formData: FormData) => {
 			errors: {
 				email: 'E-mail ou senha inválido.',
 				password: 'E-mail ou senha inválido.',
-			}
-		}
+			},
+		};
 	}
 
 	await createSession(JSON.stringify(user));
 
 	revalidatePath('/customer/machine-panel');
-	redirect('/customer/machine-panel')
+	redirect('/customer/machine-panel');
 };
