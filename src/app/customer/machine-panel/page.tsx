@@ -24,7 +24,7 @@ export default async function MachinePanel() {
 	const machinesDisabled = machines.every((machine) => machine.disabled);
 
 	const renderContent = () => {
-		if (machinesDisabled) {
+		if (machines.length >= 1 &&  machinesDisabled) {
 			return (
 				<div className="machine-panel__container__disabled-machine">
 					<p>
