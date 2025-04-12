@@ -5,6 +5,9 @@ import Machine from '@/components/UI/Machine/Machine';
 import CustomerActions from '@/app/admin/customers/components/CustomerActions/CustomerActions';
 
 import PageTitleWithSync from '@/components/UI/PageTitleWithSync/PageTitleWithSync';
+import ErrorScreen from '@/components/UI/ErrorStatus/ErrorStatus';
+
+import { ICustomer } from '@/interfaces/ICustomer';
 
 import { Params } from '@/@types/params';
 
@@ -25,7 +28,15 @@ export default async function AdminCustomer(
 	const isADMIN = user.key === 'ADMIN';
 
 	const { id } = await props.params;
-	const customer = await AdminService.customer(id);
+	const data = await AdminService.customer(id);
+
+	if (data.error) {
+		return (
+			<ErrorScreen />
+		)
+	}
+
+	const customer = data as ICustomer;
 
 	return (
 		<>

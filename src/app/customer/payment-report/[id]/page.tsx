@@ -4,6 +4,7 @@ import { Params } from '@/@types/params';
 import PageTitleWithSync from '@/components/UI/PageTitleWithSync/PageTitleWithSync';
 import Header from '@/components/UI/Header/Header';
 import Layout from '@/components/UI/Layout/Layout';
+import ErrorScreen from '@/components/UI/ErrorStatus/ErrorStatus';
 
 import GoBackIcon from '@/components/Icons/GoBackIcon';
 import PaymentCharts from '@/app/customer/payment-report/components/PaymentCharts/PaymentCharts';
@@ -42,11 +43,17 @@ export default async function PaymentReportScreen(props: Readonly<PaymentReportS
 
 	newEndDate.setUTCHours(23, 59, 0, 0);
 
-	const { payments, tax, reverses, money } = await ReportService.allReports({
+	const { payments, tax, reverses, money, error } = await ReportService.allReports({
 		dataInicio: startDate,
 		dataFim: newEndDate.toISOString(),
 		maquinaId: id,
 	});
+
+	if (error) {
+		return (
+			<ErrorScreen />
+		);
+	}
 
 	const resolveGoBackPath = (): string => {
 		if (isADMIN) {

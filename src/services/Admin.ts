@@ -92,7 +92,7 @@ const AdminService = {
 			};
 		}
 	},
-	customer: async (id: string): Promise<ICustomer> => {
+	customer: async (id: string): Promise<ICustomer | IError> => {
 		try {
 			const user = (await getSession()) as User;
 
@@ -108,9 +108,17 @@ const AdminService = {
 				}
 			);
 
+			if (!response.ok) {
+				return {
+					error: `Ocorreu uma falha. Tente novamente - Error ${response.status} - ${response.statusText}`,
+				};
+			}
+
 			return await response.json();
 		} catch (error) {
-			return {} as ICustomer;
+			return {
+				error: 'Ocorreu uma falha. Por favor, tente novamente!',
+			};
 		}
 	},
 	createMachine: async (

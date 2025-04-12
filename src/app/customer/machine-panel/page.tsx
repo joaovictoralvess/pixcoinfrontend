@@ -2,6 +2,7 @@ import Header from '@/components/UI/Header/Header';
 import Layout from '@/components/UI/Layout/Layout';
 import PageTitleWithSync from '@/components/UI/PageTitleWithSync/PageTitleWithSync';
 import Machine from '@/components/UI/Machine/Machine';
+import ErrorScreen from '@/components/UI/ErrorStatus/ErrorStatus';
 
 import { redirectCustomerToLoginIfNotLogged } from '@/helpers/customer';
 
@@ -21,10 +22,14 @@ export default async function MachinePanel() {
 		CustomersService.getWarning(user.id),
 	]);
 
+	if (!Array.isArray(machines)) {
+		return <ErrorScreen />;
+	}
+
 	const machinesDisabled = machines.every((machine) => machine.disabled);
 
 	const renderContent = () => {
-		if (machines.length >= 1 &&  machinesDisabled) {
+		if (machines.length >= 1 && machinesDisabled) {
 			return (
 				<div className="machine-panel__container__disabled-machine">
 					<p>
@@ -66,9 +71,7 @@ export default async function MachinePanel() {
 			<main className="machine-panel">
 				<Layout className="machine-panel__container">
 					<div className="machine-panel__container__wrapper-buttons">
-						<PageTitleWithSync
-							title="Painel de máquinas"
-						/>
+						<PageTitleWithSync title="Painel de máquinas" />
 						{!user.employee && (
 							<>
 								<CustomerActions

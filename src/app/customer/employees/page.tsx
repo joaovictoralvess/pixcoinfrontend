@@ -4,6 +4,7 @@ import PageTitleWithSync from '@/components/UI/PageTitleWithSync/PageTitleWithSy
 import GoBackIcon from '@/components/Icons/GoBackIcon';
 
 import CustomersWithSearch from '@/app/admin/customers/components/CustomersWithSearch/CustomersWithSearch';
+import ErrorScreen from '@/components/UI/ErrorStatus/ErrorStatus';
 
 import { redirectCustomerToLoginIfNotLogged } from '@/helpers/customer';
 
@@ -15,6 +16,12 @@ export default async function Employees() {
 	const user = await redirectCustomerToLoginIfNotLogged();
 
 	const customers = await CustomersService.getEmployees(user.id, user.token);
+
+	if (!Array.isArray(customers)) {
+		return (
+			<ErrorScreen />
+		);
+	}
 
 	return (
 		<>

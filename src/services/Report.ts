@@ -1,70 +1,99 @@
 import { getSession } from '@/helpers/session';
 
 import { User } from '@/interfaces/User';
-import { AllReportRequest, AllReportResponse, DownloadReportRequest } from '@/interfaces/Report';
+import {
+	AllReportRequest,
+	AllReportResponse,
+	DownloadReportRequest,
+} from '@/interfaces/Report';
 
 const ReportService = {
 	allReports: async (data: AllReportRequest): Promise<AllReportResponse> => {
-	const user = await getSession() as User;
-	const isADMIN = user.key === 'ADMIN';
+		try {
+			const user = (await getSession()) as User;
+			const isADMIN = user.key === 'ADMIN';
 
-	const requests = [
-		fetch(`${process.env.REACT_APP_SERVIDOR}/relatorio-03-pagamentos${isADMIN ? '-adm' : ''}`, {
-			method: 'POST',
-			headers: {
-				"Content-Type": "application/json",
-				"x-access-token": user.token
-			},
-			body: JSON.stringify(data)
-		}),
-		fetch(`${process.env.REACT_APP_SERVIDOR}/relatorio-04-estornos${isADMIN ? '-adm' : ''}`, {
-			method: 'POST',
-			headers: {
-				"Content-Type": "application/json",
-				"x-access-token": user.token
-			},
-			body: JSON.stringify(data)
-		}),
-		fetch(`${process.env.REACT_APP_SERVIDOR}/relatorio-02-taxas${isADMIN ? '-adm' : ''}`, {
-			method: 'POST',
-			headers: {
-				"Content-Type": "application/json",
-				"x-access-token": user.token
-			},
-			body: JSON.stringify(data)
-		}),
-		fetch(`${process.env.REACT_APP_SERVIDOR}/relatorio-01-cash${isADMIN ? '-adm' : ''}`, {
-			method: 'POST',
-			headers: {
-				"Content-Type": "application/json",
-				"x-access-token": user.token
-			},
-			body: JSON.stringify(data)
-		})
-	];
+			const requests = [
+				fetch(
+					`${process.env.REACT_APP_SERVIDOR}/relatorio-03-pagamentos${isADMIN ? '-adm' : ''}`,
+					{
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json',
+							'x-access-token': user.token,
+						},
+						body: JSON.stringify(data),
+					}
+				),
+				fetch(
+					`${process.env.REACT_APP_SERVIDOR}/relatorio-04-estornos${isADMIN ? '-adm' : ''}`,
+					{
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json',
+							'x-access-token': user.token,
+						},
+						body: JSON.stringify(data),
+					}
+				),
+				fetch(
+					`${process.env.REACT_APP_SERVIDOR}/relatorio-02-taxas${isADMIN ? '-adm' : ''}`,
+					{
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json',
+							'x-access-token': user.token,
+						},
+						body: JSON.stringify(data),
+					}
+				),
+				fetch(
+					`${process.env.REACT_APP_SERVIDOR}/relatorio-01-cash${isADMIN ? '-adm' : ''}`,
+					{
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json',
+							'x-access-token': user.token,
+						},
+						body: JSON.stringify(data),
+					}
+				),
+			];
 
-		const responses = await Promise.all(requests);
-		return {
-			payments: await responses[0].json(),
-			reverses: await responses[1].json(),
-			tax: await responses[2].json(),
-			money: await responses[3].json()
+			const responses = await Promise.all(requests);
+			return {
+				payments: await responses[0].json(),
+				reverses: await responses[1].json(),
+				tax: await responses[2].json(),
+				money: await responses[3].json(),
+			};
+		} catch (error) {
+			return {
+				error: 'Ocorreu um error',
+				money: {},
+				payments: {},
+				tax: {},
+				reverses: {},
+			}
 		}
 	},
 	downloadReport: async (data: DownloadReportRequest): Promise<Blob> => {
-		const user = await getSession() as User;
+		const user = (await getSession()) as User;
 
-		const resp = await fetch(`${process.env.REACT_APP_SERVIDOR}/relatorio-pagamento-pdf`, {
-			method: 'POST',
-			headers: {
-				"Content-Type": "application/json",
-				"x-access-token": user.token
-			},
-			body: JSON.stringify(data),
-		});
+		const resp = await fetch(
+			`${process.env.REACT_APP_SERVIDOR}/relatorio-pagamento-pdf`,
+			{
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					'x-access-token': user.token,
+				},
+				body: JSON.stringify(data),
+			}
+		);
 
 		return resp.blob();
-	}
-}
+	},
+};
 
 export default ReportService;

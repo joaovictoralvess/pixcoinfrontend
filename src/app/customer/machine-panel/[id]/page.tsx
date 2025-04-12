@@ -12,6 +12,7 @@ import PaymentReport from '@/components/UI/PaymentReport/PaymentReport';
 import PageTitleWithSync from '@/components/UI/PageTitleWithSync/PageTitleWithSync';
 import Header from '@/components/UI/Header/Header';
 import Layout from '@/components/UI/Layout/Layout';
+import ErrorScreen from '@/components/UI/ErrorStatus/ErrorStatus';
 
 import PaymentTable from '@/app/customer/machine-panel/components/PaymentTable/PaymentTable';
 import transformPaymentsData, { removeDuplicateMP } from '@/helpers/payment';
@@ -56,6 +57,10 @@ export default async function MachineDetail(props: Readonly<MachineDetailProps>)
 	};
 
 	const data = await resolveFetchPayments();
+	if (data.error) {
+		return <ErrorScreen />;
+	}
+
 	const tableData = transformPaymentsData(removeDuplicateMP(data.pagamentos));
 
 	return (

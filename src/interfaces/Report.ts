@@ -22,6 +22,7 @@ export interface AllReportResponse {
 	},
 	money: {
 		[key: string]: number;
-	}
+	},
+	error?: string;
 }
 

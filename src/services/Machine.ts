@@ -9,20 +9,27 @@ import {
 } from '@/interfaces/IMachine';
 import { User } from '@/interfaces/User';
 import { IPaymentResponse } from '@/interfaces/IPayment';
+import { IError } from '@/interfaces/IError';
 
 import { getSession } from '@/helpers/session';
 
 const MachineService = {
-	all: async (user: User): Promise<IMachine[]> => {
-		const response = await fetch(`${process.env.REACT_APP_SERVIDOR}/maquinas`, {
-			method: 'GET',
-			headers: {
-				'Content-Type': 'application/json',
-				'x-access-token': user.token,
-			},
-		});
+	all: async (user: User): Promise<IMachine[] | IError> => {
+		try {
+			const response = await fetch(`${process.env.REACT_APP_SERVIDOR}/maquinas`, {
+				method: 'GET',
+				headers: {
+					'Content-Type': 'application/json',
+					'x-access-token': user.token,
+				},
+			});
 
-		return await response.json();
+			return await response.json();
+		} catch (error) {
+			return {
+				error: "Ocorreu um erro"
+			}
+		}
 	},
 	update: async (
 		data: UpdateMachineRequest
@@ -68,39 +75,51 @@ const MachineService = {
 			dataInicio: string;
 		}
 	): Promise<IPaymentResponse> => {
-		const user = (await getSession()) as User;
+		try {
+			const user = (await getSession()) as User;
 
-		const payload = JSON.stringify(data);
+			const payload = JSON.stringify(data);
 
-		const response = await fetch(
-			`${process.env.REACT_APP_SERVIDOR}/pagamentos-periodo/${machineId}`,
-			{
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-					'x-access-token': user.token,
-				},
-				body: payload,
-			}
-		);
+			const response = await fetch(
+				`${process.env.REACT_APP_SERVIDOR}/pagamentos-periodo/${machineId}`,
+				{
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+						'x-access-token': user.token,
+					},
+					body: payload,
+				}
+			);
 
-		return await response.json();
+			return await response.json();
+		} catch (error) {
+			return {
+				error: "Ocorreu um erro"
+			} as IPaymentResponse
+		}
 	},
 	payments: async (machineId: string): Promise<IPaymentResponse> => {
-		const user = (await getSession()) as User;
+		try {
+			const user = (await getSession()) as User;
 
-		const response = await fetch(
-			`${process.env.REACT_APP_SERVIDOR}/pagamentos/${machineId}`,
-			{
-				method: 'GET',
-				headers: {
-					'Content-Type': 'application/json',
-					'x-access-token': user.token,
-				},
-			}
-		);
+			const response = await fetch(
+				`${process.env.REACT_APP_SERVIDOR}/pagamentos/${machineId}`,
+				{
+					method: 'GET',
+					headers: {
+						'Content-Type': 'application/json',
+						'x-access-token': user.token,
+					},
+				}
+			);
 
-		return await response.json();
+			return await response.json();
+		} catch (error) {
+			return {
+				error: 'Ocorreu uma falha'
+			} as IPaymentResponse
+		}
 	},
 	removeAllPayments: async (
 		machineId: string

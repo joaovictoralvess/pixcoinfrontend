@@ -4,6 +4,7 @@ export interface IPaymentResponse {
 	estornos: number;
 	total: number;
 	pagamentos: IPayment[];
+	error?: string;
 }
 
 export interface IPayment {
