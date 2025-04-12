@@ -1,6 +1,7 @@
 import Header from '@/components/UI/Header/Header';
 import Layout from '@/components/UI/Layout/Layout';
 import PageTitleWithSync from '@/components/UI/PageTitleWithSync/PageTitleWithSync';
+import ErrorScreen from '@/components/UI/ErrorStatus/ErrorStatus';
 
 import AdminService from '@/services/Admin';
 
@@ -17,6 +18,26 @@ export default async function AdminCustomers() {
 	const isADMIN = user.key === 'ADMIN';
 
 	const customers = await AdminService.allCustomers(user);
+
+	if (!Array.isArray(customers)) {
+		return (
+			<>
+				<Header />
+				<main className="customers">
+					<Layout className="customers__container">
+						<div className="customers__container__wrapper-button">
+							<PageTitleWithSync
+								title="Painel de clientes"
+							/>
+							<CustomerActions shouldRender="new-customer" />
+						</div>
+					</Layout>
+
+					<ErrorScreen />
+				</main>
+			</>
+		)
+	}
 
 	return (
 		<>

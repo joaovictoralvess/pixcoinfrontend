@@ -4,12 +4,14 @@ import {
 	EditCustomerRequest,
 	ICustomer,
 } from '@/interfaces/ICustomer';
-import { getSession } from '@/helpers/session';
 import {
 	CreateMachineRequest,
 	CreateMachineResponse,
 } from '@/interfaces/IMachine';
 import { IPaymentResponse } from '@/interfaces/IPayment';
+import { IError } from '@/interfaces/IError';
+
+import { getSession } from '@/helpers/session';
 
 const AdminService = {
 	signIn: async (data: SignInUser): Promise<User> => {
@@ -33,30 +35,62 @@ const AdminService = {
 			} as User;
 		}
 	},
-	createCustomer: async (data: CreateCustomerRequest): Promise<ICustomer> => {
-		const user = (await getSession()) as User;
+	createCustomer: async (
+		data: CreateCustomerRequest
+	): Promise<ICustomer | IError> => {
+		try {
+			const user = (await getSession()) as User;
 
-		const response = await fetch(`${process.env.REACT_APP_SERVIDOR}/cliente`, {
-			method: 'POST',
-			body: JSON.stringify(data),
-			headers: {
-				'Content-Type': 'application/json',
-				'x-access-token': user.token,
-			},
-		});
+			const response = await fetch(
+				`${process.env.REACT_APP_SERVIDOR}/cliente`,
+				{
+					method: 'POST',
+					body: JSON.stringify(data),
+					headers: {
+						'Content-Type': 'application/json',
+						'x-access-token': user.token,
+					},
+				}
+			);
 
-		return await response.json();
+			if (!response.ok) {
+				return {
+					error: `Ocorreu uma falha. Tente novamente - Error ${response.status} - ${response.statusText}`,
+				};
+			}
+
+			return await response.json();
+		} catch (error) {
+			return {
+				error: 'Ocorreu uma falha. Por favor, tente novamente!',
+			};
+		}
 	},
-	allCustomers: async (user: User): Promise<ICustomer[]> => {
-		const response = await fetch(`${process.env.REACT_APP_SERVIDOR}/clientes`, {
-			method: 'GET',
-			headers: {
-				'Content-Type': 'application/json',
-				'x-access-token': user.token,
-			},
-		});
+	allCustomers: async (user: User): Promise<ICustomer[] | IError> => {
+		try {
+			const response = await fetch(
+				`${process.env.REACT_APP_SERVIDOR}/clientes`,
+				{
+					method: 'GET',
+					headers: {
+						'Content-Type': 'application/json',
+						'x-access-token': user.token,
+					},
+				}
+			);
 
-		return await response.json();
+			if (!response.ok) {
+				return {
+					error: `Ocorreu uma falha. Tente novamente - Error ${response.status} - ${response.statusText}`,
+				};
+			}
+
+			return await response.json();
+		} catch (error) {
+			return {
+				error: 'Ocorreu uma falha. Por favor, tente novamente!',
+			};
+		}
 	},
 	customer: async (id: string): Promise<ICustomer> => {
 		try {
@@ -76,7 +110,6 @@ const AdminService = {
 
 			return await response.json();
 		} catch (error) {
-			console.error(error);
 			return {} as ICustomer;
 		}
 	},
