@@ -22,6 +22,12 @@ export interface IMachine {
 	bonusPlay: boolean;
 	moves: number;
 	bonus: number;
+	tabledBonus: boolean;
+	bonus_five: number;
+	bonus_ten: number;
+	bonus_twenty: number;
+	bonus_fifty: number;
+	bonus_hundred: number;
 }
 
 export interface UpdateMachineRequest {
@@ -37,6 +43,12 @@ export interface UpdateMachineRequest {
 	moves: number;
 	bonus: number;
 	bonusPlay: boolean;
+	tabledBonus: boolean;
+	bonus_five: number;
+	bonus_ten: number;
+	bonus_twenty: number;
+	bonus_fifty: number;
+	bonus_hundred: number;
 }
 
 export interface UpdateMachineResponse {
