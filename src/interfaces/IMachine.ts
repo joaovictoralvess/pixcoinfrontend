@@ -73,6 +73,12 @@ export interface CreateMachineRequest {
 	moves: number;
 	bonus: number;
 	bonusPlay: boolean;
+	tabledBonus: boolean;
+	bonus_five: number;
+	bonus_ten: number;
+	bonus_twenty: number;
+	bonus_fifty: number;
+	bonus_hundred: number;
 }
 
 export interface CreateMachineResponse {

@@ -52,6 +52,7 @@ export const handleCreateMachine = async (prevState: any, formData: FormData) =>
 
 	const clienteId = String(formData.get('clienteId'));
 	const bonusPlay = `${formData.get('bonusPlay')}` === 'on';
+	const tabledBonus = `${formData.get('tabledBonus')}` === 'on';
 
 	const data: CreateMachineRequest = {
 		nome: `${formData.get('name')}`,
@@ -66,6 +67,12 @@ export const handleCreateMachine = async (prevState: any, formData: FormData) =>
 		moves: bonusPlay ? Number(`${formData.get('moves')}`) : 0,
 		bonus: bonusPlay ? Number(`${formData.get('bonus')}`) : 0,
 		bonusPlay,
+		tabledBonus,
+		bonus_five: tabledBonus ? Number(`${formData.get('five')}`) : 0,
+		bonus_ten: tabledBonus ? Number(`${formData.get('ten')}`) : 0,
+		bonus_twenty: tabledBonus ? Number(`${formData.get('twenty')}`) : 0,
+		bonus_fifty: tabledBonus ? Number(`${formData.get('fifity')}`) : 0,
+		bonus_hundred: tabledBonus ? Number(`${formData.get('hundred')}`) : 0,
 	};
 
 	const resp = await AdminService.createMachine(data);

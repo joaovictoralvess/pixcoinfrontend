@@ -22,6 +22,8 @@
     min-height: 20%;
     border-radius: 20px;
     min-width: 350px;
+    overflow: auto;
+    max-height: 50rem;
 
     &__header {
       display: flex;
