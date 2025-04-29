@@ -31,7 +31,7 @@ export default function SignIn({ isAdmin = false, title = 'Login', subtitle = 'B
 
 			<div className="sign-in-container__right-section">
 				<Image
-					src="/assets/images/pixcoin_logo.png"
+					src="/assets/images/logo_pixcoin.png"
 					alt="Logo Pixcoin"
 					width={0}
 					height={0}
