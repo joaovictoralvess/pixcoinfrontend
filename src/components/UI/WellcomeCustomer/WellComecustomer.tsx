@@ -35,23 +35,15 @@ export default function WellComeCustomer({ name }: WellComeCustomerProps) {
 	}
 
 	return (
-		<Modal onClose={() => setOpen(!open)} title="Bem Vindo!">
+		<Modal onClose={() => setOpen(!open)} title="Aviso!">
 			<div className="wellcome-text">
 				<p>
-					Olá, {name}!
-					Que alegria ter você conosco! É uma honra enorme apresentar a você a nova telemetria, feito com muito carinho
-					para oferecer uma experiência ainda mais incrível.
+					Olá {name} <br/>
+					Informamos que o Mercado Pago está passando por instabilidades momentâneas, o que pode ocasionar lentidão em operações de estorno e na computação de créditos.
 				</p>
-
 				<p>
-					Estamos sempre buscando evoluir para melhor atendê-lo, e este é apenas o começo de uma jornada repleta de
-					novidades. Navegue à vontade e conte com a gente para o que precisar!
+					Reforçamos que essa situação é externa e não se trata de um problema da Pixcoin. Estamos acompanhando de perto e à disposição para ajudar no que for necessário.
 				</p>
-
-				<p>
-					Seja bem-vindo(a) ao novo capítulo da nossa história.
-				</p>
-
 				<p>
 					Abraços,
 					Equipe Pixcoin ❤️
