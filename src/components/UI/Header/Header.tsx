@@ -1,8 +1,6 @@
 import { ReactNode } from 'react';
 
 import { generateRandomEmoji } from '@/helpers/emojis';
-import { getSession } from '@/helpers/session';
-import { User } from '@/interfaces/User';
 
 import { signOut } from '@/app/auth/customer/sign-out/actions';
 
@@ -12,10 +10,10 @@ import './styles.scss';
 
 export interface HeaderProps {
 	iconLeft?: ReactNode;
+	userName: string;
 }
 
-export default async function Header({ iconLeft }: Readonly<HeaderProps>) {
-	const user = (await getSession()) as User;
+export default function Header({ iconLeft, userName }: Readonly<HeaderProps>) {
 
 	return (
 		<>
@@ -28,7 +26,7 @@ export default async function Header({ iconLeft }: Readonly<HeaderProps>) {
 					<div className="header__title-wrapper-logo">
 						<span className="header__title-wrapper-logo__logo">PIXcoin</span>
 						<span className="header__title-wrapper-logo__customer">
-							Olá, {user.name} {generateRandomEmoji()}
+							Olá, {userName} {generateRandomEmoji()}
 						</span>
 					</div>
 				</div>

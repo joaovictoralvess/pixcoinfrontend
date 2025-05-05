@@ -31,7 +31,9 @@ export interface MachineDetailProps {
 	searchParams: SearchParams;
 }
 
-export default async function MachineDetail(props: Readonly<MachineDetailProps>) {
+export default async function MachineDetail(
+	props: Readonly<MachineDetailProps>
+) {
 	await redirectCustomerToLoginIfNotLogged();
 
 	const user = (await getSession()) as User;
@@ -65,7 +67,10 @@ export default async function MachineDetail(props: Readonly<MachineDetailProps>)
 
 	return (
 		<>
-			<Header iconLeft={<GoBackIcon goTo="/customer/machine-panel" />} />
+			<Header
+				iconLeft={<GoBackIcon goTo="/customer/machine-panel" />}
+				userName={user.name}
+			/>
 
 			<main className="payments-panel">
 				<Layout className="payments-panel__container">

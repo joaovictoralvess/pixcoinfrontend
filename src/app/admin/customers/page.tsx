@@ -22,13 +22,11 @@ export default async function AdminCustomers() {
 	if (!Array.isArray(customers)) {
 		return (
 			<>
-				<Header />
+				<Header userName={user.name} />
 				<main className="customers">
 					<Layout className="customers__container">
 						<div className="customers__container__wrapper-button">
-							<PageTitleWithSync
-								title="Painel de clientes"
-							/>
+							<PageTitleWithSync title="Painel de clientes" />
 							<CustomerActions shouldRender="new-customer" />
 						</div>
 					</Layout>
@@ -36,18 +34,16 @@ export default async function AdminCustomers() {
 					<ErrorScreen />
 				</main>
 			</>
-		)
+		);
 	}
 
 	return (
 		<>
-			<Header />
+			<Header userName={user.name} />
 			<main className="customers">
 				<Layout className="customers__container">
 					<div className="customers__container__wrapper-button">
-						<PageTitleWithSync
-							title="Painel de clientes"
-						/>
+						<PageTitleWithSync title="Painel de clientes" />
 						<CustomerActions shouldRender="new-customer" />
 					</div>
 				</Layout>

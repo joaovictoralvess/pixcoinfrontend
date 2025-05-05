@@ -26,11 +26,10 @@ import { User } from '@/interfaces/User';
 
 import './styles.scss';
 
-
-export default async function CustomerPayments(props: CustomerPaymentsProps) {
+export default async function CustomerPayments(props: Readonly<CustomerPaymentsProps>) {
 	await redirectAdminToLoginIfNotLogged();
 
-	const user = await getSession() as User;
+	const user = (await getSession()) as User;
 
 	const { machineId } = await props.params;
 	const { id } = await props.params;
@@ -52,30 +51,40 @@ export default async function CustomerPayments(props: CustomerPaymentsProps) {
 		}
 
 		return await AdminService.payments(machineId);
-	}
+	};
 
 	const data = await resolveFetchPayments();
 	const tableData = transformPaymentsData(removeDuplicateMP(data.pagamentos));
 
 	return (
 		<>
-			<Header iconLeft={
-				<GoBackIcon goTo={`/admin/customers/${id}`} />
-			}
-			/>
+			<Header iconLeft={<GoBackIcon goTo={`/admin/customers/${id}`} />} userName={user.name} />
 
-			<main className='customer-payments-panel'>
+			<main className="customer-payments-panel">
 				<Layout className="customer-payments-panel__container">
-					<h4 className='customer-payments-panel__container__selected-machine'>Máquina selecionada: {machineName}</h4>
-					<div className='customer-payments-panel__container__wrapper-buttons'>
-						<PageTitleWithSync title='Painel de pagamentos' />
-						<MachineActions user={user} isAdmin={true} machine={{ id: machineId } as IMachine} shouldRender='delete-only' />
-						<PaymentReport canDelete={!!user.canDeletePayments && !!user.employee} machineName={machineName} isAdmin={true} customerId={id} machineId={machineId} />
+					<h4 className="customer-payments-panel__container__selected-machine">
+						Máquina selecionada: {machineName}
+					</h4>
+					<div className="customer-payments-panel__container__wrapper-buttons">
+						<PageTitleWithSync title="Painel de pagamentos" />
+						<MachineActions
+							user={user}
+							isAdmin={true}
+							machine={{ id: machineId } as IMachine}
+							shouldRender="delete-only"
+						/>
+						<PaymentReport
+							canDelete={!!user.canDeletePayments && !!user.employee}
+							machineName={machineName}
+							isAdmin={true}
+							customerId={id}
+							machineId={machineId}
+						/>
 					</div>
 
 					<PaymentTable tableData={tableData} />
 				</Layout>
 			</main>
 		</>
-	)
+	);
 }

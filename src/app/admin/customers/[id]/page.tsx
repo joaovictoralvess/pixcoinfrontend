@@ -31,16 +31,14 @@ export default async function AdminCustomer(
 	const data = await AdminService.customer(id);
 
 	if (data.error) {
-		return (
-			<ErrorScreen />
-		)
+		return <ErrorScreen />;
 	}
 
 	const customer = data as ICustomer;
 
 	return (
 		<>
-			<Header iconLeft={<GoBackIcon goTo={`/admin/customers`} />} />
+			<Header iconLeft={<GoBackIcon goTo={`/admin/customers`} />} userName={user.name} />
 			<main className="customer">
 				<Layout className="customer__container">
 					<div className="customer__container__wrapper-button">

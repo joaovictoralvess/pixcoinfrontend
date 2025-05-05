@@ -69,7 +69,7 @@ export default async function MachinePanel() {
 
 	return (
 		<>
-			<Header />
+			<Header userName={user.name} />
 			<main className="machine-panel">
 				<Layout className="machine-panel__container">
 					<div className="machine-panel__container__wrapper-buttons">

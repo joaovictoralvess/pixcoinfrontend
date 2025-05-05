@@ -10,13 +10,17 @@ import GoBackIcon from '@/components/Icons/GoBackIcon';
 import PaymentCharts from '@/app/customer/payment-report/components/PaymentCharts/PaymentCharts';
 
 import { redirectCustomerToLoginIfNotLogged } from '@/helpers/customer';
-import { formatDateToDDMMYYYYHHMMSS, formatToBRL, retrieveDate } from '@/helpers/payment';
+import {
+	formatDateToDDMMYYYYHHMMSS,
+	formatToBRL,
+	retrieveDate,
+} from '@/helpers/payment';
 
 import ReportService from '@/services/Report';
 
 export interface PaymentReportScreen {
 	searchParams: SearchParams;
-	params: Params
+	params: Params;
 }
 
 import { getSession } from '@/helpers/session';
@@ -24,7 +28,9 @@ import { User } from '@/interfaces/User';
 
 import './styles.scss';
 
-export default async function PaymentReportScreen(props: Readonly<PaymentReportScreen>) {
+export default async function PaymentReportScreen(
+	props: Readonly<PaymentReportScreen>
+) {
 	await redirectCustomerToLoginIfNotLogged();
 
 	const user = (await getSession()) as User;
@@ -43,16 +49,15 @@ export default async function PaymentReportScreen(props: Readonly<PaymentReportS
 
 	newEndDate.setUTCHours(23, 59, 0, 0);
 
-	const { payments, tax, reverses, money, error } = await ReportService.allReports({
-		dataInicio: startDate,
-		dataFim: newEndDate.toISOString(),
-		maquinaId: id,
-	});
+	const { payments, tax, reverses, money, error } =
+		await ReportService.allReports({
+			dataInicio: startDate,
+			dataFim: newEndDate.toISOString(),
+			maquinaId: id,
+		});
 
 	if (error) {
-		return (
-			<ErrorScreen />
-		);
+		return <ErrorScreen />;
 	}
 
 	const resolveGoBackPath = (): string => {
@@ -65,7 +70,7 @@ export default async function PaymentReportScreen(props: Readonly<PaymentReportS
 
 	return (
 		<>
-			<Header iconLeft={<GoBackIcon goTo={resolveGoBackPath()} />} />
+			<Header iconLeft={<GoBackIcon goTo={resolveGoBackPath()} />} userName={user.name} />
 
 			<main className="payment-report-screen">
 				<Layout>
@@ -105,4 +110,4 @@ export default async function PaymentReportScreen(props: Readonly<PaymentReportS
 			</main>
 		</>
 	);
-};
+}

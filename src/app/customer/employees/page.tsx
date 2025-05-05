@@ -18,28 +18,29 @@ export default async function Employees() {
 	const customers = await CustomersService.getEmployees(user.id, user.token);
 
 	if (!Array.isArray(customers)) {
-		return (
-			<ErrorScreen />
-		);
+		return <ErrorScreen />;
 	}
 
 	return (
 		<>
-			<Header iconLeft={
-				<GoBackIcon goTo={`/customer/machine-panel`} />
-			} />
+			<Header
+				iconLeft={<GoBackIcon goTo={`/customer/machine-panel`} />}
+				userName={user.name}
+			/>
 
-			<main className='customers'>
-				<Layout className='customers__container'>
-					<div className='customers__container__wrapper-button'>
-						<PageTitleWithSync title='Listagem de Usuários' />
+			<main className="customers">
+				<Layout className="customers__container">
+					<div className="customers__container__wrapper-button">
+						<PageTitleWithSync title="Listagem de Usuários" />
 					</div>
 				</Layout>
 
 				{customers.length > 0 ? (
 					<CustomersWithSearch customers={customers} />
-				) : (<h1>Nenhum Usuário cadastrado</h1>)}
+				) : (
+					<h1>Nenhum Usuário cadastrado</h1>
+				)}
 			</main>
 		</>
-	)
+	);
 }
