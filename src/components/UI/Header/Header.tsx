@@ -18,10 +18,16 @@ export default async function Header({ iconLeft }: Readonly<HeaderProps>) {
 	return (
 		<header className="header">
 			<div className="header__title-wrapper">
-				<span className="header__title-wrapper__logo">PIXcoin</span>
-				<span className="header__title-wrapper__customer">
+				<button className="header__title-wrapper__burger-btn">
+					<span className="header__title-wrapper__burger-btn__line"></span>
+				</button>
+
+				<div className="header__title-wrapper-logo">
+					<span className="header__title-wrapper-logo__logo">PIXcoin</span>
+					<span className="header__title-wrapper-logo__customer">
 					Olá, {user.name} {generateRandomEmoji()}
 				</span>
+				</div>
 			</div>
 
 			<nav className="header__right">
