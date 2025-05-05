@@ -1,0 +1,16 @@
+@use '@/app/variables' as variables;
+
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 16.938rem;
+  height: 100%;
+  transition: all .3s;
+  background: variables.$application-color;
+  z-index: 9999;
+  color: #fff;
+  font-size: 14px;
+  overflow: auto;
+  transform: translate(-271px);
+}
