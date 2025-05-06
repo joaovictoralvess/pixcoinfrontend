@@ -23,7 +23,27 @@
     border-radius: 20px;
     min-width: 350px;
     overflow: auto;
-    max-height: 50rem;
+    max-height: 35rem;
+
+    &::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+      border-radius: 3px;
+      margin: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: variables.$application-color;
+      border-radius: 3px;
+
+      &:hover {
+        background: variables.$application-color;
+      }
+    }
 
     &__header {
       display: flex;
