@@ -1,0 +1,14 @@
+.how-to-use {
+  padding: 10px 10px;
+
+  &__container {
+    &__wrapper-buttons {
+      margin-bottom: 2rem;
+    }
+  }
+
+  iframe {
+    width: 100%;
+    height: 80vh;
+  }
+}
