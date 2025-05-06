@@ -1,4 +1,6 @@
-import { ReactNode } from 'react';
+'use client';
+
+import { ReactNode, useState, useEffect } from 'react';
 
 import { generateRandomEmoji } from '@/helpers/emojis';
 
@@ -14,19 +16,25 @@ export interface HeaderProps {
 }
 
 export default function Header({ iconLeft, userName }: Readonly<HeaderProps>) {
+	const [emoji, setEmoji] = useState('');
+	const [open, setOpen] = useState(false);
+
+	useEffect(() => {
+		setEmoji(generateRandomEmoji());
+	}, []);
 
 	return (
 		<>
 			<header className="header">
 				<div className="header__title-wrapper">
-					<button className="header__title-wrapper__burger-btn">
-						<span className="header__title-wrapper__burger-btn__line"></span>
+					<button onClick={() => setOpen(!open)} className={`header__title-wrapper__burger-btn ${open ? 'header__title-wrapper__burger-btn--open' : ''}`}>
+						<span className={`header__title-wrapper__burger-btn__line ${open ? 'header__title-wrapper__burger-btn--open__line' : ''}`}></span>
 					</button>
 
 					<div className="header__title-wrapper-logo">
 						<span className="header__title-wrapper-logo__logo">PIXcoin</span>
 						<span className="header__title-wrapper-logo__customer">
-							Olá, {userName} {generateRandomEmoji()}
+							Olá, {userName} {emoji}
 						</span>
 					</div>
 				</div>
@@ -50,7 +58,9 @@ export default function Header({ iconLeft, userName }: Readonly<HeaderProps>) {
 				</nav>
 			</header>
 
-			<Sidebar />
+			<Sidebar
+				open={open}
+			/>
 		</>
 	);
 }

@@ -8,9 +8,13 @@
   height: 100%;
   transition: all .3s;
   background: variables.$application-color;
-  z-index: 9999;
   color: #fff;
   font-size: 14px;
   overflow: auto;
-  transform: translate(-271px);
+  z-index: 99;
+  transform: translate(-16.938rem);
+
+  &--open {
+    transform: translate(0)
+  }
 }
