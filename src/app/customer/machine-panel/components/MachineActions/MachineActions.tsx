@@ -29,7 +29,7 @@ export interface MachineActionsProps {
 import './styles.scss';
 
 export default function MachineActions({ machine, isAdmin, customerId, user, shouldRender = 'all' }: MachineActionsProps) {
-	const [selectedModal, setSelectedModal] = useState<'edit' | 'credit' | 'destroy-payments' | 'delete-machine' | 'restart-machine' | ''>('');
+	const [selectedModal, setSelectedModal] = useState<'edit' | 'credit' | 'destroy-payments' | 'delete-machine' | 'restart-machine' | 'reset-wifi' | ''>('');
 
 	const handleCloseModal = () => setSelectedModal('');
 
@@ -45,6 +45,8 @@ export default function MachineActions({ machine, isAdmin, customerId, user, sho
 				return <RemoveMachineForm machineId={machine.id} cancelAction={handleCloseModal} />
 			case 'restart-machine':
 				return <SendCommandForm title="Esta ação irá reiniciar sua máquina controladora" command="restart" btnTitle="Reiniciar" machineId={machine.id} cancelAction={handleCloseModal} />
+			case 'reset-wifi':
+				return <SendCommandForm title="Esta ação irá restaurar sua configuração de rede WIFI" command="restart:wifi" btnTitle="Reiniciar" machineId={machine.id} cancelAction={handleCloseModal} />
 			default:
 				return null;
 		}
@@ -62,6 +64,8 @@ export default function MachineActions({ machine, isAdmin, customerId, user, sho
 				return `Excluir máquina ${machine.nome}`;
 			case 'restart-machine':
 				return 'Reiniciar Máquina'
+			case 'reset-wifi':
+				return 'Reset de WI-FI'
 			default:
 				return '';
 		}
@@ -134,7 +138,7 @@ export default function MachineActions({ machine, isAdmin, customerId, user, sho
 					</ActionButton>
 
 					<ActionButton
-						callback={() => setSelectedModal('destroy-payments')}
+						callback={() => setSelectedModal('reset-wifi')}
 						icon={<ResetNetworkIcon width={15} />}
 					>
 						Reset de WI-FI
