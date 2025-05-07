@@ -185,6 +185,19 @@ const MachineService = {
 
 		return await response.json();
 	},
+	executeESPCommand: async(data: {id: string; command: string}): Promise<{status: string; message:string}> => {
+		const response = await fetch(
+			`${process.env.REACT_APP_SERVIDOR}/machine/${data.id}/${data.command}`,
+			{
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+			}
+		);
+
+		return await response.json();
+	}
 };
 
 export default MachineService;

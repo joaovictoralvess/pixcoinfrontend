@@ -1,0 +1,39 @@
+@use '@/app/variables' as variables;
+
+.restart-machine-form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+
+  &__error,
+  &__sucesso {
+    margin-top: 1rem;
+    font-size: 1.2rem;
+  }
+
+  &__error {
+    color: #a93226;
+  }
+
+  &__sucesso {
+    color: #4caf50;
+  }
+
+  button { width: 210px; }
+
+  button:first-child {
+    background-color: transparent;
+    border: 2px solid variables.$application-color;
+    color: #000;
+    transition: all 0.5s ease;
+
+    &:hover {
+      background-color: variables.$application-color;
+      color: #fff;
+    }
+  }
+
+  button:last-of-type {
+    background-color: #ff4c4c;
+  }
+}
