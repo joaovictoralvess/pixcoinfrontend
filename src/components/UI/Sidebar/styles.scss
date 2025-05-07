@@ -2,7 +2,7 @@
 
 .sidebar {
   position: fixed;
-  width: 16.938rem;
+  width: 17.938rem;
   height: 100%;
   transition: all .3s;
   background: variables.$application-color;
@@ -10,7 +10,7 @@
   font-size: 14px;
   overflow: auto;
   z-index: 99;
-  transform: translate(-16.938rem);
+  transform: translate(-17.938rem);
   padding: 1.25rem 0.625rem;
 
   &:before {
