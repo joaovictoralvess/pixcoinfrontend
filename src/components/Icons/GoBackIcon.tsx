@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import Loading from '@/components/UI/Loading/Loading';
 
 export interface GoBackIconProps extends SVGAttributes<SVGElement> {
-	goTo: string;
+	goTo?: string;
 }
 
 export default function GoBackIcon({
@@ -20,7 +20,12 @@ export default function GoBackIcon({
 			<svg
 				onClick={() =>
 					startTransition(() => {
-						router.push(goTo);
+						if (goTo) {
+							router.push(goTo);
+							return;
+						}
+
+						router.back();
 					})
 				}
 				width={25}

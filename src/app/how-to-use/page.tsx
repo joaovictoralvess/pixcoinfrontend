@@ -14,7 +14,7 @@ export default async function HowToUseScreen() {
 		<>
 			<Header
 				userName={user.name}
-				iconLeft={<GoBackIcon goTo="/customer/machine-panel" />}
+				iconLeft={<GoBackIcon />}
 			/>
 			<main className="how-to-use">
 				<Layout className="how-to-use__container">
