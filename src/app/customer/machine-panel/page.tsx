@@ -13,7 +13,6 @@ import WarningMessage from '@/app/customer/machine-panel/components/WarningMessa
 import CustomerActions from '@/app/admin/customers/components/CustomerActions/CustomerActions';
 
 import './styles.scss';
-import WellComeCustomer from '@/components/UI/WellcomeCustomer/WellComecustomer';
 
 export default async function MachinePanel() {
 	const user = await redirectCustomerToLoginIfNotLogged();
@@ -48,7 +47,6 @@ export default async function MachinePanel() {
 
 		return (
 			<>
-				<WellComeCustomer name={user.name} />
 				{message && <WarningMessage message={message} />}
 				<p className="machine-panel__tip">
 					Selecione uma máquina para ver mais detalhes
