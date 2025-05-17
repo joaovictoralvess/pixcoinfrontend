@@ -12,6 +12,7 @@ import { getSession } from '@/helpers/session';
 import { User } from '@/interfaces/User';
 import CustomersService from '@/services/Customers';
 import WarningMessage from '@/app/customer/machine-panel/components/WarningMessage/WarningMessage';
+import WellComeCustomer from '@/components/UI/WellcomeCustomer/WellComecustomer';
 
 export default async function MachinePanel() {
 	await redirectCustomerToLoginIfNotLogged();
@@ -41,6 +42,8 @@ export default async function MachinePanel() {
 
 		return (
 			<>
+				<WellComeCustomer name={user.name} />
+
 				{message && (
 					<WarningMessage message={message} />
 				)}

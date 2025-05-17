@@ -39,24 +39,30 @@ export default function WellComeCustomer({ name }: WellComeCustomerProps) {
 			<div className="wellcome-text">
 				<p>
 					Olá, {name}!
-					Que alegria ter você conosco! É uma honra enorme apresentar a você a nova telemetria, feito com muito carinho
-					para oferecer uma experiência ainda mais incrível.
 				</p>
 
 				<p>
-					Estamos sempre buscando evoluir para melhor atendê-lo, e este é apenas o começo de uma jornada repleta de
-					novidades. Navegue à vontade e conte com a gente para o que precisar!
+					É de extrema importância que você entre em contato conosco para realizar a migração para o novo sistema.
 				</p>
 
 				<p>
-					Seja bem-vindo(a) ao novo capítulo da nossa história.
+					O novo sistema conta com diversas funcionalidades aprimoradas, além de correções de vários erros encontrados na versão atual.
 				</p>
 
 				<p>
-					Abraços,
+					Em breve, o sistema atual será desligado e deixará de estar disponível.
+				</p>
+
+				<p>
+					Para evitar qualquer interrupção no seu uso, entre em contato o quanto antes.
+				</p>
+
+				<p>
+					Atenciosamente,<br />
 					Equipe Pixcoin ❤️
 				</p>
 			</div>
+
 
 			<div className="wellcome-buttons">
 				<Button onClick={() => setOpen(false)}>Fechar</Button>
