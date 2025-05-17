@@ -50,7 +50,9 @@ export default function WellComeCustomer({ name }: WellComeCustomerProps) {
 				</p>
 
 				<p>
-					Em breve, o sistema atual será desligado e deixará de estar disponível.
+					Em breve, o sistema atual será descontinuado, solicitamos que agende uma migração para o novo sistema.
+					<br />
+					OBS: Essa migração não será cobrada. Solicitamos que tenha em mãos a caixinha, um notebook/pc e um cabo micro usb.
 				</p>
 
 				<p>
