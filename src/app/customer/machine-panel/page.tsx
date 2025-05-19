@@ -45,22 +45,28 @@ export default async function MachinePanel() {
 			return <h1>Nenhuma máquina encontrada...</h1>;
 		}
 
+		const maquinasOrdenadas = machines.toSorted((a, b) => {
+			return Number(a.descricao) - Number(b.descricao);
+		});
+
 		return (
 			<>
 				{message && <WarningMessage message={message} />}
 				<p className="machine-panel__tip">
 					Selecione uma máquina para ver mais detalhes
 				</p>
-				{machines &&
-					machines.length &&
-					machines.map((machine) => (
-						<div
-							key={`${machine.id}`}
-							className="machine-panel__container__wrapper-machines"
-						>
-							<Machine user={user} machine={machine} />
-						</div>
-					))}
+				<div className="client-machine-list">
+					{maquinasOrdenadas &&
+						maquinasOrdenadas.length &&
+						maquinasOrdenadas.map((machine) => (
+							<div
+								key={`${machine.id}`}
+								className="machine-panel__container__wrapper-machines"
+							>
+								<Machine user={user} machine={machine} />
+							</div>
+						))}
+				</div>
 			</>
 		);
 	};

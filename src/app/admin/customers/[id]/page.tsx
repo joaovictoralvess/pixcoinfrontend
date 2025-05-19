@@ -36,6 +36,11 @@ export default async function AdminCustomer(
 
 	const customer = data as ICustomer;
 
+	const maquinasOrdenadas = customer.maquinas.toSorted((a, b) => {
+		return Number(a.descricao) - Number(b.descricao);
+	});
+
+
 	return (
 		<>
 			<Header iconLeft={<GoBackIcon goTo={`/admin/customers`} />} userName={user.name} />
@@ -51,11 +56,11 @@ export default async function AdminCustomer(
 						/>
 					</div>
 
-					{customer.maquinas.length > 0 ? (
+					{maquinasOrdenadas.length > 0 ? (
 						<div className="customer__container__wrapper-machines">
-							{customer.maquinas &&
-								customer.maquinas.length &&
-								customer.maquinas.map((machine) => (
+							{maquinasOrdenadas &&
+								maquinasOrdenadas.length &&
+								maquinasOrdenadas.map((machine) => (
 									<Machine
 										user={user}
 										customerId={customer.id}

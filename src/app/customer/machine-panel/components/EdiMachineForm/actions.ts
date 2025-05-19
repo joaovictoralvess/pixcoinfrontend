@@ -28,7 +28,7 @@ const validateEditMachineForm = (formData: FormData): EditMachineState => {
 		z
 			.object({
 				name: z.string().min(3, '"Nome" deve conter no mínimo 3 dígitos.'),
-				description: z.string().min(3, '"Descrição" deve conter no mínimo 3 dígitos.'),
+				description: z.string().min(1, '"Descrição" deve conter no mínimo 1 dígitos.'),
 				value: z.string().min(1, '"Valor do pulso" nao pode ser vazio.'),
 			});
 
