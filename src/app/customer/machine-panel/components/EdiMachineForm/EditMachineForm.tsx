@@ -1,7 +1,10 @@
-import { useActionState, useState } from 'react';
+'use client';
+
+import { FormEvent, useActionState, useState, useTransition } from 'react';
 
 import TextInput from '@/components/Forms/TextInput/TextInput';
 import Button from '@/components/Forms/Button/Button';
+import Loading from '@/components/UI/Loading/Loading';
 
 import { handleEditMachine } from '@/app/customer/machine-panel/components/EdiMachineForm/actions';
 import { initialState } from '@/app/customer/machine-panel/components/EdiMachineForm/helpers';
@@ -19,7 +22,20 @@ export default function EditMachineForm({
 	machine,
 	customerId,
 }: Readonly<EditMachineFormProps>) {
-	const [state, formAction] = useActionState(handleEditMachine, initialState);
+	const [isPending, startTransition] = useTransition();
+	const [state, formActions] = useActionState(
+		handleEditMachine,
+		initialState
+	);
+
+	const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+		const formData = new FormData(e.currentTarget);
+		startTransition(() => {
+			formActions(formData);
+		});
+	};
+
 	const [enableBonusPlay, setEnableBonusPlay] = useState(
 		machine.bonusPlay || false
 	);
@@ -29,7 +45,7 @@ export default function EditMachineForm({
 	);
 
 	return (
-		<form className="edit-machine-form" action={formAction}>
+		<form className="edit-machine-form" action={formActions} onSubmit={handleSubmit}>
 			<TextInput
 				name="name"
 				label="Nome"
@@ -222,6 +238,8 @@ export default function EditMachineForm({
 			<Button type="submit" title="Editar máquina">
 				Salvar
 			</Button>
+
+			{isPending && <Loading />}
 		</form>
 	);
 }
