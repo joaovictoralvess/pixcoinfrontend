@@ -8,11 +8,13 @@ import Loading from '@/components/UI/Loading/Loading';
 
 import { initialState } from '@/app/admin/customers/components/AddEmployeeForm/helpers';
 
+import { IMachine } from '@/interfaces/IMachine';
+
 import { handleCreateEmployee } from '@/app/admin/customers/components/AddEmployeeForm/actions';
 
 import './styles.scss';
 
-export default function AddEmployeeForm({ id }: Readonly<{ id: string }>) {
+export default function AddEmployeeForm({ id, machines }: Readonly<{ id: string, machines?: IMachine[] }>) {
 	const [isPending, startTransition] = useTransition();
 
 	const [state, formAction] = useActionState(
@@ -30,6 +32,8 @@ export default function AddEmployeeForm({ id }: Readonly<{ id: string }>) {
 
 	return (
 		<form className="add-employee-form" action={formAction} onSubmit={handleSubmit}>
+			<h3 className="add-employee-form__operations-title">1. Dados do usuário:</h3>
+
 			<TextInput
 				name="name"
 				label="Nome"
@@ -54,6 +58,21 @@ export default function AddEmployeeForm({ id }: Readonly<{ id: string }>) {
 				title="Senha do cliente"
 				error={state.errors.password}
 			/>
+
+			<h3 className="add-employee-form__operations-title">2. Máquinas que o usuário pode ter acesso:</h3>
+
+			{machines?.map((machine) => (
+				<div key={machine.id} className="add-employee-form__wrapper-checkbox">
+					<input type="checkbox" id={`machine-${machine.id}`} name="machinesId[]" value={machine.id} />
+					<label htmlFor={`machine-${machine.id}`}>{machine.nome}</label>
+				</div>
+			))}
+
+			{state.errors.machinesIds && (
+				<span style={{color: "#ef4444"}}>{state.errors.machinesIds}</span>
+			)}
+
+			<h3 className="add-employee-form__operations-title">3. Operações que o usuário pode realizar:</h3>
 
 			<div className="add-employee-form__wrapper-checkbox">
 				<input type="checkbox" id="canDelete" name="canDelete" />

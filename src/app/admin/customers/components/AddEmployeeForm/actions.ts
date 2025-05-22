@@ -12,6 +12,7 @@ export interface AddEmployeeErros {
 	name?: string,
 	email?: string,
 	password?: string,
+	machinesId?: string,
 }
 
 export interface AddEmployeeState {
@@ -48,6 +49,15 @@ export const handleCreateEmployee = async (prevState: any, formData: FormData) =
 		return {...prevState, ...validation};
 	}
 
+	const machinesIds = formData.getAll("machinesId[]");
+
+	if (machinesIds.length === 0) return {
+		isValid: false,
+		errors: {
+			machinesIds: "Selecione pelo menos uma máquina"
+		}
+	}
+
 	const data: CreateEmployeeRequest = {
 		nome: `${formData.get('name')}`,
 		email: `${formData.get('email')}`,
@@ -56,9 +66,10 @@ export const handleCreateEmployee = async (prevState: any, formData: FormData) =
 		canDelete: `${formData.get('canDelete')}`,
 		canAddCredit: `${formData.get('canAddCredit')}`,
 		canEditMachine: `${formData.get('canEditMachine')}`,
+		machinesIds,
 	};
 
-	const resp = await CustomersService.createEmployee(data);
+	await CustomersService.createEmployee(data);
 
 	revalidatePath('/customer/machine-panel');
 	redirect('/customer/machine-panel');

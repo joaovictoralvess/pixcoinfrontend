@@ -82,6 +82,7 @@ export default async function MachinePanel() {
 							<>
 								<CustomerActions
 									clientId={user.id}
+									machines={machines}
 									shouldRender="new-employee"
 								/>
 								<CustomerActions shouldRender="my-employees" />

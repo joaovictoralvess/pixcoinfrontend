@@ -3,6 +3,7 @@
 import { useState } from 'react';
 
 import { ICustomer } from '@/interfaces/ICustomer';
+import { IMachine } from '@/interfaces/IMachine';
 
 import Modal from '@/components/UI/Modal/Modal';
 import ActionButton from '@/app/customer/machine-panel/components/ActionButton/ActionButton';
@@ -17,6 +18,7 @@ export interface CustomerActionsProps {
 	clientId?: string;
 	customer?: ICustomer;
 	isAdmin?: boolean;
+	machines?: IMachine[];
 }
 
 import RemoveCustomerForm from '@/app/admin/customers/components/RemoveCustomerForm/RemoveCustomerForm';
@@ -26,7 +28,7 @@ import RestorePasswordForm from '@/app/admin/customers/components/RestorePasswor
 
 import './styles.scss';
 
-export default function CustomerActions({ customer, isAdmin, shouldRender = 'all', clientId = '' }: CustomerActionsProps) {
+export default function CustomerActions({ customer, isAdmin, machines, shouldRender = 'all', clientId = '' }: CustomerActionsProps) {
 	const [selectedModal, setSelectedModal] = useState<'new-customer' | 'new-machine' | 'edit-customer' | 'desative-machine' | 'remove-customer' | 'add-warning' | 'new-employee' | 'my-employees' | 'delete-employee' | 'restore-password' | ''>('');
 
 	const handleCloseModal = () => setSelectedModal('');
@@ -46,7 +48,7 @@ export default function CustomerActions({ customer, isAdmin, shouldRender = 'all
 			case 'add-warning':
 				return <AddWarningForm cancelAction={() => setSelectedModal('')} customerId={clientId} savedWarning={customer!.aviso} />
 			case 'new-employee':
-				return <AddEmployeeForm id={clientId} />
+				return <AddEmployeeForm id={clientId} machines={machines} />
 			case 'restore-password':
 				return <RestorePasswordForm cancelAction={() => setSelectedModal('')} customerId={clientId} />
 			default:

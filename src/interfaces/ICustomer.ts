@@ -48,4 +48,5 @@ export interface CreateEmployeeRequest {
 	canDelete: string;
 	canAddCredit: string;
 	canEditMachine: string;
+	machinesIds: FormDataEntryValue[];
 }
