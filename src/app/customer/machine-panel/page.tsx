@@ -49,6 +49,12 @@ export default async function MachinePanel() {
 			return Number(a.descricao) - Number(b.descricao);
 		});
 
+		const hasUserMachines = user.employee && user.maquinas_id && user.maquinas_id.length > 0;
+
+		const machinesToRender = hasUserMachines
+			? maquinasOrdenadas.filter(machine => user.maquinas_id!.includes(machine.id))
+			: maquinasOrdenadas;
+
 		return (
 			<>
 				{message && <WarningMessage message={message} />}
@@ -56,9 +62,9 @@ export default async function MachinePanel() {
 					Selecione uma máquina para ver mais detalhes
 				</p>
 				<div className="client-machine-list">
-					{maquinasOrdenadas &&
-						maquinasOrdenadas.length &&
-						maquinasOrdenadas.map((machine) => (
+					{machinesToRender &&
+						machinesToRender.length &&
+						machinesToRender.map((machine) => (
 							<div
 								key={`${machine.id}`}
 								className="machine-panel__container__wrapper-machines"

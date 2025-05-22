@@ -15,6 +15,7 @@ export interface User {
 	canAddRemoteCredit?: boolean;
 	canEditMachine?: boolean;
 	parent_id?: string
+	maquinas_id?: string[]
 }
 
 export interface SignInUser {
