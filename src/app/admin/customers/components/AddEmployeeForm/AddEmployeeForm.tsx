@@ -4,13 +4,13 @@ import { FormEvent, useActionState, useTransition } from 'react';
 
 import TextInput from '@/components/Forms/TextInput/TextInput';
 import Button from '@/components/Forms/Button/Button';
+import Loading from '@/components/UI/Loading/Loading';
 
 import { initialState } from '@/app/admin/customers/components/AddEmployeeForm/helpers';
 
 import { handleCreateEmployee } from '@/app/admin/customers/components/AddEmployeeForm/actions';
 
 import './styles.scss';
-import Loading from '@/components/UI/Loading/Loading';
 
 export default function AddEmployeeForm({ id }: Readonly<{ id: string }>) {
 	const [isPending, startTransition] = useTransition();
