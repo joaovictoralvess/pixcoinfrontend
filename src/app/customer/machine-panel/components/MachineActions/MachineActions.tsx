@@ -36,7 +36,7 @@ export default function MachineActions({ machine, isAdmin, customerId, user, sho
 	const renderModalContent = () => {
 		switch (selectedModal) {
 			case 'edit':
-				return <EditMachineForm customerId={!user.employee ? customerId : user.parent_id} machine={machine} />;
+				return <EditMachineForm customerId={!user.employee ? customerId : user.parent_id} machine={machine} isAdmin={user.key === 'ADMIN'} />;
 			case 'credit':
 				return <AddRemoteCreditForm machineId={machine.id} />;
 			case 'destroy-payments':

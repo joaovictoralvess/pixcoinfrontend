@@ -49,6 +49,7 @@ export interface UpdateMachineRequest {
 	bonus_twenty: number;
 	bonus_fifty: number;
 	bonus_hundred: number;
+	binFile: any;
 }
 
 export interface UpdateMachineResponse {

@@ -34,20 +34,26 @@ const MachineService = {
 	update: async (
 		data: UpdateMachineRequest
 	): Promise<UpdateMachineResponse> => {
-		const user = (await getSession()) as User;
+		try {
+			const user = (await getSession()) as User;
 
-		const URI = `${process.env.REACT_APP_SERVIDOR}/${user.key === 'ADMIN' ? 'maquina' : 'maquina-cliente'}`;
+			const URI = `${process.env.REACT_APP_SERVIDOR}/${user.key === 'ADMIN' ? 'maquina' : 'maquina-cliente'}`;
 
-		const response = await fetch(URI, {
-			method: 'PUT',
-			headers: {
-				'Content-Type': 'application/json',
-				'x-access-token': user.token,
-			},
-			body: JSON.stringify(data),
-		});
+			const response = await fetch(URI, {
+				method: 'PUT',
+				headers: {
+					'Content-Type': 'application/json',
+					'x-access-token': user.token,
+				},
+				body: JSON.stringify(data),
+			});
 
-		return await response.json();
+			return await response.json();
+		} catch (error) {
+			return {
+				error: "Ocorreu um erro"
+			};
+		}
 	},
 	addRemoteCredit: async (
 		data: AddRemoteCrediteRequest

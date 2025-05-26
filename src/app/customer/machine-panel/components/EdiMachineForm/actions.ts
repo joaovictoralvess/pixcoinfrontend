@@ -54,6 +54,14 @@ export const handleEditMachine = async (prevState: any, formData: FormData) => {
 
 	const bonusPlay = `${formData.get('bonusPlay')}` === 'on';
 	const tabledBonus = `${formData.get('tabledBonus')}` === 'on';
+	const file = formData.get('binFile') as File;
+
+	let binFileBase64 = null;
+
+	if (file.size > 0) {
+		const buffer = await file.arrayBuffer();
+		binFileBase64 = Buffer.from(buffer).toString('base64');
+	}
 
 	const data: UpdateMachineRequest = {
 		nome: `${formData.get('name')}`,
@@ -74,6 +82,13 @@ export const handleEditMachine = async (prevState: any, formData: FormData) => {
 		bonus_twenty: tabledBonus ? Number(`${formData.get('twenty')}`) : 0,
 		bonus_fifty: tabledBonus ? Number(`${formData.get('fifity')}`) : 0,
 		bonus_hundred: tabledBonus ? Number(`${formData.get('hundred')}`) : 0,
+		binFile: binFileBase64 ? {
+			name: file.name,
+			type: file.type,
+			size: file.size,
+			lastModified: file.lastModified,
+			data: binFileBase64
+		} : null,
 	};
 
 	const resp = await MachineService.update(data);

@@ -14,6 +14,7 @@ import { IMachine } from '@/interfaces/IMachine';
 export interface EditMachineFormProps {
 	machine: IMachine;
 	customerId?: string;
+	isAdmin: boolean;
 }
 
 import './styles.scss';
@@ -21,6 +22,7 @@ import './styles.scss';
 export default function EditMachineForm({
 	machine,
 	customerId,
+	isAdmin
 }: Readonly<EditMachineFormProps>) {
 	const [isPending, startTransition] = useTransition();
 	const [state, formActions] = useActionState(
@@ -46,6 +48,15 @@ export default function EditMachineForm({
 
 	return (
 		<form className="edit-machine-form" action={formActions} onSubmit={handleSubmit}>
+			{isAdmin && (
+				<div>
+					<h3>Anexe o código do arduino aqui:</h3>
+					<input name="binFile" id="binFile" type="file" />
+					<br />
+					<br />
+				</div>
+			)}
+
 			<TextInput
 				name="name"
 				label="Nome"
