@@ -29,7 +29,7 @@ export interface MachineActionsProps {
 import './styles.scss';
 
 export default function MachineActions({ machine, isAdmin, customerId, user, shouldRender = 'all' }: MachineActionsProps) {
-	const [selectedModal, setSelectedModal] = useState<'edit' | 'credit' | 'destroy-payments' | 'delete-machine' | 'restart-machine' | 'reset-wifi' | ''>('');
+	const [selectedModal, setSelectedModal] = useState<'edit' | 'credit' | 'destroy-payments' | 'delete-machine' | 'restart-machine' | 'reset-wifi' | 'update-firmware' | ''>('');
 
 	const handleCloseModal = () => setSelectedModal('');
 
@@ -47,6 +47,8 @@ export default function MachineActions({ machine, isAdmin, customerId, user, sho
 				return <SendCommandForm title="Esta ação irá reiniciar sua máquina controladora" command="restart" btnTitle="Reiniciar" machineId={machine.id} cancelAction={handleCloseModal} />
 			case 'reset-wifi':
 				return <SendCommandForm title="Esta ação irá restaurar sua configuração de rede WIFI" command="restart:wifi" btnTitle="Reiniciar" machineId={machine.id} cancelAction={handleCloseModal} />
+			case 'update-firmware':
+				return <SendCommandForm title="Esta ação irá atualizar o código da caixinha com o binário salvo" command="update:firmware" btnTitle="Atualizar" machineId={machine.id} cancelAction={handleCloseModal} />
 			default:
 				return null;
 		}
@@ -66,6 +68,8 @@ export default function MachineActions({ machine, isAdmin, customerId, user, sho
 				return 'Reiniciar Máquina'
 			case 'reset-wifi':
 				return 'Reset de WI-FI'
+			case 'update-firmware':
+				return 'Atualizar firmware caixinha'
 			default:
 				return '';
 		}
@@ -143,6 +147,15 @@ export default function MachineActions({ machine, isAdmin, customerId, user, sho
 					>
 						Reset de WI-FI
 					</ActionButton>
+
+					{isAdmin && (
+						<ActionButton
+							callback={() => setSelectedModal('update-firmware')}
+							icon={<ResetNetworkIcon width={15} />}
+						>
+							Update Firmware
+						</ActionButton>
+					)}
 
 					<ActionButton
 						className='machine-action-buttons--delete'
