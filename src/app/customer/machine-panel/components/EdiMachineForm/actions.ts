@@ -58,7 +58,7 @@ export const handleEditMachine = async (prevState: any, formData: FormData) => {
 
 	let binFileBase64 = null;
 
-	if (file.size > 0) {
+	if (file && file.size > 0) {
 		const buffer = await file.arrayBuffer();
 		binFileBase64 = Buffer.from(buffer).toString('base64');
 	}
