@@ -52,6 +52,7 @@ export const handleEditCustomer = async (prevState: any, formData: FormData) => 
 		pagbankToken: `${formData.get('pagbank_token')}`,
 		mercadoPagoToken: `${formData.get('token')}`,
 		pagbankEmail: `${formData.get('pagbank_email')}`,
+		cellphone: `${formData.get('cellphone')}`,
 		dataVencimento: new Date(`${formData.get('maturity')}`).toISOString(),
 	};
 

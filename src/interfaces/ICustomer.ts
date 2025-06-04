@@ -30,6 +30,7 @@ export interface ICustomer {
 	can_add_edit_machine: boolean;
 	can_add_remote_credit: boolean;
 	can_delete_payments: boolean;
+	cellphone?: string;
 }
 
 export interface EditCustomerRequest {
@@ -38,6 +39,7 @@ export interface EditCustomerRequest {
 	pagbankToken: string
 	pagbankEmail: string
 	mercadoPagoToken: string
+	cellphone: string
 }
 
 export interface CreateEmployeeRequest {
