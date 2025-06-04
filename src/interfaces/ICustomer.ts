@@ -26,6 +26,7 @@ export interface ICustomer {
 	error?: string;
 	Maquina: IMachine[];
 	aviso?: string;
+	cellphone?: string;
 }
 
 export interface EditCustomerRequest {
@@ -34,4 +35,5 @@ export interface EditCustomerRequest {
 	pagbankToken: string
 	pagbankEmail: string
 	mercadoPagoToken: string
+	cellphone: string;
 }

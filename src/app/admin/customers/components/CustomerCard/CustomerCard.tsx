@@ -40,6 +40,9 @@ export default function CustomerCard({ customer }: CustomerCardProps) {
 					<h3>
 						Vencimento: {retrieveDate(customer.dataVencimento)}
 					</h3>
+					{customer?.cellphone && (
+						<h3>Celular: {customer.cellphone}</h3>
+					)}
 				</div>
 			</div>
 
