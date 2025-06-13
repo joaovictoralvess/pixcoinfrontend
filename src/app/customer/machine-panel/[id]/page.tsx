@@ -85,7 +85,7 @@ export default async function MachineDetail(
 							shouldRender="delete-only"
 						/>
 						<PaymentReport
-							canDelete={!!user.canDeletePayments}
+							canDelete={!user.employee || user.key === "ADMIN" ||  !!user.canDeletePayments}
 							machineName={machineName}
 							machineId={id}
 						/>

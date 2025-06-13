@@ -74,7 +74,7 @@ export default async function CustomerPayments(props: Readonly<CustomerPaymentsP
 							shouldRender="delete-only"
 						/>
 						<PaymentReport
-							canDelete={!!user.canDeletePayments && !!user.employee}
+							canDelete={!user.employee || user.key === "ADMIN" ||  !!user.canDeletePayments}
 							machineName={machineName}
 							isAdmin={true}
 							customerId={id}
